@@ -1,16 +1,16 @@
 //
-//  CategoryGroupCell.swift
+//  PoemsGroupCell.swift
 //  Setirler
 //
-//  Created by Didar Jelaletdinov on 03.04.2021.
+//  Created by Didar Jelaletdinov on 15.04.2021.
 //
 
 import UIKit
 
-class CategoryGroupCell: UICollectionViewCell {
+class PoemGroupCell: UICollectionViewCell {
     
     let titleLabel = UILabel(text: "Category Name", font: .boldSystemFont(ofSize: 30))
-    let contentControlller = CategoryController()
+    let contentControlller = TagsPoemsHorizontalController()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,4 +29,3 @@ class CategoryGroupCell: UICollectionViewCell {
     }
     
 }
-

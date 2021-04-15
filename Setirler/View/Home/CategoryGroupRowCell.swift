@@ -1,8 +1,8 @@
 //
-//  CategoryRowCell.swift
+//  CategoryGroupRowCell.swift
 //  Setirler
 //
-//  Created by Didar Jelaletdinov on 01.04.2021.
+//  Created by Didar Jelaletdinov on 03.04.2021.
 //
 
 import UIKit
@@ -11,7 +11,7 @@ class CategoryRowCell: UICollectionViewCell {
     
     let imageView = UIImageView(cornerRadius: 9)
     let titleLabel = UILabel(text: "Title Name", font: .systemFont(ofSize: 20))
-    let contentLabel = UILabel(text: "Content", font: .systemFont(ofSize: 10))
+    
     let counterLabel = UILabel(text: "Counter", font: .systemFont(ofSize: 10))
     
     override init(frame: CGRect) {
@@ -19,13 +19,16 @@ class CategoryRowCell: UICollectionViewCell {
         backgroundColor = .red
         
         
-        imageView.constrainWidth(constant: 48)
+        imageView.constrainWidth(constant: 64)
         imageView.constrainHeight(constant: 64)
         imageView.backgroundColor = .orange
-        let stackView = UIStackView(arrangedSubviews: [imageView, VerticalStackView(arrangedSubviews: [titleLabel, contentLabel, counterLabel], spacing: 4)])
-        addSubview(stackView)
+        let stackView = UIStackView(arrangedSubviews: [imageView, VerticalStackView(arrangedSubviews: [titleLabel, counterLabel], spacing: 10)])
+        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        stackView.isLayoutMarginsRelativeArrangement = true
+        
         stackView.alignment = .center
         stackView.spacing = 16
+        addSubview(stackView)
         stackView.fillSuperview()
     }
     
@@ -33,5 +36,4 @@ class CategoryRowCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
 

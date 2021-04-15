@@ -20,7 +20,7 @@ class Service {
 //    }
     
     func fetchHomeFeed(completion: @escaping (OrderRawData?, Error?) -> ()) {
-        let urlString = "http://poem.djelaltedin.com/public/api/index"
+        let urlString = "http://poem.djelaletdin.com/public/api/index"
         fetchGenericJSONData(urlString: urlString, completion: completion)
     }
     
