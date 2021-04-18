@@ -31,11 +31,11 @@ class PoemsRowCell: UICollectionViewCell {
         
         
 
-        let stackView = UIStackView(arrangedSubviews: [VerticalStackView(arrangedSubviews: [titleLabel, contentLabel, counterLabel], spacing: 4)])
-        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        let stackView = UIStackView(arrangedSubviews: [VerticalStackView(arrangedSubviews: [titleLabel, contentLabel, UIView(), counterLabel], spacing: 4)])
+        stackView.layoutMargins = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
         stackView.isLayoutMarginsRelativeArrangement = true
         addSubview(stackView)
-        stackView.alignment = .center
+        stackView.alignment = .fill
         stackView.spacing = 16
         stackView.fillSuperview()
     }

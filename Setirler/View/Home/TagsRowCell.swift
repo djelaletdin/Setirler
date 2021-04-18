@@ -11,7 +11,7 @@ class TagsRowCell: UICollectionViewCell {
     
     
     let titleLabel = UILabel(text: "Title Name", font: .systemFont(ofSize: 20))
-    let contentLabel = UILabel(text: "tags", font: .systemFont(ofSize: 10))
+    let contentLabel = UILabel(text: "Content", font: .systemFont(ofSize: 10))
     let counterLabel = UILabel(text: "Counter", font: .systemFont(ofSize: 10))
     let whitespace = UIView()
     
@@ -32,11 +32,11 @@ class TagsRowCell: UICollectionViewCell {
         self.layer.shadowOpacity = 0.5
         self.layer.masksToBounds = false
 
-        let stackView = UIStackView(arrangedSubviews: [VerticalStackView(arrangedSubviews: [titleLabel, contentLabel, counterLabel], spacing: 4)])
-        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        let stackView = UIStackView(arrangedSubviews: [VerticalStackView(arrangedSubviews: [titleLabel, contentLabel, UIView(), counterLabel], spacing: 4)])
+        stackView.layoutMargins = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
         stackView.isLayoutMarginsRelativeArrangement = true
         addSubview(stackView)
-        stackView.alignment = .center
+        stackView.alignment = .fill
         stackView.spacing = 16
         stackView.fillSuperview()
     }
