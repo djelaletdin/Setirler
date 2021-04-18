@@ -27,6 +27,7 @@
 		0E89324C25FD1D540051B668 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E89324B25FD1D540051B668 /* UIView+Layout.swift */; };
 		0E89325125FD1D5D0051B668 /* VerticalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E89325025FD1D5D0051B668 /* VerticalStackView.swift */; };
 		0E89325625FD1DB60051B668 /* TagsPoemsHorizontalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E89325525FD1DB60051B668 /* TagsPoemsHorizontalController.swift */; };
+		0EBF0F4B262C2B0D003CA7F3 /* SearchViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBF0F4A262C2B0D003CA7F3 /* SearchViewHeader.swift */; };
 		0EC87ED626186D7100152313 /* CategoryGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC87ED526186D7100152313 /* CategoryGroupCell.swift */; };
 		0EC87EDB261871E400152313 /* CategoryGroupRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC87EDA261871E400152313 /* CategoryGroupRowCell.swift */; };
 		0EC87EE02618724A00152313 /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC87EDF2618724A00152313 /* CategoryController.swift */; };
@@ -76,6 +77,7 @@
 		0E89324B25FD1D540051B668 /* UIView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		0E89325025FD1D5D0051B668 /* VerticalStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalStackView.swift; sourceTree = "<group>"; };
 		0E89325525FD1DB60051B668 /* TagsPoemsHorizontalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsPoemsHorizontalController.swift; sourceTree = "<group>"; };
+		0EBF0F4A262C2B0D003CA7F3 /* SearchViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewHeader.swift; sourceTree = "<group>"; };
 		0EC87ED526186D7100152313 /* CategoryGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryGroupCell.swift; sourceTree = "<group>"; };
 		0EC87EDA261871E400152313 /* CategoryGroupRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryGroupRowCell.swift; sourceTree = "<group>"; };
 		0EC87EDF2618724A00152313 /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				0E50DBF9262828E20055DA86 /* PoemsRowCell.swift */,
 				0EC87ED526186D7100152313 /* CategoryGroupCell.swift */,
 				0EC87EDA261871E400152313 /* CategoryGroupRowCell.swift */,
+				0EBF0F4A262C2B0D003CA7F3 /* SearchViewHeader.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				0E50DBF2262828530055DA86 /* PoemsGroupCell.swift in Sources */,
 				0E69ADDA2615174100A38562 /* TagsRowCell.swift in Sources */,
 				0E89325625FD1DB60051B668 /* TagsPoemsHorizontalController.swift in Sources */,
+				0EBF0F4B262C2B0D003CA7F3 /* SearchViewHeader.swift in Sources */,
 				0E89325125FD1D5D0051B668 /* VerticalStackView.swift in Sources */,
 				0E89324C25FD1D540051B668 /* UIView+Layout.swift in Sources */,
 				0E7D2ECD25FD0094004BE3A7 /* AppDelegate.swift in Sources */,
