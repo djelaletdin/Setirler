@@ -14,7 +14,7 @@ class TagsGroupCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .green
+        contentControlller.type = 2
         titleLabel.lineBreakMode = .byWordWrapping
         titleLabel.numberOfLines = 3
         addSubview(titleLabel)

@@ -14,7 +14,8 @@ class CategoryGroupCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .green
+        backgroundColor = .white
+        
         titleLabel.lineBreakMode = .byWordWrapping
         titleLabel.numberOfLines = 3
         addSubview(titleLabel)

@@ -16,7 +16,7 @@ class CategoryController: BaseController, UICollectionViewDelegateFlowLayout {
         super.viewDidLoad()
         
         collectionView.register(CategoryRowCell.self, forCellWithReuseIdentifier: cellId)
-        collectionView.backgroundColor = .yellow
+        collectionView.backgroundColor = .white
         collectionView.contentInset = .init(top: 0, left: 16, bottom: 0, right: 16)
         
     }
@@ -47,7 +47,7 @@ class CategoryController: BaseController, UICollectionViewDelegateFlowLayout {
     }
     
     let topBottomPadding: CGFloat = 12
-    let lineSpacing: CGFloat = 10
+    let lineSpacing: CGFloat = 20
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 //        let height = (view.frame.height - 2*topBottomPadding - 2*lineSpacing)

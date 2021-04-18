@@ -12,9 +12,10 @@ class PoemGroupCell: UICollectionViewCell {
     let titleLabel = UILabel(text: "Category Name", font: .boldSystemFont(ofSize: 30))
     let contentControlller = TagsPoemsHorizontalController()
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .green
+        contentControlller.type = 1
         titleLabel.lineBreakMode = .byWordWrapping
         titleLabel.numberOfLines = 3
         addSubview(titleLabel)

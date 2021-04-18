@@ -16,8 +16,18 @@ class CategoryRowCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .red
+        backgroundColor = .white
         
+        self.layer.cornerRadius = 9
+        self.layer.borderWidth = 0
+        self.layer.borderColor = UIColor.lightGray.cgColor
+
+        self.layer.backgroundColor = UIColor.white.cgColor
+        self.layer.shadowColor = UIColor.lightGray.cgColor
+        self.layer.shadowOffset = CGSize(width: 2.0, height: 4.0)
+        self.layer.shadowRadius = 9.0
+        self.layer.shadowOpacity = 0.6
+        self.layer.masksToBounds = false
         
         imageView.constrainWidth(constant: 64)
         imageView.constrainHeight(constant: 64)

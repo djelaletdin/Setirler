@@ -10,16 +10,18 @@ import UIKit
 class HomeController: BaseController, UICollectionViewDelegateFlowLayout {
     
     let tagsId = "tagcellid"
+    let poemId = "poemID"
     let categoryId = "categoryid"
     
     var feedData: OrderRawData?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .white
         collectionView.register(TagsGroupCell.self, forCellWithReuseIdentifier: tagsId)
+        collectionView.register(PoemGroupCell.self, forCellWithReuseIdentifier: poemId)
         collectionView.register(CategoryGroupCell.self, forCellWithReuseIdentifier: categoryId)
-        collectionView.backgroundColor = .gray
+        
         fetchData()
         collectionView.reloadData()
     }
@@ -61,7 +63,7 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout {
             cell.contentControlller.poemGroup = feedData?.data?[1]
             return cell
         } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: tagsId, for: indexPath) as! TagsGroupCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: poemId, for: indexPath) as! PoemGroupCell
             cell.titleLabel.text = feedData?.data?[indexPath.row].categoryName
             return cell
         }
@@ -71,9 +73,9 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch indexPath.row{
         case 0:
-            return .init(width: view.frame.width, height: 200 )
+            return .init(width: view.frame.width, height: 190 )
         case 1:
-            return .init(width: view.frame.width, height: 380 )
+            return .init(width: view.frame.width, height: 420 )
         case 2:
             return .init(width: view.frame.width, height: 200 )
         
