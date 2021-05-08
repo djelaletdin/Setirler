@@ -12,7 +12,7 @@ class TagsPoemsHorizontalController: HorizontalSnappingController, UICollectionV
     let tagCellId = "tagsid"
     let poemCellId = "poemsid"
     
-    var poemGroup: OrderRawData?
+    var poemGroup: Datum?
     var type: Int?
     
     
@@ -23,14 +23,14 @@ class TagsPoemsHorizontalController: HorizontalSnappingController, UICollectionV
         collectionView.register(PoemsRowCell.self, forCellWithReuseIdentifier: poemCellId)
         collectionView.backgroundColor = .white
         collectionView.contentInset = .init(top: 0, left: 16, bottom: 0, right: 16)
-        
+        collectionView.showsHorizontalScrollIndicator = false
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return poemGroup?.data?.count ?? 0
+        return poemGroup?.categoryContent?.count ?? 0
         
-        return 6
+//        return 6
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -39,8 +39,9 @@ class TagsPoemsHorizontalController: HorizontalSnappingController, UICollectionV
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: poemCellId, for: indexPath) as! PoemsRowCell
             cell.titleLabel.text = String(indexPath.row)
             
-            if let content = poemGroup?.data?[0].categoryContent{
-                cell.titleLabel.text = content[0].name
+            if let content = poemGroup?.categoryContent?[indexPath.row]{
+                cell.titleLabel.text = content.name
+                cell.contentLabel.text = content.poet
             }
 
             return cell
@@ -48,22 +49,22 @@ class TagsPoemsHorizontalController: HorizontalSnappingController, UICollectionV
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: tagCellId, for: indexPath) as! TagsRowCell
             cell.titleLabel.text = "asdasd"
-//            cell.layer.cornerRadius = 10
-////            cell.layer.masksToBounds = true
-            if let content = poemGroup?.data?[0].categoryContent{
-                cell.titleLabel.text = content[0].name
+            if let content = poemGroup?.categoryContent?[indexPath.row]{
+                cell.titleLabel.text = content.name
+                cell.contentLabel.text = content.categoryContentDescription
+//                cell.contentLabel.text =
             }
 
             return cell
         } else {
             
-            // TODO: create an error message for user if enything goes wrong which will.
+            // TODO: create an error message for user if anything goes wrong which will.
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: tagCellId, for: indexPath) as! TagsRowCell
             cell.titleLabel.text = "qq"
             
-            if let content = poemGroup?.data?[0].categoryContent{
-                cell.titleLabel.text = content[0].name
+            if let content = poemGroup{
+                cell.titleLabel.text = content.categoryName
             }
 
             return cell

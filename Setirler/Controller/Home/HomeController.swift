@@ -8,6 +8,7 @@
 import UIKit
 
 class HomeController: BaseController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating {
+    
     func updateSearchResults(for searchController: UISearchController) {
         print("asasd")
     }
@@ -103,15 +104,17 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout, UISear
         if indexPath.row == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: tagsId, for: indexPath) as! TagsGroupCell
             cell.titleLabel.text = feedData?.data?[indexPath.row].categoryName
+            cell.contentControlller.poemGroup = feedData?.data?[indexPath.row]
             return cell
         } else if indexPath.row == 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: categoryId, for: indexPath) as! CategoryGroupCell
             cell.titleLabel.text = feedData?.data?[indexPath.row].categoryName
-            cell.contentControlller.poemGroup = feedData?.data?[1]
+            cell.contentControlller.poemGroup = feedData?.data?[indexPath.row]
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: poemId, for: indexPath) as! PoemGroupCell
             cell.titleLabel.text = feedData?.data?[indexPath.row].categoryName
+            cell.contentControlller.poemGroup = feedData?.data?[indexPath.row]
             return cell
         }
         
