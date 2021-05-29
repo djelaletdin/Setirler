@@ -35,8 +35,9 @@
 	</array>
 	<key>UIAppFonts</key>
 	<array>
-		<string>SourceSansPro-Bold</string>
-		<string>SourceSansPro-Regular</string>
+		<string>K Gothic.ttf</string>
+		<string>SourceSansPro-Bold.ttf</string>
+		<string>SourceSansPro-Regular.ttf</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

@@ -9,12 +9,11 @@ import UIKit
 
 class CategoryGroupCell: UICollectionViewCell {
     
-    let titleLabel = UILabel(text: "Category Name", font: .boldSystemFont(ofSize: 30))
+    let titleLabel = UILabel(text: "Category Name", font: UIFont(name: "SourceSansPro-Bold", size: 22)  ?? .boldSystemFont(ofSize: 22))
     let contentControlller = CategoryController()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .white
         
         titleLabel.lineBreakMode = .byWordWrapping
         titleLabel.numberOfLines = 3

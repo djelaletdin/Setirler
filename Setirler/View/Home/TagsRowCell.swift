@@ -10,16 +10,16 @@ import UIKit
 class TagsRowCell: UICollectionViewCell {
     
     
-    let titleLabel = UILabel(text: "Title Name", font: .systemFont(ofSize: 20))
-    let contentLabel = UILabel(text: "Content", font: .systemFont(ofSize: 10))
-    let counterLabel = UILabel(text: "Counter", font: .systemFont(ofSize: 10))
+    let titleLabel = UILabel(text: "Title Name", font: UIFont(name: "SourceSansPro-Bold", size: 14) ?? .systemFont(ofSize: 14))
+    let contentLabel = UILabel(text: "Content", font: UIFont(name: "SourceSansPro-Regular", size: 14) ?? .systemFont(ofSize: 14))
+    let counterLabel = UILabel(text: "Counter", font: UIFont(name: "SourceSansPro-Regular", size: 14) ?? .systemFont(ofSize: 14))
     let whitespace = UIView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
         
-//        whitespace.backgroundColor = .white
+        whitespace.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.968627451, alpha: 1)
         
         self.layer.cornerRadius = 9
         self.layer.borderWidth = 0
@@ -27,9 +27,9 @@ class TagsRowCell: UICollectionViewCell {
 
         self.layer.backgroundColor = UIColor.white.cgColor
         self.layer.shadowColor = UIColor.lightGray.cgColor
-        self.layer.shadowOffset = CGSize(width: 2, height: 6)
+        self.layer.shadowOffset = CGSize(width: 2, height: 4)
         self.layer.shadowRadius = 9.0
-        self.layer.shadowOpacity = 0.5
+        self.layer.shadowOpacity = 0.4
         self.layer.masksToBounds = false
 
         let stackView = UIStackView(arrangedSubviews: [VerticalStackView(arrangedSubviews: [titleLabel, contentLabel, UIView(), counterLabel], spacing: 4)])

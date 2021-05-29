@@ -25,27 +25,15 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout, UISear
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        collectionView.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.968627451, alpha: 1)
         collectionView.backgroundColor = .white
         collectionView.register(TagsGroupCell.self, forCellWithReuseIdentifier: tagsId)
         collectionView.register(PoemGroupCell.self, forCellWithReuseIdentifier: poemId)
         collectionView.register(CategoryGroupCell.self, forCellWithReuseIdentifier: categoryId)
-//        collectionView?.register(SearchViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
-        collectionView?.register(UICollectionViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerCellId")
-
-//        collectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
+        collectionView?.register(SearchViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
         
-        self.searchController.searchResultsUpdater = self
-        self.searchController.delegate = self
-        self.searchController.searchBar.delegate = self
-        self.searchController.hidesNavigationBarDuringPresentation = false
-        self.searchController.dimsBackgroundDuringPresentation = true
-        if #available(iOS 9.1, *) {
-            self.searchController.obscuresBackgroundDuringPresentation = false
-        } else {
-            // Fallback on earlier versions
-        }
-        searchController.searchBar.becomeFirstResponder()
-        self.navigationItem.titleView = searchController.searchBar
+                collectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
+        
         
         fetchData()
         collectionView.reloadData()
@@ -85,19 +73,12 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout, UISear
         return CGSize(width: view.frame.width, height: 40)
     }
     
-//    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! SearchViewHeader
-//
-//        return header
-//    }
-//
-    
-    
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-    let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerCellId", for: indexPath)
-        header.addSubview(searchController.view)
-    return header
-}
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! SearchViewHeader
+        
+        return header
+    }
+    
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         

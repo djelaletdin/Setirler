@@ -9,19 +9,25 @@ import UIKit
 
 class SearchViewHeader: UICollectionReusableView {
     
+    
+    let backView = UIView()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.layer.cornerRadius = 9
-        self.layer.borderWidth = 0
-        self.layer.borderColor = UIColor.lightGray.cgColor
+        backView.layer.cornerRadius = 9
+        backView.layer.borderWidth = 0
+        backView.layer.borderColor = UIColor.lightGray.cgColor
 
-        self.layer.backgroundColor = UIColor.white.cgColor
-        self.layer.shadowColor = UIColor.lightGray.cgColor
-        self.layer.shadowOffset = CGSize(width: 2, height: 6)
-        self.layer.shadowRadius = 9.0
-        self.layer.shadowOpacity = 0.5
-        self.layer.masksToBounds = false
+        backView.layer.backgroundColor = UIColor.white.cgColor
+        backView.layer.shadowColor = UIColor.lightGray.cgColor
+        backView.layer.shadowOffset = CGSize(width: 2, height: 4)
+        backView.layer.shadowRadius = 9.0
+        backView.layer.shadowOpacity = 0.4
+        backView.layer.masksToBounds = false
+        
+        addSubview(backView)
+        backView.fillSuperview(padding:UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20) )
         
         
         

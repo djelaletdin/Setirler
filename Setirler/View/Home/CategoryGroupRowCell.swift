@@ -10,9 +10,9 @@ import UIKit
 class CategoryRowCell: UICollectionViewCell {
     
     let imageView = UIImageView(cornerRadius: 9)
-    let titleLabel = UILabel(text: "Title Name", font: .systemFont(ofSize: 20))
+    let titleLabel = UILabel(text: "Title Name", font: UIFont(name: "SourceSansPro-Bold", size: 14)  ?? .systemFont(ofSize: 14))
     
-    let counterLabel = UILabel(text: "Counter", font: .systemFont(ofSize: 10))
+    let counterLabel = UILabel(text: "Counter", font: UIFont(name: "SourceSansPro-Regular", size: 14)  ?? .systemFont(ofSize: 14))
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,7 +26,7 @@ class CategoryRowCell: UICollectionViewCell {
         self.layer.shadowColor = UIColor.lightGray.cgColor
         self.layer.shadowOffset = CGSize(width: 2.0, height: 4.0)
         self.layer.shadowRadius = 9.0
-        self.layer.shadowOpacity = 0.6
+        self.layer.shadowOpacity = 0.4
         self.layer.masksToBounds = false
         
         imageView.constrainWidth(constant: 64)

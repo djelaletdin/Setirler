@@ -9,7 +9,7 @@ import UIKit
 
 class PoemGroupCell: UICollectionViewCell {
     
-    let titleLabel = UILabel(text: "Category Name", font: .boldSystemFont(ofSize: 30))
+    let titleLabel = UILabel(text: "Category Name", font: UIFont(name: "SourceSansPro-Bold", size: 22)  ?? .boldSystemFont(ofSize: 22))
     let contentControlller = TagsPoemsHorizontalController()
     
     

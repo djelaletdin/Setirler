@@ -52,7 +52,7 @@ class TagsPoemsHorizontalController: HorizontalSnappingController, UICollectionV
             if let content = poemGroup?.categoryContent?[indexPath.row]{
                 cell.titleLabel.text = content.name
                 cell.contentLabel.text = content.categoryContentDescription
-//                cell.contentLabel.text =
+                cell.counterLabel.text = "\(content.poemCount ?? 0) eser"
             }
 
             return cell
