@@ -7,10 +7,17 @@
 
 import UIKit
 
+protocol SearchViewHeaderDelegate {
+
+    // 2. create a function that will do something when the header is tapped
+    func doSomething()
+}
+
 class SearchViewHeader: UICollectionReusableView {
     
     
     let backView = UIView()
+//    weak var delegate: SearchViewHeaderDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)

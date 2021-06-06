@@ -16,12 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        for familyName in UIFont.familyNames {
-                print("\n-- \(familyName) \n")
-                for fontName in UIFont.fontNames(forFamilyName: familyName) {
-                    print(fontName)
-                }
-            }
+
         
         
         let fonts = Bundle.main.urls(forResourcesWithExtension: "ttf", subdirectory: nil)

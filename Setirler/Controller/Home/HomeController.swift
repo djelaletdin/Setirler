@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeController: BaseController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating {
+class HomeController: BaseController, UICollectionViewDelegateFlowLayout {
     
     func updateSearchResults(for searchController: UISearchController) {
         print("asasd")
@@ -26,7 +26,7 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout, UISear
     override func viewDidLoad() {
         super.viewDidLoad()
 //        collectionView.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.968627451, alpha: 1)
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = #colorLiteral(red: 0.9882352941, green: 0.9882352941, blue: 0.9882352941, alpha: 1)
         collectionView.register(TagsGroupCell.self, forCellWithReuseIdentifier: tagsId)
         collectionView.register(PoemGroupCell.self, forCellWithReuseIdentifier: poemId)
         collectionView.register(CategoryGroupCell.self, forCellWithReuseIdentifier: categoryId)
@@ -47,6 +47,12 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout, UISear
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    @objc fileprivate func headerTapped(){
+        let newViewController = SearchViewController()
+//        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        self.navigationController?.pushViewController(newViewController, animated: false)
     }
     
     fileprivate func fetchData(){
@@ -73,11 +79,18 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout, UISear
         return CGSize(width: view.frame.width, height: 40)
     }
     
+    
+    
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! SearchViewHeader
         
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(headerTapped))
+        header.addGestureRecognizer(tapGestureRecognizer)
+        
         return header
     }
+    
+    
     
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

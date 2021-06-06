@@ -16,7 +16,7 @@ class PoemsRowCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .white
+        backgroundColor = .clear
         
         self.layer.cornerRadius = 9
         self.layer.borderWidth = 0
