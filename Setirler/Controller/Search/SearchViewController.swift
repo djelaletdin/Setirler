@@ -11,6 +11,8 @@ class SearchViewController: BaseController, UICollectionViewDelegateFlowLayout, 
     
     let searchBarId = "searchBarid"
     let searchResultId = "searchResultId"
+    var timer: Timer?
+    var searchResults = [SearchDatum]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +46,7 @@ class SearchViewController: BaseController, UICollectionViewDelegateFlowLayout, 
             cell.delegate = self
             cell.getButton.tag = indexPath.row
             cell.getButton.addTarget(self, action: #selector(cancelButtonPressed), for: .touchUpInside)
+            cell.textField.becomeFirstResponder()
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: searchResultId, for: indexPath) as! SearchResultCell
@@ -57,15 +60,12 @@ class SearchViewController: BaseController, UICollectionViewDelegateFlowLayout, 
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch indexPath.row{
-        case 0:
-            return .init(width: view.frame.width, height: 190 )
-        case 1:
-            return .init(width: view.frame.width, height: 420 )
-        case 2:
-            return .init(width: view.frame.width, height: 200 )
-            
-        default:
-            return .init(width: view.frame.width, height: 150 )
+            case 0:
+                return .init(width: view.frame.width, height: 40 )
+            case 1:
+                return .init(width: view.frame.width, height: view.frame.height-40 )
+            default:
+                return .init(width: view.frame.width, height: 150 )
         }
         
     }
@@ -84,14 +84,33 @@ class SearchViewController: BaseController, UICollectionViewDelegateFlowLayout, 
 extension SearchViewController: SearchBarCellDelegate {
 
     func collectionViewCell(valueChangedIn textField: UITextField, delegatedFrom cell: SearchBarCell) {
-        if let indexPath = collectionView.indexPath(for: cell), let text = textField.text {
-            print("textField text: \(text) from cell: \(indexPath))")
-//            textFieldsTexts[indexPath] = texteererererer
+        
+        
+        
+        if let text = textField.text {
+            print("textField text: \(text)")
+
+            timer?.invalidate()
+            timer = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: { (_) in
+                Service.shared.fetchSearchTerm(searchTerm: text) {(result, error) in
+                    
+                    print("textField text: \(text)")
+
+                    if let _ = error{return}
+                    if let searchResults  = result{
+                        self.searchResults = searchResults.data
+
+                    }
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                    }
+                }
+            })
+            
         }
     }
 
     func collectionViewCell(textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String, delegatedFrom cell: SearchBarCell)  -> Bool {
-        print("Validation action in textField from cell: \(String(describing: collectionView.indexPath(for: cell)))")
         return true
     }
 

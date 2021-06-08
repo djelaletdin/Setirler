@@ -62,7 +62,6 @@ class SearchResultCell: UICollectionViewCell {
         button.titleLabel?.font = .boldSystemFont(ofSize: 14)
         button.backgroundColor = UIColor(white: 0.95, alpha: 1)
         button.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 32).isActive = true
         button.layer.cornerRadius = 16
         return button
     }()
@@ -100,7 +99,7 @@ class SearchResultCell: UICollectionViewCell {
         let overallStackView = VerticalStackView(arrangedSubviews: [infoTopStackView, screenshotStackView], spacing: 16)
         
         addSubview(overallStackView)
-        overallStackView.fillSuperview(padding: UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16))
+        overallStackView.fillSuperview(padding: UIEdgeInsets(top: 0, left: 16, bottom: 16, right: 16))
     }
     
     required init?(coder: NSCoder) {

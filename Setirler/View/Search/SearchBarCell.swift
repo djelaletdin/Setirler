@@ -17,52 +17,32 @@ protocol SearchBarCellDelegate {
 class SearchBarCell: UICollectionViewCell {
     
     var delegate: SearchBarCellDelegate?
-
-
-    let appIconImageView: UITextField = {
-        let iv = UITextField()
-        iv.backgroundColor = .red
-        iv.heightAnchor.constraint(equalToConstant: 64).isActive = true
-        iv.layer.cornerRadius = 16
-        iv.clipsToBounds = true
-        return iv
-    }()
-    
-    let nameLabel: UILabel = {
-        let label = UILabel()
-        label.text = "APP NAME"
-        return label
-    }()
-    
-    let categoryLabel: UILabel = {
-        let label = UILabel()
-        label.text = "CATEGORY NAME"
-        return label
-    }()
-    
-    let ratingsLabel: UILabel = {
-        let label = UILabel()
-        label.text = "APP RATING"
-        return label
-    }()
     
     let textField: UITextField = {
         let field = UITextField()
-        field.placeholder = "Search"
-        field.backgroundColor = #colorLiteral(red: 0.9597861171, green: 0.9540802836, blue: 0.9641718268, alpha: 1)
-        field.textColor = .darkGray
+        field.setLeftPaddingPoints(10)
+        field.setRightPaddingPoints(10)
+        field.layer.cornerRadius = 9
+        field.layer.borderWidth = 0
+        field.layer.borderColor = UIColor.lightGray.cgColor
+        field.layer.backgroundColor = UIColor.white.cgColor
+        field.layer.shadowColor = UIColor.lightGray.cgColor
+        field.layer.shadowOffset = CGSize(width: 2, height: 4)
+        field.layer.shadowRadius = 9.0
+        field.layer.shadowOpacity = 0.4
+        field.layer.masksToBounds = false
+        
         return field
     }()
     
     let getButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("GET", for: .normal)
-        button.setTitleColor(.blue, for: .normal)
+        button.setTitle("Cancel", for: .normal)
+        button.setTitleColor(#colorLiteral(red: 0.6965215802, green: 0.6923831105, blue: 0.699704051, alpha: 1), for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 14)
-        button.backgroundColor = UIColor(white: 0.95, alpha: 1)
-        button.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 32).isActive = true
-        button.layer.cornerRadius = 16
+        button.backgroundColor = .clear
+        button.widthAnchor.constraint(equalToConstant: 50).isActive = true
+//        button.heightAnchor.constraint(equalToConstant: 32).isActive = true
         return button
     }()
     
@@ -72,16 +52,16 @@ class SearchBarCell: UICollectionViewCell {
         super.init(frame: frame)
         
         textField.delegate = self
-        textField.addTarget(self, action: #selector(valueChanged), for: .allEditingEvents)
+        textField.addTarget(self, action: #selector(valueChanged), for: .editingChanged)
         
-        let labelsStackView = VerticalStackView(arrangedSubviews: [nameLabel, categoryLabel, ratingsLabel])
-        let infoTopStackView = UIStackView(arrangedSubviews: [appIconImageView, labelsStackView, getButton])
-        infoTopStackView.spacing = 12
-        infoTopStackView.alignment = .center
-        let overallStackView = VerticalStackView(arrangedSubviews: [infoTopStackView, textField], spacing: 16)
+        let infoTopStackView = UIStackView(arrangedSubviews: [textField, getButton])
+        infoTopStackView.spacing = 5
+        infoTopStackView.alignment = .fill
+//        let overallStackView = VerticalStackView(arrangedSubviews: [infoTopStackView, textField], spacing: 16)
         
-        addSubview(overallStackView)
-        overallStackView.fillSuperview(padding: UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16))
+        addSubview(infoTopStackView)
+        infoTopStackView.fillSuperview(padding: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16))
+        
     }
     
     @objc func valueChanged(_ sender: UITextField) {

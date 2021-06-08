@@ -51,7 +51,7 @@ class CategoryController: BaseController, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 //        let height = (view.frame.height - 2*topBottomPadding - 2*lineSpacing)
-        return .init(width: view.frame.width - 30, height:100)
+        return .init(width: view.frame.width - 32, height:100)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

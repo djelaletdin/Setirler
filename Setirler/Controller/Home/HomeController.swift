@@ -31,8 +31,7 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout {
         collectionView.register(PoemGroupCell.self, forCellWithReuseIdentifier: poemId)
         collectionView.register(CategoryGroupCell.self, forCellWithReuseIdentifier: categoryId)
         collectionView?.register(SearchViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
-        
-                collectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
         
         
         fetchData()
