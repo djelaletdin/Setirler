@@ -108,6 +108,13 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: poemId, for: indexPath) as! PoemGroupCell
             cell.titleLabel.text = feedData?.data?[indexPath.row].categoryName
             cell.contentControlller.poemGroup = feedData?.data?[indexPath.row]
+            
+            cell.contentControlller.didSelectHandler = { [weak self] poem in
+                let destinationController  = PoemController(poemId: poem.id ?? 0)
+                destinationController.navigationController?.title = poem.name
+                self?.navigationController?.pushViewController(destinationController, animated: true)
+            }
+            
             return cell
         }
         

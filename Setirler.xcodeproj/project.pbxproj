@@ -37,6 +37,9 @@
 		0EC87ED626186D7100152313 /* CategoryGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC87ED526186D7100152313 /* CategoryGroupCell.swift */; };
 		0EC87EDB261871E400152313 /* CategoryGroupRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC87EDA261871E400152313 /* CategoryGroupRowCell.swift */; };
 		0EC87EE02618724A00152313 /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC87EDF2618724A00152313 /* CategoryController.swift */; };
+		0ED871BE2670F8FB0021D792 /* PoemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED871BD2670F8FB0021D792 /* PoemController.swift */; };
+		0ED871C02670FD220021D792 /* PoemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED871BF2670FD220021D792 /* PoemData.swift */; };
+		0ED871C3267102DF0021D792 /* PoemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED871C2267102DF0021D792 /* PoemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +96,9 @@
 		0EC87ED526186D7100152313 /* CategoryGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryGroupCell.swift; sourceTree = "<group>"; };
 		0EC87EDA261871E400152313 /* CategoryGroupRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryGroupRowCell.swift; sourceTree = "<group>"; };
 		0EC87EDF2618724A00152313 /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
+		0ED871BD2670F8FB0021D792 /* PoemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemController.swift; sourceTree = "<group>"; };
+		0ED871BF2670FD220021D792 /* PoemData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemData.swift; sourceTree = "<group>"; };
+		0ED871C2267102DF0021D792 /* PoemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +131,7 @@
 			children = (
 				0E69ADD12615163800A38562 /* RawData.swift */,
 				0E6EC4CC26623EAF00B1DD8C /* SearchData.swift */,
+				0ED871BF2670FD220021D792 /* PoemData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -233,6 +240,7 @@
 		0E89321F25FD0C1F0051B668 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				0ED871BC2670F8C30021D792 /* Poem */,
 				0E89322A25FD0CA80051B668 /* HomeController.swift */,
 				0E89325525FD1DB60051B668 /* TagsPoemsHorizontalController.swift */,
 				0EC87EDF2618724A00152313 /* CategoryController.swift */,
@@ -252,6 +260,7 @@
 		0E89323625FD105E0051B668 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				0ED871C1267102750021D792 /* Poem */,
 				0E89323725FD10C90051B668 /* TagsGroupCell.swift */,
 				0E69ADD92615174100A38562 /* TagsRowCell.swift */,
 				0E50DBF1262828530055DA86 /* PoemsGroupCell.swift */,
@@ -272,6 +281,22 @@
 				0E69ADCB261514C200A38562 /* BetterSnappingLayout.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		0ED871BC2670F8C30021D792 /* Poem */ = {
+			isa = PBXGroup;
+			children = (
+				0ED871BD2670F8FB0021D792 /* PoemController.swift */,
+			);
+			path = Poem;
+			sourceTree = "<group>";
+		};
+		0ED871C1267102750021D792 /* Poem */ = {
+			isa = PBXGroup;
+			children = (
+				0ED871C2267102DF0021D792 /* PoemCell.swift */,
+			);
+			path = Poem;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -408,8 +433,10 @@
 				0E6EC4CB26623C4800B1DD8C /* SearchResult.swift in Sources */,
 				0E98B25E26690E7200BD12F7 /* SearchBarCell.swift in Sources */,
 				0E69ADD22615163800A38562 /* RawData.swift in Sources */,
+				0ED871BE2670F8FB0021D792 /* PoemController.swift in Sources */,
 				0E69ADE2261522EF00A38562 /* Service.swift in Sources */,
 				0EC87ED626186D7100152313 /* CategoryGroupCell.swift in Sources */,
+				0ED871C3267102DF0021D792 /* PoemCell.swift in Sources */,
 				0E89322B25FD0CA80051B668 /* HomeController.swift in Sources */,
 				0EC87EE02618724A00152313 /* CategoryController.swift in Sources */,
 				0E69ADCC261514C200A38562 /* BetterSnappingLayout.swift in Sources */,
@@ -420,6 +447,7 @@
 				0EC87EDB261871E400152313 /* CategoryGroupRowCell.swift in Sources */,
 				0E89322625FD0C5D0051B668 /* BaseController.swift in Sources */,
 				0E50DBFA262828E20055DA86 /* PoemsRowCell.swift in Sources */,
+				0ED871C02670FD220021D792 /* PoemData.swift in Sources */,
 				0E50DBF2262828530055DA86 /* PoemsGroupCell.swift in Sources */,
 				0E69ADDA2615174100A38562 /* TagsRowCell.swift in Sources */,
 				0E89325625FD1DB60051B668 /* TagsPoemsHorizontalController.swift in Sources */,

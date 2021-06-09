@@ -33,6 +33,15 @@ class TagsPoemsHorizontalController: HorizontalSnappingController, UICollectionV
 //        return 6
     }
     
+    var didSelectHandler: ((CategoryContent)->())?
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let poem  = self.poemGroup?.categoryContent?[indexPath.row]{
+            print(poem.name ?? "shygyr")
+            didSelectHandler?(poem)
+        }
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if self.type == 1{
@@ -40,7 +49,7 @@ class TagsPoemsHorizontalController: HorizontalSnappingController, UICollectionV
             cell.titleLabel.text = String(indexPath.row)
             
             if let content = poemGroup?.categoryContent?[indexPath.row]{
-                cell.titleLabel.text = content.name
+                cell.titleLabel.text = (content.name)
                 cell.contentLabel.text = content.poet
             }
 
