@@ -9,35 +9,35 @@ import UIKit
 
 class PoemCell: UICollectionViewCell {
      
-    var poem: PoemData?{
+    var poem: PoemData?
+    {
         didSet{
-            nameLabel.text = poem?.name
-            contentTextField.text = poem?.content
-            
+            contentTextView.text = poem?.content
+
         }
     }
     
-    let nameLabel = UILabel(text: "Poem Name", font: .boldSystemFont(ofSize: 24), numberOfLines: 2)
-    let contentTextField = UITextField()
+    let contentTextView = UITextView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-//        let stackView = VerticalStackView(arrangedSubviews: [
-//            UIStackView(arrangedSubviews: [
-//                VerticalStackView(arrangedSubviews: [
-//                    nameLabel,
-//                    UIStackView(arrangedSubviews: [ UIView()]),
-//                    contentTextField
-//                    ], spacing: 12)
-//                ], customSpacing: 20),
-//            ], spacing: 16)
-//        addSubview(stackView)
-//        stackView.fillSuperview(padding: .init(top: 20, left: 20, bottom: 20, right: 20))
+        contentTextView.allowsEditingTextAttributes = false
+        contentTextView.font = UIFont(name: "SourceSansPro-Regular", size: 20) ?? .systemFont(ofSize: 20)
+        contentTextView.isScrollEnabled = false
         
-        addSubview(nameLabel)
-        nameLabel.fillSuperview()
-        backgroundColor = .red
+        
+        
+        let stackView = VerticalStackView(arrangedSubviews: [
+            UIStackView(arrangedSubviews: [
+                VerticalStackView(arrangedSubviews: [
+                    contentTextView
+                    ], spacing: 12)
+                ], customSpacing: 20),
+            ], spacing: 16)
+        addSubview(stackView)
+        stackView.fillSuperview(padding: .init(top: 0, left: 0, bottom: 0, right: 10))
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

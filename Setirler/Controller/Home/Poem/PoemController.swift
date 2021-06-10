@@ -21,26 +21,33 @@ class PoemController: BaseController, UICollectionViewDelegateFlowLayout {
 
     var poem: PoemData?
     
+    let attributes = [NSAttributedString.Key.font: UIFont(name: "SourceSansPro-Bold", size: 26)!]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchData()
         collectionView.backgroundColor = .white
         collectionView.register(PoemCell.self, forCellWithReuseIdentifier: poemCellId)
-        navigationController?.navigationBar.prefersLargeTitles = false
-        view.backgroundColor = .white
-        fetchData()
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.largeTitleTextAttributes = attributes
+        self.navigationController?.interactivePopGestureRecognizer!.delegate = self;
+        navigationItem.hidesBackButton = true
     }
     
     
     fileprivate func fetchData(){
         print(poemId)
-        let urlString = "http://poem.djelaletdin.com/public/api/poem/5\(poemId)"
+        let urlString = "http://poem.djelaletdin.com/public/api/poem/\(poemId)"
         Service.shared.fetchGenericJSONData(urlString: urlString) { (result: PoemRawData?, error) in
-            let poem = result?.data
-            self.poem = poem
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
+            if let poemData = result?.data{
+                self.poem = poemData
+                DispatchQueue.main.async {
+                    self.title = poemData.name
+                    self.collectionView.reloadData()
+                }
             }
+            
         }
     }
     
@@ -74,3 +81,8 @@ class PoemController: BaseController, UICollectionViewDelegateFlowLayout {
     
 }
 
+extension PoemController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+}
