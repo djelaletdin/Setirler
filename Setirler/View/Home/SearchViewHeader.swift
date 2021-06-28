@@ -34,7 +34,7 @@ class SearchViewHeader: UICollectionReusableView {
         backView.layer.masksToBounds = false
         
         addSubview(backView)
-        backView.fillSuperview(padding:UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20) )
+        backView.fillSuperview(padding:UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16) )
         
         
         

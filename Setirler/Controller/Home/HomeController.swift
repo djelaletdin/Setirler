@@ -20,19 +20,32 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout {
     let headerId = "headerCellId"
     
     var searchController = UISearchController(searchResultsController:  nil)
-    
+    var activityIndicator = UIActivityIndicatorView()
     var feedData: OrderRawData?
+    
+    
+    var indicator = UIActivityIndicatorView()
+
+     func activityIndicatorTest() {
+         indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+         indicator.style = UIActivityIndicatorView.Style.gray
+         indicator.center = self.view.center
+         self.view.addSubview(indicator)
+     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        collectionView.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.968627451, alpha: 1)
+        
+        activityIndicatorTest()
+        indicator.startAnimating()
+        
         collectionView.backgroundColor = #colorLiteral(red: 0.9882352941, green: 0.9882352941, blue: 0.9882352941, alpha: 1)
         collectionView.register(TagsGroupCell.self, forCellWithReuseIdentifier: tagsId)
         collectionView.register(PoemGroupCell.self, forCellWithReuseIdentifier: poemId)
         collectionView.register(CategoryGroupCell.self, forCellWithReuseIdentifier: categoryId)
         collectionView?.register(SearchViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
         collectionView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
-        
+        collectionView.isHidden = true
         
         fetchData()
         collectionView.reloadData()
@@ -65,6 +78,9 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout {
                 self.feedData = data
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
+                    self.indicator.stopAnimating()
+                    self.indicator.hidesWhenStopped = true
+                    self.collectionView.isHidden = false
                 }
             }
         }
@@ -139,3 +155,5 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout {
         return .init(top: 16, left: 0, bottom: 0, right: 0)
     }
 }
+
+
