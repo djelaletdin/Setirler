@@ -21,7 +21,7 @@ class PoemController: BaseController, UICollectionViewDelegateFlowLayout {
 
     var poem: PoemData?
     
-    let attributes = [NSAttributedString.Key.font: UIFont(name: "SourceSansPro-Bold", size: 26)!]
+    let attributes = [NSAttributedString.Key.font: UIFont(name: "SourceSansPro-Bold", size: 28)!]
     
     
     override func viewDidLoad() {

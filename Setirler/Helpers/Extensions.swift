@@ -45,3 +45,30 @@ extension UITextField {
         self.rightViewMode = .always
     }
 }
+
+extension UITextView {
+
+    func widthOfString(usingFont font: UIFont) -> CGFloat {
+        let fontAttributes = [NSAttributedString.Key.font: font]
+        let size = self.text!.size(withAttributes: fontAttributes)
+        return size.width
+    }
+
+    func heightOfString(usingFont font: UIFont) -> CGFloat {
+        let fontAttributes = [NSAttributedString.Key.font: font]
+        let size = self.text!.size(withAttributes: fontAttributes)
+        return size.height
+    }
+
+    func sizeOfString(usingFont font: UIFont) -> CGSize {
+        let fontAttributes = [NSAttributedString.Key.font: font]
+        return self.text!.size(withAttributes: fontAttributes)
+    }
+}
+
+extension UIStackView {
+    convenience init(arrangedSubviews: [UIView], customSpacing: CGFloat = 0) {
+        self.init(arrangedSubviews: arrangedSubviews)
+        self.spacing = customSpacing
+    }
+}
