@@ -14,6 +14,7 @@ class PoemCell: UICollectionViewCell {
     {
         didSet{
             contentTextView.text = poem?.content
+            poetNameLabel.text = poem?.poetName
         }
     }
     
@@ -27,21 +28,24 @@ class PoemCell: UICollectionViewCell {
         return text
     }()
     
+    let poetNameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "APP NAME"
+        label.font = UIFont(name: "SourceSansPro-Bold", size: 15) ?? .systemFont(ofSize: 15)
+        return label
+    }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+//        contentTextView.backgroundColor = .yellow
         contentTextView.allowsEditingTextAttributes = false
         contentTextView.font = UIFont(name: "SourceSansPro-Regular", size: 20) ?? .systemFont(ofSize: 20)
         contentTextView.isScrollEnabled = false
         
-        let stackView = VerticalStackView(arrangedSubviews: [
-            UIStackView(arrangedSubviews: [
-                VerticalStackView(arrangedSubviews: [
-                    contentTextView
-                    ], spacing: 12)
-                ], customSpacing: 20),
-            ], spacing: 16)
+        let stackView = VerticalStackView(arrangedSubviews: [contentTextView], spacing: 0)
+        stackView.alignment = .center
         addSubview(stackView)
         stackView.fillSuperview(padding: .init(top: 0, left: 0, bottom: 0, right: 0))
         
