@@ -11,14 +11,31 @@ class SearchViewController: BaseController, UICollectionViewDelegateFlowLayout, 
     
     let searchBarId = "searchBarid"
     let searchResultId = "searchResultId"
+    let emptySearchCellId = "emptySearchCellId"
     var timer: Timer?
-    var searchResults = [SearchDatum]()
+    var searchResults: DataClass?
+    
+    var isSearched = false
+    
+    var progressIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        indicator.hidesWhenStopped = true
+        indicator.style = UIActivityIndicatorView.Style.gray
+        indicator.contentMode = .center
+        return indicator
+    }()
+
+     func activityIndicatorTest() {
+         
+     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.backgroundColor = #colorLiteral(red: 0.9882352941, green: 0.9882352941, blue: 0.9882352941, alpha: 1)
         collectionView.register(SearchBarCell.self, forCellWithReuseIdentifier: searchBarId)
         collectionView.register(SearchResultCell.self, forCellWithReuseIdentifier: searchResultId)
+        collectionView.register(EmptySearchCell.self, forCellWithReuseIdentifier: emptySearchCellId)
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "collectionCell")
         collectionView.reloadData()
     }
     
@@ -33,7 +50,11 @@ class SearchViewController: BaseController, UICollectionViewDelegateFlowLayout, 
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        if isSearched{
+            return 2
+        }else{
+            return 1
+        }
     }
 
     
@@ -46,11 +67,22 @@ class SearchViewController: BaseController, UICollectionViewDelegateFlowLayout, 
             cell.delegate = self
             cell.getButton.tag = indexPath.row
             cell.getButton.addTarget(self, action: #selector(cancelButtonPressed), for: .touchUpInside)
+            cell.textField.setLeftIcon(progressIndicator)
             cell.textField.becomeFirstResponder()
             return cell
         } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: searchResultId, for: indexPath) as! SearchResultCell
-            return cell
+                if let search = searchResults{
+                    if search.poemNames.count == 0, search.poemSentences.count == 0{
+                        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: emptySearchCellId, for: indexPath) as! EmptySearchCell
+                        return cell
+                    }else{
+                        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: searchResultId, for: indexPath) as! SearchResultCell
+                        return cell
+                    }
+                } else {
+                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: emptySearchCellId, for: indexPath) as! EmptySearchCell
+                    return cell
+                }
         }
         
         
@@ -63,7 +95,17 @@ class SearchViewController: BaseController, UICollectionViewDelegateFlowLayout, 
             case 0:
                 return .init(width: view.frame.width, height: 40 )
             case 1:
-                return .init(width: view.frame.width, height: view.frame.height-40 )
+                if let search = searchResults{
+                    if search.poemNames.count == 0, search.poemSentences.count == 0{
+                        return .init(width: view.frame.width, height: 500 )
+                    } else{
+                        return .init(width: view.frame.width, height: view.frame.height-60 )
+                    }
+                } else{
+                    return .init(width: view.frame.width, height: 500 )
+                }
+                
+//                return .init(width: view.frame.width, height: view.frame.height-60 )
             default:
                 return .init(width: view.frame.width, height: 150 )
         }
@@ -75,7 +117,6 @@ class SearchViewController: BaseController, UICollectionViewDelegateFlowLayout, 
     }
     
     @IBAction func cancelButtonPressed(){
-        print("hello")
         self.navigationController?.popViewController(animated: false)
     }
     
@@ -85,28 +126,30 @@ extension SearchViewController: SearchBarCellDelegate {
 
     func collectionViewCell(valueChangedIn textField: UITextField, delegatedFrom cell: SearchBarCell) {
         
+        self.isSearched = true
         
-        
-        if let text = textField.text {
-            print("textField text: \(text)")
+        if let text = textField.text, !text.isEmpty {
+            progressIndicator.startAnimating()
 
             timer?.invalidate()
             timer = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: { (_) in
                 Service.shared.fetchSearchTerm(searchTerm: text) {(result, error) in
                     
-                    print("textField text: \(text)")
-
                     if let _ = error{return}
                     if let searchResults  = result{
                         self.searchResults = searchResults.data
-
+                    }else{
+                        self.progressIndicator.stopAnimating()
                     }
+                    
                     DispatchQueue.main.async {
+                        self.progressIndicator.stopAnimating()
                         self.collectionView.reloadData()
                     }
                 }
             })
-            
+        }else{
+            collectionView.reloadData()
         }
     }
 

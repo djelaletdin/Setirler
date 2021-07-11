@@ -7,24 +7,30 @@
 
 import Foundation
 
-// MARK: - Welcome
 struct SearchRawData: Codable {
     let status: Int
-    let data: [SearchDatum]
+    let data: DataClass
 }
 
-// MARK: - Datum
-struct SearchDatum: Codable {
-    let id, poetID: Int
-    let name, content: String
-    let view: Int
-    let createdAt, updatedAt: String
+// MARK: - DataClass
+struct DataClass: Codable {
+    let poemNames: [PoemName]
+    let poemSentences: [PoemSentence]
 
     enum CodingKeys: String, CodingKey {
-        case id
-        case poetID = "poet_id"
-        case name, content, view
-        case createdAt = "created_at"
-        case updatedAt = "updated_at"
+        case poemNames = "poem_names"
+        case poemSentences = "poem_sentences"
     }
+}
+
+// MARK: - PoemName
+struct PoemName: Codable {
+    let id: Int
+    let autohor, content: String
+}
+
+// MARK: - PoemSentence
+struct PoemSentence: Codable {
+    let id: Int
+    let content: String
 }

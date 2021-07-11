@@ -86,3 +86,20 @@ extension String {
         return htmlToAttributedString?.string ?? ""
     }
 }
+
+extension UITextField {
+
+ func setLeftIcon(_ icon: UIActivityIndicatorView) {
+
+    let padding = 5
+    let size = 40
+
+    let outerView = UIView(frame: CGRect(x: 0, y: 0, width: size, height: size) )
+    var iconView  = UIActivityIndicatorView(frame: CGRect(x: padding, y: 0, width: size, height: size))
+    iconView = icon
+    outerView.addSubview(iconView)
+
+    rightView = outerView
+    rightViewMode = .always
+  }
+}

@@ -14,6 +14,7 @@
 		0E4CA6A32699F01C00E9382D /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4CA6A22699F01C00E9382D /* TagCell.swift */; };
 		0E4CA6A52699F1A100E9382D /* TagController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4CA6A42699F1A100E9382D /* TagController.swift */; };
 		0E4CA6A7269AFC2200E9382D /* PoemDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4CA6A6269AFC2200E9382D /* PoemDetailCell.swift */; };
+		0E4CA6A9269B4DDC00E9382D /* EmptySearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4CA6A8269B4DDC00E9382D /* EmptySearchCell.swift */; };
 		0E50DBF2262828530055DA86 /* PoemsGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50DBF1262828530055DA86 /* PoemsGroupCell.swift */; };
 		0E50DBFA262828E20055DA86 /* PoemsRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50DBF9262828E20055DA86 /* PoemsRowCell.swift */; };
 		0E69ADC7261514A700A38562 /* HorizontalSnappingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E69ADC6261514A700A38562 /* HorizontalSnappingController.swift */; };
@@ -73,6 +74,7 @@
 		0E4CA6A22699F01C00E9382D /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		0E4CA6A42699F1A100E9382D /* TagController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagController.swift; sourceTree = "<group>"; };
 		0E4CA6A6269AFC2200E9382D /* PoemDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemDetailCell.swift; sourceTree = "<group>"; };
+		0E4CA6A8269B4DDC00E9382D /* EmptySearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySearchCell.swift; sourceTree = "<group>"; };
 		0E50DBF1262828530055DA86 /* PoemsGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemsGroupCell.swift; sourceTree = "<group>"; };
 		0E50DBF9262828E20055DA86 /* PoemsRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemsRowCell.swift; sourceTree = "<group>"; };
 		0E69ADC6261514A700A38562 /* HorizontalSnappingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalSnappingController.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				0E6EC4CA26623C4800B1DD8C /* SearchResult.swift */,
+				0E4CA6A8269B4DDC00E9382D /* EmptySearchCell.swift */,
 				0E98B25D26690E7200BD12F7 /* SearchBarCell.swift */,
 			);
 			path = Search;
@@ -473,6 +476,7 @@
 				0E69ADCC261514C200A38562 /* BetterSnappingLayout.swift in Sources */,
 				0E6EC4CD26623EAF00B1DD8C /* SearchData.swift in Sources */,
 				0E89324425FD1CEA0051B668 /* Extensions.swift in Sources */,
+				0E4CA6A9269B4DDC00E9382D /* EmptySearchCell.swift in Sources */,
 				0E89323825FD10C90051B668 /* TagsGroupCell.swift in Sources */,
 				0E7D2ED125FD0094004BE3A7 /* BaseTabBarController.swift in Sources */,
 				0EC87EDB261871E400152313 /* CategoryGroupRowCell.swift in Sources */,

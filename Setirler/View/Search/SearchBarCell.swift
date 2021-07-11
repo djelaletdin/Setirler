@@ -20,10 +20,15 @@ class SearchBarCell: UICollectionViewCell {
     
     let textField: UITextField = {
         let field = UITextField()
-        field.setLeftPaddingPoints(10)
-        field.setRightPaddingPoints(10)
+        field.font = UIFont(name: "SourceSansPro-Regular", size: 14) ?? .systemFont(ofSize: 14)
+        field.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        field.setLeftPaddingPoints(30)
+        field.setRightPaddingPoints(30)
         field.layer.cornerRadius = 9
         field.layer.borderWidth = 0
+        field.leftViewMode = UITextField.ViewMode.always;
+        field.leftViewMode = .always
+        field.leftView?.frame = CGRect(x: 10, y: 5, width: 20 , height:20)
         field.layer.borderColor = UIColor.lightGray.cgColor
         field.layer.backgroundColor = UIColor.white.cgColor
         field.layer.shadowColor = UIColor.lightGray.cgColor
@@ -39,7 +44,7 @@ class SearchBarCell: UICollectionViewCell {
         let button = UIButton(type: .system)
         button.setTitle("Cancel", for: .normal)
         button.setTitleColor(#colorLiteral(red: 0.6965215802, green: 0.6923831105, blue: 0.699704051, alpha: 1), for: .normal)
-        button.titleLabel?.font = .boldSystemFont(ofSize: 14)
+        button.titleLabel?.font = UIFont(name: "SourceSansPro-Bold", size: 14) ?? .systemFont(ofSize: 14)
         button.backgroundColor = .clear
         button.widthAnchor.constraint(equalToConstant: 50).isActive = true
 //        button.heightAnchor.constraint(equalToConstant: 32).isActive = true
