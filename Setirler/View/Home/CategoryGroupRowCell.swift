@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CategoryRowCell: UICollectionViewCell {
     
@@ -31,7 +32,7 @@ class CategoryRowCell: UICollectionViewCell {
         
         imageView.constrainWidth(constant: 64)
         imageView.constrainHeight(constant: 64)
-        imageView.backgroundColor = .orange
+//        imageView.backgroundColor = .orange
         let stackView = UIStackView(arrangedSubviews: [imageView, VerticalStackView(arrangedSubviews: [titleLabel, counterLabel], spacing: 20)])
         stackView.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         stackView.isLayoutMarginsRelativeArrangement = true

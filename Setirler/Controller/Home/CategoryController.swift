@@ -36,9 +36,12 @@ class CategoryController: BaseController, UICollectionViewDelegateFlowLayout {
         
 //        cell.titleLabel.text = String(indexPath.row)
         
-        if let content = poemGroup{
-            cell.titleLabel.text = content.categoryContent?[indexPath.row].name
-            cell.counterLabel.text = "\(content.categoryContent?[indexPath.row].poet) şahyr"
+        if let content = poemGroup?.categoryContent?[indexPath.row]{
+            cell.titleLabel.text = content.name
+            cell.counterLabel.text = "\(String(describing: (content.poet))) şahyr"
+            
+            let url = URL(string: "http://poem.djelaletdin.com/public/images/\(content.photo ?? "asd")")
+            cell.imageView.kf.setImage(with: url)
         }
 
         return cell

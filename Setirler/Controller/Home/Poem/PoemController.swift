@@ -17,7 +17,7 @@ class PoemController: BaseController, UICollectionViewDelegateFlowLayout {
     }
     
     var poemCellId = "poemcellid"
-    var detailCellId  = "detailCellId"
+    var tagsCellId  = "tagscellid"
 
     var poem: PoemData?
     
@@ -29,10 +29,18 @@ class PoemController: BaseController, UICollectionViewDelegateFlowLayout {
         fetchData()
         collectionView.backgroundColor = .white
         collectionView.register(PoemCell.self, forCellWithReuseIdentifier: poemCellId)
+        collectionView.register(PoemDetailCell.self, forCellWithReuseIdentifier: tagsCellId)
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.largeTitleTextAttributes = attributes
         self.navigationController?.interactivePopGestureRecognizer!.delegate = self;
         navigationItem.hidesBackButton = true
+        
+//         Makes the height of cell dynamic
+        if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
+              flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        }
+  
+        
     }
     
     
@@ -43,40 +51,53 @@ class PoemController: BaseController, UICollectionViewDelegateFlowLayout {
             if let poemData = result?.data{
                 self.poem = poemData
                 DispatchQueue.main.async {
-                    self.title = poemData.name
                     self.collectionView.reloadData()
                 }
             }
-            
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension PoemController{
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: poemCellId, for: indexPath) as! PoemCell
-        cell.poem = self.poem
-        return cell
+        if indexPath.row == 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: poemCellId, for: indexPath) as! PoemCell
+            cell.poem = self.poem
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: tagsCellId, for: indexPath) as! PoemDetailCell
+            cell.poem = self.poem
+            return cell
+        }
         
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        return .init(width: view.frame.width-16-16, height: view.frame.height-16)
-
+        if indexPath.row == 0 {
+            return .init(width: view.frame.width-16-16, height: view.frame.height-16)
+        }else{
+            return .init(width: view.frame.width-16-16, height: 200)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return .init(top: 16, left: 16, bottom: 0, right: 16)
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     
 }

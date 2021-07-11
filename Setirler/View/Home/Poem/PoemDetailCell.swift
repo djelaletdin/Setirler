@@ -1,13 +1,13 @@
 //
-//  PoemCell.swift
+//  PoemDetailCell.swift
 //  Setirler
 //
-//  Created by Didar Jelaletdinov on 2021/06/09.
+//  Created by Didar Jelaletdinov on 2021/07/11.
 //
 
 import UIKit
 
-class PoemCell: UICollectionViewCell {
+class PoemDetailCell: UICollectionViewCell {
     
     var padding = CGFloat()
     var poem: PoemData?
@@ -65,10 +65,9 @@ class PoemCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        let stackView = VerticalStackView(arrangedSubviews: [titleLabel, poetNameLabel, contentTextView], spacing: 15)
-        addSubview(stackView)
-        stackView.alignment = .center
-        stackView.fillSuperview(padding: .init(top: 20, left: 10, bottom: 20, right: 10))
+        addSubview(tagsController.view)
+        
+        tagsController.view.fillSuperview(padding: .init(top: 0, left: 10, bottom: 20, right: 10))
         }
     
     required init?(coder aDecoder: NSCoder) {
