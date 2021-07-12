@@ -44,7 +44,6 @@ class EmptySearchCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-            print("i am searched")
             let stackView = VerticalStackView(arrangedSubviews: [imageView, poemLabel, warningLabel], spacing: 10)
             stackView.distribution = .equalSpacing
             stackView.alignment = .center

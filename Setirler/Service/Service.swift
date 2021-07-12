@@ -26,8 +26,10 @@ class Service {
     
     func fetchSearchTerm(searchTerm: String, completion: @escaping (SearchRawData?, Error?) -> ()) {
         print("Fetching search results")
+        let newSearchTerm = searchTerm.replacingOccurrences(of: " ", with: "%20")
+        let urlString = "http://poem.djelaletdin.com/public/api/search?q=\(newSearchTerm)"
         
-        let urlString = "http://poem.djelaletdin.com/public/api/search?q=\(searchTerm)"
+        print(urlString)
         
         fetchGenericJSONData(urlString: urlString, completion: completion)
     }

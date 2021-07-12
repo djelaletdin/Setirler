@@ -9,28 +9,23 @@ import Foundation
 
 struct SearchRawData: Codable {
     let status: Int
-    let data: DataClass
+    let data: [SearchRawDatum]
 }
 
-// MARK: - DataClass
-struct DataClass: Codable {
-    let poemNames: [PoemName]
-    let poemSentences: [PoemSentence]
+// MARK: - Datum
+struct SearchRawDatum: Codable {
+    let categoryName: String
+    let peomData: [SearchDatum]
 
     enum CodingKeys: String, CodingKey {
-        case poemNames = "poem_names"
-        case poemSentences = "poem_sentences"
+        case categoryName = "category_name"
+        case peomData = "peom_data"
     }
 }
 
-// MARK: - PoemName
-struct PoemName: Codable {
-    let id: Int
-    let autohor, content: String
-}
-
-// MARK: - PoemSentence
-struct PoemSentence: Codable {
+// MARK: - PeomDatum
+struct SearchDatum: Codable {
     let id: Int
     let content: String
 }
+

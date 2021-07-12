@@ -15,6 +15,10 @@
 		0E4CA6A52699F1A100E9382D /* TagController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4CA6A42699F1A100E9382D /* TagController.swift */; };
 		0E4CA6A7269AFC2200E9382D /* PoemDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4CA6A6269AFC2200E9382D /* PoemDetailCell.swift */; };
 		0E4CA6A9269B4DDC00E9382D /* EmptySearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4CA6A8269B4DDC00E9382D /* EmptySearchCell.swift */; };
+		0E4CA6AB269B7C5600E9382D /* SearchResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4CA6AA269B7C5600E9382D /* SearchResultController.swift */; };
+		0E4CA6AD269C0E1E00E9382D /* SearchResultGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4CA6AC269C0E1E00E9382D /* SearchResultGroupCell.swift */; };
+		0E4CA6AF269C1B1800E9382D /* InnerSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4CA6AE269C1B1800E9382D /* InnerSearchController.swift */; };
+		0E4CA6B1269C1BDF00E9382D /* SearchResultsRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4CA6B0269C1BDF00E9382D /* SearchResultsRowCell.swift */; };
 		0E50DBF2262828530055DA86 /* PoemsGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50DBF1262828530055DA86 /* PoemsGroupCell.swift */; };
 		0E50DBFA262828E20055DA86 /* PoemsRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50DBF9262828E20055DA86 /* PoemsRowCell.swift */; };
 		0E69ADC7261514A700A38562 /* HorizontalSnappingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E69ADC6261514A700A38562 /* HorizontalSnappingController.swift */; };
@@ -75,6 +79,10 @@
 		0E4CA6A42699F1A100E9382D /* TagController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagController.swift; sourceTree = "<group>"; };
 		0E4CA6A6269AFC2200E9382D /* PoemDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemDetailCell.swift; sourceTree = "<group>"; };
 		0E4CA6A8269B4DDC00E9382D /* EmptySearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySearchCell.swift; sourceTree = "<group>"; };
+		0E4CA6AA269B7C5600E9382D /* SearchResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultController.swift; sourceTree = "<group>"; };
+		0E4CA6AC269C0E1E00E9382D /* SearchResultGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultGroupCell.swift; sourceTree = "<group>"; };
+		0E4CA6AE269C1B1800E9382D /* InnerSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerSearchController.swift; sourceTree = "<group>"; };
+		0E4CA6B0269C1BDF00E9382D /* SearchResultsRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchResultsRowCell.swift; path = Setirler/SearchResultsRowCell.swift; sourceTree = SOURCE_ROOT; };
 		0E50DBF1262828530055DA86 /* PoemsGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemsGroupCell.swift; sourceTree = "<group>"; };
 		0E50DBF9262828E20055DA86 /* PoemsRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemsRowCell.swift; sourceTree = "<group>"; };
 		0E69ADC6261514A700A38562 /* HorizontalSnappingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalSnappingController.swift; sourceTree = "<group>"; };
@@ -171,6 +179,8 @@
 			isa = PBXGroup;
 			children = (
 				0E6EC4C726623A7F00B1DD8C /* SearchViewController.swift */,
+				0E4CA6AA269B7C5600E9382D /* SearchResultController.swift */,
+				0E4CA6AE269C1B1800E9382D /* InnerSearchController.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -178,9 +188,11 @@
 		0E6EC4C926623C3800B1DD8C /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				0E4CA6B0269C1BDF00E9382D /* SearchResultsRowCell.swift */,
 				0E6EC4CA26623C4800B1DD8C /* SearchResult.swift */,
 				0E4CA6A8269B4DDC00E9382D /* EmptySearchCell.swift */,
 				0E98B25D26690E7200BD12F7 /* SearchBarCell.swift */,
+				0E4CA6AC269C0E1E00E9382D /* SearchResultGroupCell.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -469,6 +481,7 @@
 				0ED871BE2670F8FB0021D792 /* PoemController.swift in Sources */,
 				0E69ADE2261522EF00A38562 /* Service.swift in Sources */,
 				0EC87ED626186D7100152313 /* CategoryGroupCell.swift in Sources */,
+				0E4CA6B1269C1BDF00E9382D /* SearchResultsRowCell.swift in Sources */,
 				0E4CA6A52699F1A100E9382D /* TagController.swift in Sources */,
 				0ED871C3267102DF0021D792 /* PoemCell.swift in Sources */,
 				0E89322B25FD0CA80051B668 /* HomeController.swift in Sources */,
@@ -478,6 +491,7 @@
 				0E89324425FD1CEA0051B668 /* Extensions.swift in Sources */,
 				0E4CA6A9269B4DDC00E9382D /* EmptySearchCell.swift in Sources */,
 				0E89323825FD10C90051B668 /* TagsGroupCell.swift in Sources */,
+				0E4CA6AB269B7C5600E9382D /* SearchResultController.swift in Sources */,
 				0E7D2ED125FD0094004BE3A7 /* BaseTabBarController.swift in Sources */,
 				0EC87EDB261871E400152313 /* CategoryGroupRowCell.swift in Sources */,
 				0E4CA6A7269AFC2200E9382D /* PoemDetailCell.swift in Sources */,
@@ -491,7 +505,9 @@
 				0EBF0F4B262C2B0D003CA7F3 /* SearchViewHeader.swift in Sources */,
 				0E89325125FD1D5D0051B668 /* VerticalStackView.swift in Sources */,
 				0E89324C25FD1D540051B668 /* UIView+Layout.swift in Sources */,
+				0E4CA6AF269C1B1800E9382D /* InnerSearchController.swift in Sources */,
 				0E7D2ECD25FD0094004BE3A7 /* AppDelegate.swift in Sources */,
+				0E4CA6AD269C0E1E00E9382D /* SearchResultGroupCell.swift in Sources */,
 				0E69ADC7261514A700A38562 /* HorizontalSnappingController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

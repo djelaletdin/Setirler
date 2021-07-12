@@ -13,7 +13,7 @@ class SearchViewController: BaseController, UICollectionViewDelegateFlowLayout, 
     let searchResultId = "searchResultId"
     let emptySearchCellId = "emptySearchCellId"
     var timer: Timer?
-    var searchResults: DataClass?
+    var searchResults: [SearchRawDatum]?
     
     var isSearched = false
     
@@ -56,7 +56,7 @@ class SearchViewController: BaseController, UICollectionViewDelegateFlowLayout, 
             return 1
         }
     }
-
+    
     
     
     
@@ -72,11 +72,14 @@ class SearchViewController: BaseController, UICollectionViewDelegateFlowLayout, 
             return cell
         } else {
                 if let search = searchResults{
-                    if search.poemNames.count == 0, search.poemSentences.count == 0{
+                    if search.count == 0{
                         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: emptySearchCellId, for: indexPath) as! EmptySearchCell
                         return cell
                     }else{
+                        print("in bashda")
                         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: searchResultId, for: indexPath) as! SearchResultCell
+                        cell.contentControlller.searchResultGroup = self.searchResults
+                        cell.contentControlller.rootView = self
                         return cell
                     }
                 } else {
@@ -96,10 +99,10 @@ class SearchViewController: BaseController, UICollectionViewDelegateFlowLayout, 
                 return .init(width: view.frame.width, height: 40 )
             case 1:
                 if let search = searchResults{
-                    if search.poemNames.count == 0, search.poemSentences.count == 0{
+                    if search.count == 0{
                         return .init(width: view.frame.width, height: 500 )
                     } else{
-                        return .init(width: view.frame.width, height: view.frame.height-60 )
+                        return .init(width: view.frame.width-16, height: view.frame.height-60 )
                     }
                 } else{
                     return .init(width: view.frame.width, height: 500 )
@@ -129,15 +132,17 @@ extension SearchViewController: SearchBarCellDelegate {
         self.isSearched = true
         
         if let text = textField.text, !text.isEmpty {
-            progressIndicator.startAnimating()
+
 
             timer?.invalidate()
-            timer = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: { (_) in
+            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (_) in
+                self.progressIndicator.startAnimating()
                 Service.shared.fetchSearchTerm(searchTerm: text) {(result, error) in
                     
                     if let _ = error{return}
                     if let searchResults  = result{
                         self.searchResults = searchResults.data
+                        print(searchResults.data)
                     }else{
                         self.progressIndicator.stopAnimating()
                     }
@@ -145,6 +150,7 @@ extension SearchViewController: SearchBarCellDelegate {
                     DispatchQueue.main.async {
                         self.progressIndicator.stopAnimating()
                         self.collectionView.reloadData()
+                        print("search finished")
                     }
                 }
             })
