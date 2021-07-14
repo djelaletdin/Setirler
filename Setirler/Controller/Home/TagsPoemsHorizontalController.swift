@@ -21,7 +21,7 @@ class TagsPoemsHorizontalController: HorizontalSnappingController, UICollectionV
         
         collectionView.register(TagsRowCell.self, forCellWithReuseIdentifier: tagCellId)
         collectionView.register(PoemsRowCell.self, forCellWithReuseIdentifier: poemCellId)
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = UIColor(named: "MainBackground")
         collectionView.contentInset = .init(top: 0, left: 16, bottom: 0, right: 16)
         collectionView.showsHorizontalScrollIndicator = false
     }

@@ -23,8 +23,8 @@ class TagsRowCell: UICollectionViewCell {
         self.layer.borderWidth = 0
         self.layer.borderColor = UIColor.lightGray.cgColor
 
-        self.layer.backgroundColor = UIColor.white.cgColor
-        self.layer.shadowColor = UIColor.lightGray.cgColor
+        self.layer.backgroundColor = UIColor(named: "ComponentColor")?.cgColor
+        self.layer.shadowColor = UIColor(named: "ShadowColor")?.cgColor
         self.layer.shadowOffset = CGSize(width: 2, height: 4)
         self.layer.shadowRadius = 9.0
         self.layer.shadowOpacity = 0.4
@@ -37,6 +37,18 @@ class TagsRowCell: UICollectionViewCell {
         stackView.alignment = .fill
         stackView.spacing = 16
         stackView.fillSuperview()
+    }
+    
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+       if #available(iOS 13.0, *) {
+           if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
+               // ColorUtils.loadCGColorFromAsset returns cgcolor for color name
+            self.layer.backgroundColor = UIColor(named: "ComponentColor")?.cgColor
+            self.layer.shadowColor = UIColor(named: "ShadowColor")?.cgColor
+            
+           }
+       }
     }
     
     required init?(coder: NSCoder) {

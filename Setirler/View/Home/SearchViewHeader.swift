@@ -26,8 +26,21 @@ class SearchViewHeader: UICollectionReusableView {
         backView.layer.borderWidth = 0
         backView.layer.borderColor = UIColor.lightGray.cgColor
 
-        backView.layer.backgroundColor = UIColor.white.cgColor
-        backView.layer.shadowColor = UIColor.lightGray.cgColor
+//        backView.layer.backgroundColor = UIColor(named: "ComponentColor")?.resolvedColor(with: self.traitCollection).cgColor
+        
+//        
+//        if #available(iOS 13.0, *) {
+//            self.traitCollection.performAsCurrent {
+//                backView.layer.backgroundColor = UIColor(named: "ComponentColor")?.cgColor
+//            }
+//        } else {
+//            // Fallback on earlier versions
+//        }
+        
+        backView.layer.backgroundColor = UIColor(named: "ComponentColor")?.cgColor
+        
+        
+        backView.layer.shadowColor = UIColor(named: "ShadowColor")?.cgColor
         backView.layer.shadowOffset = CGSize(width: 2, height: 4)
         backView.layer.shadowRadius = 9.0
         backView.layer.shadowOpacity = 0.4
@@ -39,6 +52,19 @@ class SearchViewHeader: UICollectionReusableView {
         
         
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+       if #available(iOS 13.0, *) {
+           if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
+               // ColorUtils.loadCGColorFromAsset returns cgcolor for color name
+            backView.layer.backgroundColor = UIColor(named: "ComponentColor")?.cgColor
+            backView.layer.shadowColor = UIColor(named: "ShadowColor")?.cgColor
+            
+           }
+       }
+    }
+    
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

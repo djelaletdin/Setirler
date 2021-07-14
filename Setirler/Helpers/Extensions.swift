@@ -13,7 +13,7 @@ extension UILabel {
         self.text = text
         self.font = font
         self.numberOfLines = numberOfLines
-        textColor = #colorLiteral(red: 0.3294117647, green: 0.3137254902, blue: 0.3137254902, alpha: 1)
+        textColor = UIColor(named: "FontColor")
     }
 }
 

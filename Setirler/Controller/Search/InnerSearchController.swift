@@ -45,7 +45,8 @@ class InnerSearchController: BaseController, UICollectionViewDelegateFlowLayout 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! SearchResultsRowCell
         
         if let result = self.searchResultSentences?[indexPath.row]{
-            cell.resultSentenceLabel.attributedText = result.content.htmlToAttributedString
+            let styledString = "<style>b{font-family: SourceSansPro-Bold;color:#545050;'}</style><div style='color:#9E9999; font-family: SourceSansPro-SemiBold; font-size: 15;'>\(result.content)</div>"
+            cell.resultSentenceLabel.attributedText = styledString.htmlToAttributedString
 //            cell.resultSentenceLabel.text = result.content
         }
         return cell

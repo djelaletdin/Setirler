@@ -52,6 +52,7 @@
 		0ED871BE2670F8FB0021D792 /* PoemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED871BD2670F8FB0021D792 /* PoemController.swift */; };
 		0ED871C02670FD220021D792 /* PoemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED871BF2670FD220021D792 /* PoemData.swift */; };
 		0ED871C3267102DF0021D792 /* PoemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED871C2267102DF0021D792 /* PoemCell.swift */; };
+		0EE69468269F086D0000CD5C /* SourceSansPro-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0EE69467269F086D0000CD5C /* SourceSansPro-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +123,7 @@
 		0ED871BD2670F8FB0021D792 /* PoemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemController.swift; sourceTree = "<group>"; };
 		0ED871BF2670FD220021D792 /* PoemData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemData.swift; sourceTree = "<group>"; };
 		0ED871C2267102DF0021D792 /* PoemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemCell.swift; sourceTree = "<group>"; };
+		0EE69467269F086D0000CD5C /* SourceSansPro-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-SemiBold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,11 +231,7 @@
 				0E7D2ED525FD0096004BE3A7 /* Assets.xcassets */,
 				0E7D2ED725FD0096004BE3A7 /* LaunchScreen.storyboard */,
 				0E7D2EDA25FD0096004BE3A7 /* Info.plist */,
-				0E70281426472FC1007F7A3A /* SourceSansPro-Bold.ttf */,
-				0E70281626472FCB007F7A3A /* SourceSansPro-Regular.ttf */,
-				0E4CA69C2699D72E00E9382D /* SourceSerifPro-Bold.ttf */,
-				0E4CA69D2699D72E00E9382D /* SourceSerifPro-Regular.ttf */,
-				0E4CA69E2699D72E00E9382D /* SourceSerifPro-SemiBold.ttf */,
+				0EE69469269F7A380000CD5C /* Fonts */,
 			);
 			path = Setirler;
 			sourceTree = "<group>";
@@ -332,6 +330,19 @@
 				0E4CA6A22699F01C00E9382D /* TagCell.swift */,
 			);
 			path = Poem;
+			sourceTree = "<group>";
+		};
+		0EE69469269F7A380000CD5C /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				0E70281426472FC1007F7A3A /* SourceSansPro-Bold.ttf */,
+				0EE69467269F086D0000CD5C /* SourceSansPro-SemiBold.ttf */,
+				0E70281626472FCB007F7A3A /* SourceSansPro-Regular.ttf */,
+				0E4CA69C2699D72E00E9382D /* SourceSerifPro-Bold.ttf */,
+				0E4CA69D2699D72E00E9382D /* SourceSerifPro-Regular.ttf */,
+				0E4CA69E2699D72E00E9382D /* SourceSerifPro-SemiBold.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -444,6 +455,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E4CA6A02699D72E00E9382D /* SourceSerifPro-Regular.ttf in Resources */,
+				0EE69468269F086D0000CD5C /* SourceSansPro-SemiBold.ttf in Resources */,
 				0E7D2ED925FD0096004BE3A7 /* LaunchScreen.storyboard in Resources */,
 				0E7D2ED625FD0096004BE3A7 /* Assets.xcassets in Resources */,
 				0E70281526472FC1007F7A3A /* SourceSansPro-Bold.ttf in Resources */,

@@ -35,6 +35,7 @@
 	</array>
 	<key>UIAppFonts</key>
 	<array>
+		<string>SourceSansPro-SemiBold.ttf</string>
 		<string>SourceSerifPro-SemiBold.ttf</string>
 		<string>SourceSansPro-Regular.ttf</string>
 		<string>SourceSansPro-Bold.ttf</string>

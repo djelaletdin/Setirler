@@ -39,7 +39,7 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout {
         activityIndicatorTest()
         indicator.startAnimating()
         
-        collectionView.backgroundColor = #colorLiteral(red: 0.9882352941, green: 0.9882352941, blue: 0.9882352941, alpha: 1)
+        collectionView.backgroundColor = UIColor(named: "MainBackground")
         collectionView.register(TagsGroupCell.self, forCellWithReuseIdentifier: tagsId)
         collectionView.register(PoemGroupCell.self, forCellWithReuseIdentifier: poemId)
         collectionView.register(CategoryGroupCell.self, forCellWithReuseIdentifier: categoryId)
