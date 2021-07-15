@@ -20,8 +20,8 @@ class SearchBarCell: UICollectionViewCell {
     
     let textField: UITextField = {
         let field = UITextField()
-        field.font = UIFont(name: "SourceSansPro-Regular", size: 14) ?? .systemFont(ofSize: 14)
-        field.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        field.font = UIFont(name: "SourceSansPro-SemiBold", size: 14) ?? .systemFont(ofSize: 14)
+        field.textColor = UIColor(named: "FontColor")
         field.setLeftPaddingPoints(30)
         field.setRightPaddingPoints(30)
         field.layer.cornerRadius = 9
@@ -30,8 +30,9 @@ class SearchBarCell: UICollectionViewCell {
         field.leftViewMode = .always
         field.leftView?.frame = CGRect(x: 10, y: 5, width: 20 , height:20)
         field.layer.borderColor = UIColor.lightGray.cgColor
-        field.layer.backgroundColor = UIColor.white.cgColor
-        field.layer.shadowColor = UIColor.lightGray.cgColor
+        field.layer.backgroundColor = UIColor(named: "ComponentColor")?.cgColor
+        field.layer.shadowColor = UIColor(named: "ShadowColor")?.cgColor
+        field.tintColor = UIColor(named: "FontColor")
         field.layer.shadowOffset = CGSize(width: 2, height: 4)
         field.layer.shadowRadius = 9.0
         field.layer.shadowOpacity = 0.4
@@ -43,7 +44,7 @@ class SearchBarCell: UICollectionViewCell {
     let getButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Cancel", for: .normal)
-        button.setTitleColor(#colorLiteral(red: 0.6965215802, green: 0.6923831105, blue: 0.699704051, alpha: 1), for: .normal)
+        button.setTitleColor(UIColor(named: "FontColor"), for: .normal)
         button.titleLabel?.font = UIFont(name: "SourceSansPro-Bold", size: 14) ?? .systemFont(ofSize: 14)
         button.backgroundColor = .clear
         button.widthAnchor.constraint(equalToConstant: 50).isActive = true
@@ -71,6 +72,17 @@ class SearchBarCell: UICollectionViewCell {
     
     @objc func valueChanged(_ sender: UITextField) {
         delegate?.collectionViewCell(valueChangedIn: textField, delegatedFrom: self)
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+       if #available(iOS 13.0, *) {
+           if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
+               // ColorUtils.loadCGColorFromAsset returns cgcolor for color name
+            textField.layer.backgroundColor = UIColor(named: "ComponentColor")?.cgColor
+            textField.layer.shadowColor = UIColor(named: "ShadowColor")?.cgColor
+            
+           }
+       }
     }
     
     

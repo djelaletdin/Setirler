@@ -31,7 +31,7 @@ class SearchViewController: BaseController, UICollectionViewDelegateFlowLayout, 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = #colorLiteral(red: 0.9882352941, green: 0.9882352941, blue: 0.9882352941, alpha: 1)
+        collectionView.backgroundColor = UIColor(named: "MainBackground")
         collectionView.register(SearchBarCell.self, forCellWithReuseIdentifier: searchBarId)
         collectionView.register(SearchResultCell.self, forCellWithReuseIdentifier: searchResultId)
         collectionView.register(EmptySearchCell.self, forCellWithReuseIdentifier: emptySearchCellId)

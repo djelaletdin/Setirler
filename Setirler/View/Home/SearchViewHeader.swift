@@ -9,7 +9,6 @@ import UIKit
 
 protocol SearchViewHeaderDelegate {
 
-    // 2. create a function that will do something when the header is tapped
     func doSomething()
 }
 
@@ -17,7 +16,14 @@ class SearchViewHeader: UICollectionReusableView {
     
     
     let backView = UIView()
-//    weak var delegate: SearchViewHeaderDelegate?
+    
+    let searchLabel: UILabel = {
+       let label = UILabel()
+        label.text  = "Gözleg"
+        label.font = UIFont(name: "SourceSansPro-SemiBold", size: 14)
+        label.textColor = UIColor(named: "FontColor")
+        return label
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,21 +31,7 @@ class SearchViewHeader: UICollectionReusableView {
         backView.layer.cornerRadius = 9
         backView.layer.borderWidth = 0
         backView.layer.borderColor = UIColor.lightGray.cgColor
-
-//        backView.layer.backgroundColor = UIColor(named: "ComponentColor")?.resolvedColor(with: self.traitCollection).cgColor
-        
-//        
-//        if #available(iOS 13.0, *) {
-//            self.traitCollection.performAsCurrent {
-//                backView.layer.backgroundColor = UIColor(named: "ComponentColor")?.cgColor
-//            }
-//        } else {
-//            // Fallback on earlier versions
-//        }
-        
         backView.layer.backgroundColor = UIColor(named: "ComponentColor")?.cgColor
-        
-        
         backView.layer.shadowColor = UIColor(named: "ShadowColor")?.cgColor
         backView.layer.shadowOffset = CGSize(width: 2, height: 4)
         backView.layer.shadowRadius = 9.0
@@ -47,6 +39,8 @@ class SearchViewHeader: UICollectionReusableView {
         backView.layer.masksToBounds = false
         
         addSubview(backView)
+        backView.addSubview(searchLabel)
+        searchLabel.fillSuperview(padding:UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16) )
         backView.fillSuperview(padding:UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16) )
         
         
