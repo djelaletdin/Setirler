@@ -21,25 +21,67 @@ class PoemController: BaseController, UICollectionViewDelegateFlowLayout {
 
     var poem: PoemData?
     
-    let attributes = [NSAttributedString.Key.font: UIFont(name: "SourceSansPro-Bold", size: 28)!]
+    let navTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text =  "Goşgy ady"
+        label.alpha = 0
+        label.textColor = UIColor(named: "FontColor")
+        label.font = UIFont(name: "SourceSansPro-Bold", size: 18) ?? .systemFont(ofSize: 18)
+        return label
+    }()
     
-    
+    let backButtonImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.image = UIImage(named: "back")
+//        iv.constrainHeight(constant: 23)
+//        iv.constrainWidth(constant: 23)
+        return iv
+    }()
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchData()
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = UIColor(named: "MainBackground")
         collectionView.register(PoemCell.self, forCellWithReuseIdentifier: poemCellId)
         collectionView.register(PoemDetailCell.self, forCellWithReuseIdentifier: tagsCellId)
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.largeTitleTextAttributes = attributes
-        self.navigationController?.interactivePopGestureRecognizer!.delegate = self;
-        navigationItem.hidesBackButton = true
         
-//         Makes the height of cell dynamic
+        setupNavBar()
+        
+        let number: CGFloat = UIApplication.shared.windows.filter{$0.isKeyWindow}.first?.safeAreaInsets.top ?? 0
+        
+        print(number)
+
         if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
               flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         }
   
+        
+    }
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        let number: CGFloat = UIApplication.shared.windows.filter{$0.isKeyWindow}.first?.safeAreaInsets.top ?? 0
+                
+//        let offset = scrollView.contentOffset.y + number
+        let alpha: CGFloat = 1 - ((scrollView.contentOffset.y + number) / number)
+        navTitleLabel.alpha = -alpha
+        self.navigationController?.navigationBar.backgroundColor = .red.withAlphaComponent(-alpha)
+
+    }
+    
+    fileprivate func setupNavBar(){
+        self.navigationController?.navigationBar.barTintColor = UIColor(named: "MainBackground")
+        let stackView = UIStackView(arrangedSubviews: [backButtonImageView, navTitleLabel, UIView()], customSpacing: 10)
+        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        stackView.isLayoutMarginsRelativeArrangement = true
+        navTitleLabel.text = poem?.name
+        stackView.constrainWidth(constant: view.frame.width)
+        navigationItem.hidesBackButton = true
+        navigationItem.titleView = stackView
+        
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.interactivePopGestureRecognizer!.delegate = self;
         
     }
     
@@ -52,15 +94,16 @@ class PoemController: BaseController, UICollectionViewDelegateFlowLayout {
                 self.poem = poemData
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
+                    self.navTitleLabel.text = poemData.name
                 }
             }
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        navigationController?.setNavigationBarHidden(true, animated: animated)
+//    }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -90,7 +133,7 @@ extension PoemController{
         if indexPath.row == 0 {
             return .init(width: view.frame.width-16-16, height: view.frame.height-16)
         }else{
-            return .init(width: view.frame.width-16-16, height: 200)
+            return .init(width: view.frame.width-16-16, height: 400)
         }
     }
     

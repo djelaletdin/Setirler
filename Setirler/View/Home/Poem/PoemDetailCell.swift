@@ -33,7 +33,7 @@ class PoemDetailCell: UICollectionViewCell {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.constrainHeight(constant: 28)
+//        label.constrainHeight(constant: 28)
         label.textColor = #colorLiteral(red: 0.3294117647, green: 0.3137254902, blue: 0.3137254902, alpha: 1)
 //        label.backgroundColor = .red
         label.text = "Title Name"
@@ -45,7 +45,7 @@ class PoemDetailCell: UICollectionViewCell {
         let label = UILabel()
 //        label.backgroundColor = .yellow
         label.textColor = #colorLiteral(red: 0.3294117647, green: 0.3137254902, blue: 0.3137254902, alpha: 1)
-        label.constrainHeight(constant: 25)
+//        label.constrainHeight(constant: 25)
         label.text = "Poet name"
         label.font = UIFont(name: "SourceSerifPro-SemiBold", size: 15) ?? .systemFont(ofSize: 15)
         return label
@@ -68,6 +68,14 @@ class PoemDetailCell: UICollectionViewCell {
         addSubview(tagsController.view)
         
         tagsController.view.fillSuperview(padding: .init(top: 0, left: 10, bottom: 20, right: 10))
+        tagsController.view.constrainHeight(constant: 50)
+//        
+//        let stackView = UIStackView(arrangedSubviews: [poetNameLabel, UIView(), titleLabel])
+//        
+//        addSubview(stackView)
+//        
+//        stackView.anchor(top: tagsController.view.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 10, bottom: 10, right: 10))
+        
         }
     
     required init?(coder aDecoder: NSCoder) {

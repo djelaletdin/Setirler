@@ -33,6 +33,7 @@ struct CategoryContent: Codable {
     let photo: String?
     let view, poetID: Int?
     let poet: String?
+    let sentence: String?
 
     enum CodingKeys: String, CodingKey {
         case id, name
@@ -41,5 +42,6 @@ struct CategoryContent: Codable {
         case photo, view
         case poetID = "poet_id"
         case poet
+        case sentence
     }
 }

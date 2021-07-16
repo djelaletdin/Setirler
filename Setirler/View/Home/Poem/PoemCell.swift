@@ -13,6 +13,8 @@ class PoemCell: UICollectionViewCell {
     var poem: PoemData?
     {
         didSet{
+            contentTextView.textColor = UIColor(named: "FontColor")
+            contentTextView.backgroundColor = UIColor(named: "MainBackground")
             contentTextView.text = poem?.content
             titleLabel.text = poem?.name
             poetNameLabel.text = poem?.poetName
@@ -20,11 +22,13 @@ class PoemCell: UICollectionViewCell {
         }
     }
     
+
+    
     let contentTextView: UITextView = {
         let text = UITextView()
 //        text.backgroundColor = .green
         text.textColor = #colorLiteral(red: 0.3294117647, green: 0.3137254902, blue: 0.3137254902, alpha: 1)
-        text.font = UIFont(name: "SourceSerifPro-Regular", size: 18) ?? .systemFont(ofSize: 18)
+        text.font = UIFont(name: "SourceSerifPro-Regular", size: 16) ?? .systemFont(ofSize: 16)
         text.isScrollEnabled = false
         text.isEditable = false
         text.textAlignment = .natural
@@ -33,31 +37,33 @@ class PoemCell: UICollectionViewCell {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.constrainHeight(constant: 28)
-        label.textColor = #colorLiteral(red: 0.3294117647, green: 0.3137254902, blue: 0.3137254902, alpha: 1)
+        label.constrainHeight(constant: 30)
+        label.textColor = UIColor(named: "FontColor")
 //        label.backgroundColor = .red
         label.text = "Title Name"
-        label.font = UIFont(name: "SourceSerifPro-Bold", size: 26) ?? .systemFont(ofSize: 26)
+        label.font = UIFont(name: "SourceSansPro-Bold", size: 24) ?? .systemFont(ofSize: 24)
         return label
     }()
     
     let poetNameLabel: UILabel = {
         let label = UILabel()
 //        label.backgroundColor = .yellow
-        label.textColor = #colorLiteral(red: 0.3294117647, green: 0.3137254902, blue: 0.3137254902, alpha: 1)
+        label.textColor = UIColor(named: "FontColor")
         label.constrainHeight(constant: 25)
         label.text = "Poet name"
-        label.font = UIFont(name: "SourceSerifPro-SemiBold", size: 15) ?? .systemFont(ofSize: 15)
+        label.font = UIFont(name: "SourceSansPro-SemiBold", size: 16) ?? .systemFont(ofSize: 16)
         return label
     }()
     
     let tagTextView: UITextView = {
-        let text = UITextView()
-        text.font = UIFont(name: "SourceSerifPro-Regular", size: 18) ?? .systemFont(ofSize: 18)
-        text.isScrollEnabled = false
-        text.isEditable = false
-        text.textAlignment = .natural
-        return text
+        let f = UITextView()
+        f.font = UIFont(name: "SourceSerifPro-Regular", size: 18) ?? .systemFont(ofSize: 18)
+        f.backgroundColor = UIColor(named: "MainBackground")
+        f.textColor = UIColor(named: "FontColor")
+        f.isScrollEnabled = false
+        f.isEditable = false
+        f.textAlignment = .natural
+        return f
     }()
     
     let tagsController = TagController()
@@ -65,10 +71,11 @@ class PoemCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        let stackView = VerticalStackView(arrangedSubviews: [titleLabel, poetNameLabel, contentTextView], spacing: 15)
+        
+        let stackView = VerticalStackView(arrangedSubviews: [titleLabel,poetNameLabel, contentTextView], spacing: 15)
         addSubview(stackView)
         stackView.alignment = .center
-        stackView.fillSuperview(padding: .init(top: 20, left: 10, bottom: 20, right: 10))
+        stackView.fillSuperview(padding: .init(top: 0, left: 10, bottom: 20, right: 10))
         }
     
     required init?(coder aDecoder: NSCoder) {

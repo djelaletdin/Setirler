@@ -51,6 +51,7 @@ class TagsPoemsHorizontalController: HorizontalSnappingController, UICollectionV
             if let content = poemGroup?.categoryContent?[indexPath.row]{
                 cell.titleLabel.text = (content.name)
                 cell.contentLabel.text = content.poet
+                cell.sentenceLabel.text = content.sentence
             }
 
             return cell

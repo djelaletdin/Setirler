@@ -7,18 +7,15 @@
 
 import UIKit
 
-class TagController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class TagController: HorizontalSnappingController, UICollectionViewDelegateFlowLayout {
     
-    init(){
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        super.init(collectionViewLayout: layout)
-        collectionView.decelerationRate = .fast
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+//    init(){
+//        let layout = UICollectionViewFlowLayout()
+//        layout.scrollDirection = .horizontal
+//        super.init(collectionViewLayout: layout)
+//        collectionView.decelerationRate = .fast
+//    }
+
     
     let cellId = "Tagcell"
     var tags: [Tag]?{
@@ -33,6 +30,15 @@ class TagController: UICollectionViewController, UICollectionViewDelegateFlowLay
         collectionView.register(TagCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.contentInset = .init(top: 0, left: 0, bottom: 0, right: 0)
         
+        if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
+           flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+         }
+        
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return .init(width: view.frame.width, height: 50)
     }
     
     
@@ -49,10 +55,11 @@ class TagController: UICollectionViewController, UICollectionViewDelegateFlowLay
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! TagCell
         cell.backgroundColor = .red
+        cell.tagNameLabel.text = tags?[indexPath.row].name
         return cell
-        
-        
     }
+    
+    
     
 
 
