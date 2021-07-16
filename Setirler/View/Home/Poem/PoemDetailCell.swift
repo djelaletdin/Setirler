@@ -68,7 +68,7 @@ class PoemDetailCell: UICollectionViewCell {
         addSubview(tagsController.view)
         
         tagsController.view.fillSuperview(padding: .init(top: 0, left: 10, bottom: 20, right: 10))
-        tagsController.view.constrainHeight(constant: 50)
+//        tagsController.view.constrainHeight(constant: 50)
 //        
 //        let stackView = UIStackView(arrangedSubviews: [poetNameLabel, UIView(), titleLabel])
 //        

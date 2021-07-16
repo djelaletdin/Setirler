@@ -13,8 +13,8 @@ class TagCell: UICollectionViewCell {
     let tagNameLabel: UILabel = {
         let label = UILabel()
 //        label.backgroundColor = .yellow
-        label.textColor = #colorLiteral(red: 0.3294117647, green: 0.3137254902, blue: 0.3137254902, alpha: 1)
-        label.constrainHeight(constant: 25)
+        label.textColor = UIColor(named: "FontColor")
+//        label.constrainHeight(constant: 25)
         label.text = "Poet name"
         label.font = UIFont(name: "SourceSansPro-Regular", size: 15) ?? .systemFont(ofSize: 15)
         return label
@@ -25,9 +25,14 @@ class TagCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        self.layer.cornerRadius = 5
+        self.layer.borderWidth = 0
+        self.layer.backgroundColor = UIColor(named: "TagColor")?.cgColor
+        self.layer.masksToBounds = false
 
         addSubview(tagNameLabel)
-        tagNameLabel.fillSuperview(padding: .init(top: 0, left: 10, bottom: 0, right: 10))
+        tagNameLabel.fillSuperview(padding: .init(top: 8, left: 8, bottom: 8, right: 8))
         
         
     }

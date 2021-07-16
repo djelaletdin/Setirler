@@ -1,13 +1,13 @@
 //
-//  PoemController.swift
+//  PoetController.swift
 //  Setirler
 //
-//  Created by Didar Jelaletdinov on 2021/06/09.
+//  Created by Didar Jelaletdinov on 2021/07/17.
 //
 
 import UIKit
 
-class PoemController: BaseController, UICollectionViewDelegateFlowLayout {
+class PoetController: BaseController, UICollectionViewDelegateFlowLayout {
 
     fileprivate var poemId: Int
 
@@ -54,13 +54,15 @@ class PoemController: BaseController, UICollectionViewDelegateFlowLayout {
         if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
               flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         }
+  
+        
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let safeArea: CGFloat = UIApplication.shared.windows.filter{$0.isKeyWindow}.first?.safeAreaInsets.top ?? 0
         let alpha: CGFloat = ((scrollView.contentOffset.y + safeArea) / safeArea)
         navTitleLabel.alpha = alpha
-//        self.navigationController?.navigationBar.barTintColor = .yellow.withAlphaComponent(alpha)
+        self.navigationController?.navigationBar.barTintColor = .yellow.withAlphaComponent(alpha)
     }
     
     fileprivate func setupNavBar(){
@@ -76,7 +78,9 @@ class PoemController: BaseController, UICollectionViewDelegateFlowLayout {
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.interactivePopGestureRecognizer!.delegate = self;
+        
     }
+    
     
     fileprivate func fetchData(){
         print(poemId)
@@ -92,11 +96,6 @@ class PoemController: BaseController, UICollectionViewDelegateFlowLayout {
         }
     }
     
-    @objc func poetNamePressed(sender:UITapGestureRecognizer) {
-        let destinationController  = PoetController(poemId: 1)
-        self.navigationController?.pushViewController(destinationController, animated: true)
-    }
-    
 //    override func viewWillAppear(_ animated: Bool) {
 //        super.viewWillAppear(animated)
 //        navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -107,7 +106,7 @@ class PoemController: BaseController, UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension PoemController{
+extension PoetController{
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 2
     }
@@ -117,14 +116,10 @@ extension PoemController{
         if indexPath.row == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: poemCellId, for: indexPath) as! PoemCell
             cell.poem = self.poem
-            let tap = UITapGestureRecognizer(target: self, action: #selector(poetNamePressed))
-            cell.poetNameLabel.isUserInteractionEnabled = true
-            cell.poetNameLabel.addGestureRecognizer(tap)
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: tagsCellId, for: indexPath) as! PoemDetailCell
             cell.poem = self.poem
-            cell.tagsController.rootView = self
             return cell
         }
         
@@ -146,8 +141,9 @@ extension PoemController{
     
 }
 
-extension PoemController: UIGestureRecognizerDelegate {
+extension PoetController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
 }
+

@@ -17,6 +17,8 @@ class TagController: HorizontalSnappingController, UICollectionViewDelegateFlowL
 //    }
 
     
+    var rootView: PoemController?
+    
     let cellId = "Tagcell"
     var tags: [Tag]?{
         didSet{
@@ -26,7 +28,7 @@ class TagController: HorizontalSnappingController, UICollectionViewDelegateFlowL
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = .green
+        collectionView.backgroundColor = UIColor(named: "MainBackground")
         collectionView.register(TagCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.contentInset = .init(top: 0, left: 0, bottom: 0, right: 0)
         
@@ -43,18 +45,16 @@ class TagController: HorizontalSnappingController, UICollectionViewDelegateFlowL
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
-        
-//        return 3
-//        print("incell")
-//        print(tags?.count ?? 0)
-//
         return tags?.count ?? 0
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let destinationController  = PoetController(poemId: tags?[indexPath.row].id ?? 1)
+        rootView?.navigationController?.pushViewController(destinationController, animated: true)
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! TagCell
-        cell.backgroundColor = .red
         cell.tagNameLabel.text = tags?[indexPath.row].name
         return cell
     }

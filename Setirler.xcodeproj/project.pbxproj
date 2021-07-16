@@ -26,6 +26,7 @@
 		0E69ADD22615163800A38562 /* RawData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E69ADD12615163800A38562 /* RawData.swift */; };
 		0E69ADDA2615174100A38562 /* TagsRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E69ADD92615174100A38562 /* TagsRowCell.swift */; };
 		0E69ADE2261522EF00A38562 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E69ADE1261522EF00A38562 /* Service.swift */; };
+		0E6B8A4526A202D60078C0AB /* PoetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6B8A4426A202D60078C0AB /* PoetController.swift */; };
 		0E6EC4C826623A7F00B1DD8C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6EC4C726623A7F00B1DD8C /* SearchViewController.swift */; };
 		0E6EC4CB26623C4800B1DD8C /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6EC4CA26623C4800B1DD8C /* SearchResult.swift */; };
 		0E6EC4CD26623EAF00B1DD8C /* SearchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6EC4CC26623EAF00B1DD8C /* SearchData.swift */; };
@@ -91,6 +92,7 @@
 		0E69ADD12615163800A38562 /* RawData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawData.swift; sourceTree = "<group>"; };
 		0E69ADD92615174100A38562 /* TagsRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsRowCell.swift; sourceTree = "<group>"; };
 		0E69ADE1261522EF00A38562 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		0E6B8A4426A202D60078C0AB /* PoetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetController.swift; sourceTree = "<group>"; };
 		0E6EC4C726623A7F00B1DD8C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		0E6EC4CA26623C4800B1DD8C /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		0E6EC4CC26623EAF00B1DD8C /* SearchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchData.swift; sourceTree = "<group>"; };
@@ -168,6 +170,14 @@
 				0E69ADE1261522EF00A38562 /* Service.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		0E6B8A4326A202AC0078C0AB /* Poet */ = {
+			isa = PBXGroup;
+			children = (
+				0E6B8A4426A202D60078C0AB /* PoetController.swift */,
+			);
+			path = Poet;
 			sourceTree = "<group>";
 		};
 		0E6EC4C526623A6200B1DD8C /* Bookmark */ = {
@@ -270,6 +280,7 @@
 		0E89321F25FD0C1F0051B668 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				0E6B8A4326A202AC0078C0AB /* Poet */,
 				0ED871BC2670F8C30021D792 /* Poem */,
 				0E89322A25FD0CA80051B668 /* HomeController.swift */,
 				0E89325525FD1DB60051B668 /* TagsPoemsHorizontalController.swift */,
@@ -521,6 +532,7 @@
 				0E7D2ECD25FD0094004BE3A7 /* AppDelegate.swift in Sources */,
 				0E4CA6AD269C0E1E00E9382D /* SearchResultGroupCell.swift in Sources */,
 				0E69ADC7261514A700A38562 /* HorizontalSnappingController.swift in Sources */,
+				0E6B8A4526A202D60078C0AB /* PoetController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

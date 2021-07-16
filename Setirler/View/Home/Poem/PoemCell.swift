@@ -28,7 +28,7 @@ class PoemCell: UICollectionViewCell {
         let text = UITextView()
 //        text.backgroundColor = .green
         text.textColor = #colorLiteral(red: 0.3294117647, green: 0.3137254902, blue: 0.3137254902, alpha: 1)
-        text.font = UIFont(name: "SourceSerifPro-Regular", size: 16) ?? .systemFont(ofSize: 16)
+        text.font = UIFont(name: "SourceSerifPro-Regular", size: 18) ?? .systemFont(ofSize: 18)
         text.isScrollEnabled = false
         text.isEditable = false
         text.textAlignment = .natural
@@ -49,7 +49,7 @@ class PoemCell: UICollectionViewCell {
         let label = UILabel()
 //        label.backgroundColor = .yellow
         label.textColor = UIColor(named: "FontColor")
-        label.constrainHeight(constant: 25)
+//        label.constrainHeight(constant: 25)
         label.text = "Poet name"
         label.font = UIFont(name: "SourceSansPro-SemiBold", size: 16) ?? .systemFont(ofSize: 16)
         return label
