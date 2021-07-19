@@ -119,7 +119,7 @@ extension PoetController{
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: tagsCellId, for: indexPath) as! PoemDetailCell
-            cell.poem = self.poem
+//            cell.poem = self.poem
             return cell
         }
         

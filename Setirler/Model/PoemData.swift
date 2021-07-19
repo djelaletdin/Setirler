@@ -19,15 +19,18 @@ struct PoemData: Codable {
     let id, poetID: Int
     let name, content: String
     let view: Int
-    let poetName: String
+    let poetName, poetImage: String
+    let poemCount: Int
     let tags: [Tag]
 
     enum CodingKeys: String, CodingKey {
         case id
-        case poetID = "poet_id"
-        case name, content, view
-        case poetName = "poet_name"
-        case tags
+         case poetID = "poet_id"
+         case name, content, view
+         case poetName = "poet_name"
+         case poetImage = "poet_image"
+         case poemCount = "poem_count"
+         case tags
     }
 }
 

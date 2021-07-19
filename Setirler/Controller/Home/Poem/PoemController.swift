@@ -16,9 +16,10 @@ class PoemController: BaseController, UICollectionViewDelegateFlowLayout {
         super.init()
     }
     
-    var poemCellId = "poemcellid"
-    var tagsCellId  = "tagscellid"
-
+    fileprivate let poemCellId = "poemcellid"
+    fileprivate let tagsCellId  = "tagscellid"
+    fileprivate let poetDetailCellId = "poetDetailCellId"
+    
     var poem: PoemData?
     
     let navTitleLabel: UILabel = {
@@ -44,6 +45,8 @@ class PoemController: BaseController, UICollectionViewDelegateFlowLayout {
         collectionView.backgroundColor = UIColor(named: "MainBackground")
         collectionView.register(PoemCell.self, forCellWithReuseIdentifier: poemCellId)
         collectionView.register(PoemDetailCell.self, forCellWithReuseIdentifier: tagsCellId)
+        collectionView.register(PoetDetailCell.self, forCellWithReuseIdentifier: poetDetailCellId)
+
         
         setupNavBar()
         
@@ -109,7 +112,7 @@ class PoemController: BaseController, UICollectionViewDelegateFlowLayout {
 
 extension PoemController{
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -121,20 +124,36 @@ extension PoemController{
             cell.poetNameLabel.isUserInteractionEnabled = true
             cell.poetNameLabel.addGestureRecognizer(tap)
             return cell
-        } else {
+        } else if indexPath.row == 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: tagsCellId, for: indexPath) as! PoemDetailCell
-            cell.poem = self.poem
+            cell.tagsController.tags = self.poem?.tags
             cell.tagsController.rootView = self
+            return cell
+        } else{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: poetDetailCellId, for: indexPath) as! PoetDetailCell
+            cell.poet = self.poem
             return cell
         }
         
     }
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.row == 2{
+            if let poetId = self.poem?.poetID{
+                let destinationController  = PoetController(poemId: poetId)
+                self.navigationController?.pushViewController(destinationController, animated: true)
+            }
+            
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.row == 0 {
             return .init(width: view.frame.width-16-16, height: view.frame.height-16)
-        }else{
+        }else if indexPath.row == 1{
             return .init(width: view.frame.width-16-16, height: 70)
+        } else{
+            return .init(width: view.frame.width-16-16, height: 100)
         }
     }
     

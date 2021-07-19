@@ -50,6 +50,7 @@
 		0EC87ED626186D7100152313 /* CategoryGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC87ED526186D7100152313 /* CategoryGroupCell.swift */; };
 		0EC87EDB261871E400152313 /* CategoryGroupRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC87EDA261871E400152313 /* CategoryGroupRowCell.swift */; };
 		0EC87EE02618724A00152313 /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC87EDF2618724A00152313 /* CategoryController.swift */; };
+		0EC8962726A5F906008A48E2 /* PoetDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8962626A5F906008A48E2 /* PoetDetailCell.swift */; };
 		0ED871BE2670F8FB0021D792 /* PoemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED871BD2670F8FB0021D792 /* PoemController.swift */; };
 		0ED871C02670FD220021D792 /* PoemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED871BF2670FD220021D792 /* PoemData.swift */; };
 		0ED871C3267102DF0021D792 /* PoemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED871C2267102DF0021D792 /* PoemCell.swift */; };
@@ -122,6 +123,7 @@
 		0EC87ED526186D7100152313 /* CategoryGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryGroupCell.swift; sourceTree = "<group>"; };
 		0EC87EDA261871E400152313 /* CategoryGroupRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryGroupRowCell.swift; sourceTree = "<group>"; };
 		0EC87EDF2618724A00152313 /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
+		0EC8962626A5F906008A48E2 /* PoetDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetDetailCell.swift; sourceTree = "<group>"; };
 		0ED871BD2670F8FB0021D792 /* PoemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemController.swift; sourceTree = "<group>"; };
 		0ED871BF2670FD220021D792 /* PoemData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemData.swift; sourceTree = "<group>"; };
 		0ED871C2267102DF0021D792 /* PoemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemCell.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 		0E89321E25FD0BFE0051B668 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0E6B8A4326A202AC0078C0AB /* Poet */,
 				0E6EC4C626623A6E00B1DD8C /* Search */,
 				0E6EC4C526623A6200B1DD8C /* Bookmark */,
 				0E89321F25FD0C1F0051B668 /* Home */,
@@ -280,7 +283,6 @@
 		0E89321F25FD0C1F0051B668 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				0E6B8A4326A202AC0078C0AB /* Poet */,
 				0ED871BC2670F8C30021D792 /* Poem */,
 				0E89322A25FD0CA80051B668 /* HomeController.swift */,
 				0E89325525FD1DB60051B668 /* TagsPoemsHorizontalController.swift */,
@@ -292,6 +294,7 @@
 		0E89323525FD10560051B668 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0EC8962826A63996008A48E2 /* Poet */,
 				0E6EC4C926623C3800B1DD8C /* Search */,
 				0E89323625FD105E0051B668 /* Home */,
 			);
@@ -324,6 +327,13 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		0EC8962826A63996008A48E2 /* Poet */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Poet;
+			sourceTree = "<group>";
+		};
 		0ED871BC2670F8C30021D792 /* Poem */ = {
 			isa = PBXGroup;
 			children = (
@@ -339,6 +349,7 @@
 				0ED871C2267102DF0021D792 /* PoemCell.swift */,
 				0E4CA6A6269AFC2200E9382D /* PoemDetailCell.swift */,
 				0E4CA6A22699F01C00E9382D /* TagCell.swift */,
+				0EC8962626A5F906008A48E2 /* PoetDetailCell.swift */,
 			);
 			path = Poem;
 			sourceTree = "<group>";
@@ -497,6 +508,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EC8962726A5F906008A48E2 /* PoetDetailCell.swift in Sources */,
 				0E4CA6A32699F01C00E9382D /* TagCell.swift in Sources */,
 				0E6EC4CB26623C4800B1DD8C /* SearchResult.swift in Sources */,
 				0E98B25E26690E7200BD12F7 /* SearchBarCell.swift in Sources */,
