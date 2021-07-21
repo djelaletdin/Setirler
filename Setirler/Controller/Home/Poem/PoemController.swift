@@ -141,6 +141,7 @@ extension PoemController{
         if indexPath.row == 2{
             if let poetId = self.poem?.poetID{
                 let destinationController  = PoetController(poemId: poetId)
+                destinationController.poem = self.poem
                 self.navigationController?.pushViewController(destinationController, animated: true)
             }
             
@@ -158,7 +159,7 @@ extension PoemController{
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return .init(top: 16, left: 16, bottom: 0, right: 16)
+        return .init(top: 16, left: 16, bottom: 40, right: 16)
     }
     
     

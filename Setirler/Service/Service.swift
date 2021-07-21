@@ -28,9 +28,14 @@ class Service {
         print("Fetching search results")
         let newSearchTerm = searchTerm.replacingOccurrences(of: " ", with: "%20")
         let urlString = "http://poem.djelaletdin.com/public/api/search?q=\(newSearchTerm)"
-        
         print(urlString)
-        
+        fetchGenericJSONData(urlString: urlString, completion: completion)
+    }
+    
+    func fetchPoems(poetId: Int, page:Int,  completion: @escaping (PoemListRawData?, Error?) -> ()) {
+        print("Fetching search results")
+        let urlString = "http://poem.djelaletdin.com/public/api/poet/\(poetId)?page=\(page)"
+        print(urlString)
         fetchGenericJSONData(urlString: urlString, completion: completion)
     }
     
