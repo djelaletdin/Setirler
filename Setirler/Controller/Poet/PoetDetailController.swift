@@ -12,6 +12,7 @@ class PoetDetailController: BaseController, UICollectionViewDelegateFlowLayout {
     fileprivate let poemListCellId = "poemListCellId"
     fileprivate let footerCellId = "footerCellId"
     fileprivate var page = 1
+    fileprivate var isPaginating = false
     
     var poemGroup: PoemListRawData?
     
@@ -36,7 +37,7 @@ class PoetDetailController: BaseController, UICollectionViewDelegateFlowLayout {
     func fetchData(){
         print(self.poetId ?? 0)
         
-        Service.shared.fetchPoems(poetId: self.poetId ?? 0, page: 0) { rawData, error in
+        Service.shared.fetchPoems(poetId: self.poetId ?? 0, page: self.page) { rawData, error in
             if let error = error{
                 // TODO: - Show error to the user
                 print("error while fetching app groups", error)
@@ -51,6 +52,7 @@ class PoetDetailController: BaseController, UICollectionViewDelegateFlowLayout {
 //                    self.indicator.hidesWhenStopped = true
 //                    self.collectionView.isHidden = false
                 }
+                self.page+=1
             }
         }
     }
@@ -92,7 +94,8 @@ extension PoetDetailController{
             cell.sentenceLabel.text = "\(String(describing: (content.sentence)))"
         }
         if let poem = poemGroup{
-            if indexPath.row == poem.data.count-1 && poem.data.count < poem.total{
+            if indexPath.row == poem.data.count-1 && poem.data.count < poem.total && !isPaginating{
+                self.isPaginating = true
                 Service.shared.fetchPoems(poetId: self.poetId ?? 0, page: self.page) { rawData, error in
                     if let error = error{
                         // TODO: - Show error to the user
@@ -100,17 +103,18 @@ extension PoetDetailController{
                         return
                     }
                     
-                    
+                    sleep(1)
                     if let data = rawData{
                         self.poemGroup?.data += data.data
                         DispatchQueue.main.async {
 
                             self.collectionView.reloadData()
-                            self.page+=1
         //                    self.indicator.stopAnimating()
         //                    self.indicator.hidesWhenStopped = true
         //                    self.collectionView.isHidden = false
                         }
+                        self.page+=1
+                        self.isPaginating = false
                     }
                 }
             }
