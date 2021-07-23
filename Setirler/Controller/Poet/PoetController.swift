@@ -116,8 +116,16 @@ extension PoetController{
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: poetCellId, for: indexPath) as! PoetGroupCell
             cell.poetNameLabel.text = self.poem?.poetName
-        cell.counterLabel.text = "\(self.poem?.poemCount ?? 0) eser"
+            cell.counterLabel.text = "\(self.poem?.poemCount ?? 0) eser"
             cell.poetDetailController.poetId = self.poem?.poetID
+        
+            cell.poetDetailController.didSelectHandler = { [weak self] poem in
+                let destinationController  = PoemController(poemId: poem.id)
+                destinationController.navigationController?.title = poem.name
+                destinationController.hidesBottomBarWhenPushed = true
+                self?.navigationController?.pushViewController(destinationController, animated: true)
+            }
+        
             let url = URL(string: "http://poem.djelaletdin.com/public/images/\(self.poem?.poetImage ?? "asd")")
             cell.imageView.kf.setImage(with: url)
 //            cell.imageView.makeRounded()

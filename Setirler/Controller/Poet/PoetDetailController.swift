@@ -57,6 +57,14 @@ class PoetDetailController: BaseController, UICollectionViewDelegateFlowLayout {
         }
     }
     
+    var didSelectHandler: ((PoemListContent)->())?
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let poem  = self.poemGroup?.data[indexPath.row]{
+            print(poem.name ?? "shygyr")
+            didSelectHandler?(poem)
+        }
+    }
 
     
 }
