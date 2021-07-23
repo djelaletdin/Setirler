@@ -9,7 +9,7 @@ import UIKit
 
 class PoemListCell: UICollectionViewCell {
     
-    let titleLabel = UILabel(text: "Title Name", font: UIFont(name: "SourceSansPro-Bold", size: 14)  ?? .systemFont(ofSize: 14))
+    let titleLabel = UILabel(text: "Title Name", font: UIFont(name: "SourceSansPro-Bold", size: 16)  ?? .systemFont(ofSize: 14))
     let sentenceLabel = UILabel(text: "Counter", font: UIFont(name: "SourceSansPro-Regular", size: 14)  ?? .systemFont(ofSize: 14))
     
     override init(frame: CGRect) {
@@ -26,13 +26,22 @@ class PoemListCell: UICollectionViewCell {
         self.layer.shadowOpacity = 0.4
         self.layer.masksToBounds = false
 
+        sentenceLabel.numberOfLines = 0
 //        imageView.backgroundColor = .orange
-        let stackView = VerticalStackView(arrangedSubviews: [titleLabel, sentenceLabel], spacing: 5)
-        stackView.layoutMargins = UIEdgeInsets(top: 5, left: 16, bottom: 5, right: 16)
-        stackView.isLayoutMarginsRelativeArrangement = true
+//        let stackView = VerticalStackView(arrangedSubviews: [titleLabel, sentenceLabel, UIView()], spacing: 0)
+//        stackView.layoutMargins = UIEdgeInsets(top: 5, left: 16, bottom: 5, right: 16)
+//        stackView.isLayoutMarginsRelativeArrangement = true
+//
+//        stackView.alignment = .leading
+//        addSubview(stackView)
+//        stackView.fillSuperview()
         
-        stackView.alignment = .leading
+        let stackView = UIStackView(arrangedSubviews: [VerticalStackView(arrangedSubviews: [titleLabel, UIView(), sentenceLabel], spacing: 4)])
+        stackView.layoutMargins = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+        stackView.isLayoutMarginsRelativeArrangement = true
         addSubview(stackView)
+        stackView.alignment = .fill
+        stackView.spacing = 16
         stackView.fillSuperview()
     }
     

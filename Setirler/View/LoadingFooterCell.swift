@@ -12,7 +12,7 @@ class LoadingFooterCell: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        let aiv = UIActivityIndicatorView(style: .whiteLarge)
+        let aiv = UIActivityIndicatorView(style: .white)
         aiv.color = .darkGray
         aiv.startAnimating()
         

@@ -9,22 +9,23 @@ import UIKit
 
 class PoetGroupCell: UICollectionViewCell {
     
-    let imageView = UIImageView(cornerRadius: 9)
-    let poetNameLabel = UILabel(text: "Title Name", font: UIFont(name: "SourceSansPro-Bold", size: 14)  ?? .systemFont(ofSize: 14))
-    let counterLabel = UILabel(text: "Counter", font: UIFont(name: "SourceSansPro-Regular", size: 14)  ?? .systemFont(ofSize: 14))
+    let imageView: UIImageView = {
+        let iv = UIImageView(cornerRadius: 30)
+        iv.constrainWidth(constant: 60)
+        iv.constrainHeight(constant: 60)
+        iv.layer.masksToBounds = false
+        iv.clipsToBounds = true
+        return iv
+    }()
+    let poetNameLabel = UILabel(text: "Title Name", font: UIFont(name: "SourceSansPro-Bold", size: 18)  ?? .systemFont(ofSize: 18))
+    let counterLabel = UILabel(text: "Counter", font: UIFont(name: "SourceSansPro-Regular", size: 16)  ?? .systemFont(ofSize: 14))
     
     let poetDetailController = PoetDetailController()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        backgroundColor = .red
-        
-        imageView.constrainWidth(constant: 40)
-        imageView.constrainHeight(constant: 40)
-        imageView.backgroundColor = .orange
         let stackView = UIStackView(arrangedSubviews: [imageView, VerticalStackView(arrangedSubviews: [poetNameLabel, counterLabel], spacing: 10), UIView()])
-        stackView.layoutMargins = UIEdgeInsets(top: 10, left: 5, bottom: 100, right: 5)
+        stackView.layoutMargins = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         stackView.isLayoutMarginsRelativeArrangement = true
         
         stackView.alignment = .center
