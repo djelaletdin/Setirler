@@ -61,9 +61,8 @@ class PoemController: BaseController, UICollectionViewDelegateFlowLayout {
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let safeArea: CGFloat = UIApplication.shared.windows.filter{$0.isKeyWindow}.first?.safeAreaInsets.top ?? 0
-        let alpha: CGFloat = ((scrollView.contentOffset.y + safeArea) / safeArea)
-        navTitleLabel.alpha = alpha
-//        self.navigationController?.navigationBar.barTintColor = .yellow.withAlphaComponent(alpha)
+        let alpha: CGFloat = 1 - ((scrollView.contentOffset.y + safeArea) / safeArea)
+        navTitleLabel.alpha = -alpha
     }
     
     fileprivate func setupNavBar(){
@@ -76,7 +75,7 @@ class PoemController: BaseController, UICollectionViewDelegateFlowLayout {
         navigationItem.hidesBackButton = true
         navigationItem.titleView = stackView
         
-        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.interactivePopGestureRecognizer!.delegate = self;
     }
@@ -94,11 +93,7 @@ class PoemController: BaseController, UICollectionViewDelegateFlowLayout {
             }
         }
     }
-    
-    @objc func poetNamePressed(sender:UITapGestureRecognizer) {
-        let destinationController  = PoetController(poemId: 1)
-        self.navigationController?.pushViewController(destinationController, animated: true)
-    }
+
     
 //    override func viewWillAppear(_ animated: Bool) {
 //        super.viewWillAppear(animated)
@@ -120,9 +115,6 @@ extension PoemController{
         if indexPath.row == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: poemCellId, for: indexPath) as! PoemCell
             cell.poem = self.poem
-            let tap = UITapGestureRecognizer(target: self, action: #selector(poetNamePressed))
-            cell.poetNameLabel.isUserInteractionEnabled = true
-            cell.poetNameLabel.addGestureRecognizer(tap)
             return cell
         } else if indexPath.row == 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: tagsCellId, for: indexPath) as! PoemDetailCell

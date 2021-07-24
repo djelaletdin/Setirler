@@ -11,14 +11,6 @@ class Service {
     
     static let shared = Service()
     
-//    func fetchApps(searchTerm: String, completion: @escaping (SearchResult?, Error?) -> ()) {
-//        print("Fetching itunes apps from Service layer")
-//
-//        let urlString = ""
-//
-//        fetchGenericJSONData(urlString: urlString, completion: completion)
-//    }
-    
     func fetchHomeFeed(completion: @escaping (OrderRawData?, Error?) -> ()) {
         let urlString = "http://poem.djelaletdin.com/public/api/index"
         fetchGenericJSONData(urlString: urlString, completion: completion)

@@ -114,6 +114,21 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: tagsId, for: indexPath) as! TagsGroupCell
             cell.titleLabel.text = feedData?.data?[indexPath.row].categoryName
             cell.contentControlller.poemGroup = feedData?.data?[indexPath.row]
+            
+            cell.contentControlller.didSelectHandler = { [weak self] poem in
+                let tag = Tag(id: poem.id ?? 0, name: poem.name ?? "", tagDescription: poem.categoryContentDescription ?? "", poemCount: poem.poemCount ?? 0)
+                let destinationController  = TagViewController(tagId: poem.id ?? 1)
+                destinationController.tag = tag
+                destinationController.navigationController?.title = poem.name
+//                destinationController.hidesBottomBarWhenPushed = true
+                
+                let backImage = UIImage(named: "back")
+                self?.navigationController?.navigationBar.tintColor = UIColor(named: "FontColor")
+                self?.navigationController?.navigationBar.backIndicatorImage = backImage
+                self?.navigationController?.navigationBar.backIndicatorTransitionMaskImage = backImage
+                self?.navigationController?.pushViewController(destinationController, animated: true)
+            }
+            
             return cell
         } else if indexPath.row == 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: categoryId, for: indexPath) as! CategoryGroupCell

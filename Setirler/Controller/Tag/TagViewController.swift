@@ -24,6 +24,7 @@ class TagViewController: BaseController, UICollectionViewDelegateFlowLayout {
         }
     }
     
+    
     let navTitleLabel: UILabel = {
         let label = UILabel()
         label.text =  "shahyr ady"
@@ -50,7 +51,8 @@ class TagViewController: BaseController, UICollectionViewDelegateFlowLayout {
         setupNavBar()
         
         let number: CGFloat = UIApplication.shared.windows.filter{$0.isKeyWindow}.first?.safeAreaInsets.top ?? 0
-        
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self;
+
         print(number)
 
         if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
@@ -59,51 +61,27 @@ class TagViewController: BaseController, UICollectionViewDelegateFlowLayout {
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.barTintColor = UIColor(named: "MainBackground")
         let safeArea: CGFloat = UIApplication.shared.windows.filter{$0.isKeyWindow}.first?.safeAreaInsets.top ?? 0
-        let alpha: CGFloat = ((scrollView.contentOffset.y + safeArea) / safeArea)
-        navTitleLabel.alpha = alpha
-//        self.navigationController?.navigationBar.barTintColor = .yellow.withAlphaComponent(alpha)
+        let alpha: CGFloat = 1 - ((scrollView.contentOffset.y + safeArea) / safeArea)
+        
+        navTitleLabel.alpha = -alpha
     }
     
     fileprivate func setupNavBar(){
-        self.navigationController?.navigationBar.barTintColor = UIColor(named: "MainBackground")
-        let stackView = UIStackView(arrangedSubviews: [backButtonImageView, navTitleLabel, UIView()], customSpacing: 10)
-        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        
+        let stackView = UIStackView(arrangedSubviews: [navTitleLabel, UIView()], customSpacing: 10)
+        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 5, bottom: 10, right: 20)
         stackView.isLayoutMarginsRelativeArrangement = true
         navTitleLabel.text = tag?.name
         stackView.constrainWidth(constant: view.frame.width)
-        navigationItem.hidesBackButton = true
         navigationItem.titleView = stackView
-        
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.interactivePopGestureRecognizer!.delegate = self;
-        
-//        if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
-//              flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-//        }
-        
+
     }
-    
-    
-//    fileprivate func fetchData(){
-//        print(poemId)
-//        let urlString = "http://poem.djelaletdin.com/public/api/poem/\(poemId)"
-//        Service.shared.fetchGenericJSONData(urlString: urlString) { (result: PoemRawData?, error) in
-//            if let poemData = result?.data{
-//                self.poem = poemData
-//                DispatchQueue.main.async {
-//                    self.collectionView.reloadData()
-//                    self.navTitleLabel.text = poemData.name
-//                }
-//            }
-//        }
-//    }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        navigationController?.setNavigationBarHidden(true, animated: animated)
-//    }
+
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
