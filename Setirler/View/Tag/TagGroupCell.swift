@@ -18,7 +18,6 @@ class TagGroupCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        poetNameLabel.numberOfLines = 0
         descriptionLabel.numberOfLines = 0
         
         let stackView = UIStackView(arrangedSubviews: [VerticalStackView(arrangedSubviews: [poetNameLabel, descriptionLabel , counterLabel], spacing: 10), UIView()])

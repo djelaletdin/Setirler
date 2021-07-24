@@ -61,25 +61,31 @@ class TagViewController: BaseController, UICollectionViewDelegateFlowLayout {
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.barTintColor = UIColor(named: "MainBackground")
         let safeArea: CGFloat = UIApplication.shared.windows.filter{$0.isKeyWindow}.first?.safeAreaInsets.top ?? 0
         let alpha: CGFloat = 1 - ((scrollView.contentOffset.y + safeArea) / safeArea)
-        
         navTitleLabel.alpha = -alpha
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor(named: "MainBackground")
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.interactivePopGestureRecognizer!.delegate = self;
     }
     
     fileprivate func setupNavBar(){
-        
-        let stackView = UIStackView(arrangedSubviews: [navTitleLabel, UIView()], customSpacing: 10)
-        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 5, bottom: 10, right: 20)
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(backButtonImageTapped(tapGestureRecognizer:)))
+        backButtonImageView.isUserInteractionEnabled = true
+        backButtonImageView.addGestureRecognizer(tapGestureRecognizer)
+        let stackView = UIStackView(arrangedSubviews: [backButtonImageView, navTitleLabel, UIView()], customSpacing: 10)
+        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         stackView.isLayoutMarginsRelativeArrangement = true
         navTitleLabel.text = tag?.name
         stackView.constrainWidth(constant: view.frame.width)
+        navigationItem.hidesBackButton = true
         navigationItem.titleView = stackView
-
+    }
+    
+    @objc func backButtonImageTapped(tapGestureRecognizer: UITapGestureRecognizer){
+        self.navigationController?.popViewController(animated: true)
     }
 
 

@@ -122,10 +122,10 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout {
                 destinationController.navigationController?.title = poem.name
 //                destinationController.hidesBottomBarWhenPushed = true
                 
-                let backImage = UIImage(named: "back")
-                self?.navigationController?.navigationBar.tintColor = UIColor(named: "FontColor")
-                self?.navigationController?.navigationBar.backIndicatorImage = backImage
-                self?.navigationController?.navigationBar.backIndicatorTransitionMaskImage = backImage
+//                let backImage = UIImage(named: "back")
+//                self?.navigationController?.navigationBar.tintColor = UIColor(named: "FontColor")
+//                self?.navigationController?.navigationBar.backIndicatorImage = backImage
+//                self?.navigationController?.navigationBar.backIndicatorTransitionMaskImage = backImage
                 self?.navigationController?.pushViewController(destinationController, animated: true)
             }
             

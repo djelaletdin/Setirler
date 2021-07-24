@@ -67,6 +67,9 @@ class PoemController: BaseController, UICollectionViewDelegateFlowLayout {
     
     fileprivate func setupNavBar(){
         self.navigationController?.navigationBar.barTintColor = UIColor(named: "MainBackground")
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(backButtonImageTapped(tapGestureRecognizer:)))
+        backButtonImageView.isUserInteractionEnabled = true
+        backButtonImageView.addGestureRecognizer(tapGestureRecognizer)
         let stackView = UIStackView(arrangedSubviews: [backButtonImageView, navTitleLabel, UIView()], customSpacing: 10)
         stackView.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         stackView.isLayoutMarginsRelativeArrangement = true
@@ -78,6 +81,10 @@ class PoemController: BaseController, UICollectionViewDelegateFlowLayout {
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.interactivePopGestureRecognizer!.delegate = self;
+    }
+    
+    @objc func backButtonImageTapped(tapGestureRecognizer: UITapGestureRecognizer){
+        self.navigationController?.popViewController(animated: true)
     }
     
     fileprivate func fetchData(){
