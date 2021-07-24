@@ -32,11 +32,19 @@ class Service {
         fetchGenericJSONData(urlString: urlString, completion: completion)
     }
     
-    func fetchPoems(poetId: Int, page:Int,  completion: @escaping (PoemListRawData?, Error?) -> ()) {
-        print("Fetching search results")
-        let urlString = "http://poem.djelaletdin.com/public/api/poet/\(poetId)?page=\(page)"
-        print(urlString)
-        fetchGenericJSONData(urlString: urlString, completion: completion)
+    func fetchPoems(id: Int, page:Int, type: String, completion: @escaping (PoemListRawData?, Error?) -> ()) {
+        switch type {
+        case "poet":
+            let urlString = "http://poem.djelaletdin.com/public/api/poet/\(id)?page=\(page)"
+            fetchGenericJSONData(urlString: urlString, completion: completion)
+        case "tag":
+            let urlString = "http://poem.djelaletdin.com/public/api/tag/\(id)?page=\(page)"
+            print(urlString)
+            fetchGenericJSONData(urlString: urlString, completion: completion)
+        default:
+            let urlString = "http://poem.djelaletdin.com/public/api/poet/\(id)?page=\(page)"
+            fetchGenericJSONData(urlString: urlString, completion: completion)
+        }
     }
     
     

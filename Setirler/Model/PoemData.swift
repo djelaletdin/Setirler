@@ -37,5 +37,12 @@ struct PoemData: Codable {
 // MARK: - Tag
 struct Tag: Codable {
     let id: Int
-    let name: String
+    let name, tagDescription: String
+    let poemCount: Int
+
+    enum CodingKeys: String, CodingKey {
+        case id, name
+        case tagDescription = "description"
+        case poemCount = "poem_count"
+    }
 }

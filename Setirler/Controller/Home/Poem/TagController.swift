@@ -49,7 +49,9 @@ class TagController: HorizontalSnappingController, UICollectionViewDelegateFlowL
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let destinationController  = PoetController(poemId: tags?[indexPath.row].id ?? 1)
+        let destinationController  = TagViewController(tagId: tags?[indexPath.row].id ?? 1)
+        destinationController.navTitleLabel.text = tags?[indexPath.row].name
+        destinationController.tag = tags?[indexPath.row]
         rootView?.navigationController?.pushViewController(destinationController, animated: true)
     }
     

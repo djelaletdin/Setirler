@@ -1,24 +1,24 @@
 //
-//  PoetController.swift
+//  TagViewController.swift
 //  Setirler
 //
-//  Created by Didar Jelaletdinov on 2021/07/17.
+//  Created by Didar Jelaletdinov on 2021/07/23.
 //
 
 import UIKit
 
-class PoetController: BaseController, UICollectionViewDelegateFlowLayout {
+class TagViewController: BaseController, UICollectionViewDelegateFlowLayout {
 
-    fileprivate var poemId: Int
+    fileprivate var tagId: Int
 
-    init(poemId: Int) {
-    self.poemId = poemId
+    init(tagId: Int) {
+    self.tagId = tagId
         super.init()
     }
     
-    var poetCellId = "poetCellId"
+    var tagCellId = "TagGroupCell"
 
-    var poem: PoemData?{
+    var tag: Tag?{
         didSet{
             collectionView.reloadData()
         }
@@ -45,7 +45,7 @@ class PoetController: BaseController, UICollectionViewDelegateFlowLayout {
         super.viewDidLoad()
 //        fetchData()
         collectionView.backgroundColor = UIColor(named: "MainBackground")
-        collectionView.register(PoetGroupCell.self, forCellWithReuseIdentifier: poetCellId)
+        collectionView.register(TagGroupCell.self, forCellWithReuseIdentifier: tagCellId)
         
         setupNavBar()
         
@@ -56,8 +56,6 @@ class PoetController: BaseController, UICollectionViewDelegateFlowLayout {
         if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
               flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         }
-  
-        
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -72,7 +70,7 @@ class PoetController: BaseController, UICollectionViewDelegateFlowLayout {
         let stackView = UIStackView(arrangedSubviews: [backButtonImageView, navTitleLabel, UIView()], customSpacing: 10)
         stackView.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         stackView.isLayoutMarginsRelativeArrangement = true
-        navTitleLabel.text = poem?.poetName
+        navTitleLabel.text = tag?.name
         stackView.constrainWidth(constant: view.frame.width)
         navigationItem.hidesBackButton = true
         navigationItem.titleView = stackView
@@ -80,6 +78,10 @@ class PoetController: BaseController, UICollectionViewDelegateFlowLayout {
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.interactivePopGestureRecognizer!.delegate = self;
+        
+//        if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
+//              flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+//        }
         
     }
     
@@ -108,42 +110,47 @@ class PoetController: BaseController, UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension PoetController{
+extension TagViewController{
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: poetCellId, for: indexPath) as! PoetGroupCell
-            cell.poetNameLabel.text = self.poem?.poetName
-            cell.counterLabel.text = "\(self.poem?.poemCount ?? 0) eser"
-            cell.poetDetailController.poetId = self.poem?.poetID
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: tagCellId, for: indexPath) as! TagGroupCell
+                cell.poetNameLabel.text = self.tag?.name
+                cell.counterLabel.text = "\(self.tag?.poemCount ?? 0) eser"
+                cell.descriptionLabel.text = self.tag?.tagDescription
+                cell.poetDetailController.type = "tag"
+                cell.poetDetailController.poetId = self.tag?.id
+                cell.poetDetailController.didSelectHandler = { [weak self] poem in
+                    let destinationController  = PoemController(poemId: poem.id)
+                    destinationController.navigationController?.title = poem.name
+                    destinationController.hidesBottomBarWhenPushed = true
+                    self?.navigationController?.pushViewController(destinationController, animated: true)
+                }
         
-            cell.poetDetailController.didSelectHandler = { [weak self] poem in
-                let destinationController  = PoemController(poemId: poem.id)
-                destinationController.navigationController?.title = poem.name
-                destinationController.hidesBottomBarWhenPushed = true
-                self?.navigationController?.pushViewController(destinationController, animated: true)
-            }
-        
-            let url = URL(string: "http://poem.djelaletdin.com/public/images/\(self.poem?.poetImage ?? "default.jpg")")
-            cell.imageView.kf.setImage(with: url)
-//            cell.imageView.makeRounded()
+//            cell.poetDetailController.didSelectHandler = { [weak self] poem in
+//                let destinationController  = PoemController(poemId: poem.id)
+//                destinationController.navigationController?.title = poem.name
+//                destinationController.hidesBottomBarWhenPushed = true
+//                self?.navigationController?.pushViewController(destinationController, animated: true)
+//            }
+
             return cell
         
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            return .init(width: view.frame.width, height: view.frame.height-16)
+        return .init(width: view.frame.width, height: CGFloat(self.tag?.poemCount ?? 0)*140+150)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return .init(top: 16, left: 0, bottom: 0, right: 0)
+        return .init(top: 5, left: 0, bottom: 0, right: 0)
     }
     
 }
 
-extension PoetController: UIGestureRecognizerDelegate {
+extension TagViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }

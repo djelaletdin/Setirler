@@ -10,11 +10,13 @@ import UIKit
 class PoetDetailController: BaseController, UICollectionViewDelegateFlowLayout {
     
     fileprivate let poemListCellId = "poemListCellId"
+    fileprivate let poemTagListCellId = "poemTagListCellId"
     fileprivate let footerCellId = "footerCellId"
     fileprivate var page = 1
     fileprivate var isPaginating = false
-    
     var poemGroup: PoemListRawData?
+    
+    var type: String?
     
     var poetId: Int?{
         didSet{
@@ -25,8 +27,10 @@ class PoetDetailController: BaseController, UICollectionViewDelegateFlowLayout {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.register(PoemListCell.self, forCellWithReuseIdentifier: poemListCellId)
+        collectionView.register(PoemsRowCell.self, forCellWithReuseIdentifier: poemTagListCellId)
         collectionView.register(LoadingFooterCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerCellId)
         collectionView.backgroundColor = UIColor(named: "MainBackground")
+        collectionView.isScrollEnabled = false
         collectionView.contentInset = .init(top: 0, left: 0, bottom: 0, right: 0)
         
     }
@@ -37,7 +41,7 @@ class PoetDetailController: BaseController, UICollectionViewDelegateFlowLayout {
     func fetchData(){
         print(self.poetId ?? 0)
         
-        Service.shared.fetchPoems(poetId: self.poetId ?? 0, page: self.page) { rawData, error in
+        Service.shared.fetchPoems(id: self.poetId ?? 0, page: self.page, type: self.type ?? "poet") { rawData, error in
             if let error = error{
                 // TODO: - Show error to the user
                 print("error while fetching app groups", error)
@@ -61,7 +65,6 @@ class PoetDetailController: BaseController, UICollectionViewDelegateFlowLayout {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let poem  = self.poemGroup?.data[indexPath.row]{
-            print(poem.name ?? "shygyr")
             didSelectHandler?(poem)
         }
     }
@@ -96,15 +99,12 @@ extension PoetDetailController{
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: poemListCellId, for: indexPath) as! PoemListCell
-        if let content = poemGroup?.data[indexPath.row]{
-            cell.titleLabel.text = content.name
-            cell.sentenceLabel.text = "\(String(describing: (content.sentence)))"
-        }
+        
+        
         if let poem = poemGroup{
             if indexPath.row == poem.data.count-1 && poem.data.count < poem.total && !isPaginating{
                 self.isPaginating = true
-                Service.shared.fetchPoems(poetId: self.poetId ?? 0, page: self.page) { rawData, error in
+                Service.shared.fetchPoems(id: self.poetId ?? 0, page: self.page, type: self.type ?? "poet") { rawData, error in
                     if let error = error{
                         // TODO: - Show error to the user
                         print("error while fetching app groups", error)
@@ -128,13 +128,51 @@ extension PoetDetailController{
             }
         }
         
+        switch self.type {
+            case "poem":
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: poemListCellId, for: indexPath) as! PoemListCell
+                if let content = poemGroup?.data[indexPath.row]{
+                    cell.titleLabel.text = content.name
+                    cell.sentenceLabel.text = "\(String(describing: (content.sentence)))"
+                }
+                return cell
+            case "tag":
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: poemTagListCellId, for: indexPath) as! PoemsRowCell
+                if let content = poemGroup?.data[indexPath.row]{
+                    cell.titleLabel.text = content.name
+                    cell.contentLabel.text = content.poetName
+                    cell.sentenceLabel.text = "\(String(describing: (content.sentence)))"
+                }
+                return cell
+            default:
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: poemListCellId, for: indexPath) as! PoemListCell
+                if let content = poemGroup?.data[indexPath.row]{
+                    cell.titleLabel.text = content.name
+                    cell.sentenceLabel.text = "\(String(describing: (content.sentence)))"
+                }
+                return cell
+        }
         
-        return cell
+        
+        
+        
+        
+
+        
+        
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 //        let height = (view.frame.height - 2*topBottomPadding - 2*lineSpacing)
-        return .init(width: view.frame.width-32, height:100)
+        switch self.type {
+        case "poem":
+            return .init(width: view.frame.width-32, height: 100)
+        case "tag":
+            return .init(width: view.frame.width-32, height: 120)
+        default:
+            return .init(width: view.frame.width-32, height:100)
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

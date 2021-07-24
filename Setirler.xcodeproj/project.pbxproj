@@ -32,6 +32,8 @@
 		0E6EC4CD26623EAF00B1DD8C /* SearchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6EC4CC26623EAF00B1DD8C /* SearchData.swift */; };
 		0E70281526472FC1007F7A3A /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E70281426472FC1007F7A3A /* SourceSansPro-Bold.ttf */; };
 		0E70281726472FCB007F7A3A /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E70281626472FCB007F7A3A /* SourceSansPro-Regular.ttf */; };
+		0E75CC4B26AAF6440067E181 /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E75CC4A26AAF6440067E181 /* TagViewController.swift */; };
+		0E75CC4D26AAF6C60067E181 /* TagGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E75CC4C26AAF6C60067E181 /* TagGroupCell.swift */; };
 		0E7D2ECD25FD0094004BE3A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7D2ECC25FD0094004BE3A7 /* AppDelegate.swift */; };
 		0E7D2ED125FD0094004BE3A7 /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7D2ED025FD0094004BE3A7 /* BaseTabBarController.swift */; };
 		0E7D2ED625FD0096004BE3A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E7D2ED525FD0096004BE3A7 /* Assets.xcassets */; };
@@ -104,6 +106,8 @@
 		0E6EC4CC26623EAF00B1DD8C /* SearchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchData.swift; sourceTree = "<group>"; };
 		0E70281426472FC1007F7A3A /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
 		0E70281626472FCB007F7A3A /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.ttf"; sourceTree = "<group>"; };
+		0E75CC4A26AAF6440067E181 /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
+		0E75CC4C26AAF6C60067E181 /* TagGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagGroupCell.swift; sourceTree = "<group>"; };
 		0E7D2EC925FD0094004BE3A7 /* Setirler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Setirler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E7D2ECC25FD0094004BE3A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E7D2ED025FD0094004BE3A7 /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
@@ -223,6 +227,22 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		0E75CC4826AAF6080067E181 /* Tag */ = {
+			isa = PBXGroup;
+			children = (
+				0E75CC4C26AAF6C60067E181 /* TagGroupCell.swift */,
+			);
+			path = Tag;
+			sourceTree = "<group>";
+		};
+		0E75CC4926AAF6210067E181 /* Tag */ = {
+			isa = PBXGroup;
+			children = (
+				0E75CC4A26AAF6440067E181 /* TagViewController.swift */,
+			);
+			path = Tag;
+			sourceTree = "<group>";
+		};
 		0E7D2EC025FD0094004BE3A7 = {
 			isa = PBXGroup;
 			children = (
@@ -281,6 +301,7 @@
 		0E89321E25FD0BFE0051B668 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0E75CC4926AAF6210067E181 /* Tag */,
 				0E6B8A4326A202AC0078C0AB /* Poet */,
 				0E6EC4C626623A6E00B1DD8C /* Search */,
 				0E6EC4C526623A6200B1DD8C /* Bookmark */,
@@ -306,6 +327,7 @@
 		0E89323525FD10560051B668 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0E75CC4826AAF6080067E181 /* Tag */,
 				0EC8962826A63996008A48E2 /* Poet */,
 				0E6EC4C926623C3800B1DD8C /* Search */,
 				0E89323625FD105E0051B668 /* Home */,
@@ -549,11 +571,13 @@
 				0EC87EDB261871E400152313 /* CategoryGroupRowCell.swift in Sources */,
 				0E4CA6A7269AFC2200E9382D /* PoemDetailCell.swift in Sources */,
 				0E89322625FD0C5D0051B668 /* BaseController.swift in Sources */,
+				0E75CC4D26AAF6C60067E181 /* TagGroupCell.swift in Sources */,
 				0E50DBFA262828E20055DA86 /* PoemsRowCell.swift in Sources */,
 				0E9AE3BE26A8B3B400108512 /* LoadingFooterCell.swift in Sources */,
 				0ED871C02670FD220021D792 /* PoemData.swift in Sources */,
 				0E50DBF2262828530055DA86 /* PoemsGroupCell.swift in Sources */,
 				0E69ADDA2615174100A38562 /* TagsRowCell.swift in Sources */,
+				0E75CC4B26AAF6440067E181 /* TagViewController.swift in Sources */,
 				0E9AE3BC26A8AE1200108512 /* PoemListData.swift in Sources */,
 				0E89325625FD1DB60051B668 /* TagsPoemsHorizontalController.swift in Sources */,
 				0E6EC4C826623A7F00B1DD8C /* SearchViewController.swift in Sources */,

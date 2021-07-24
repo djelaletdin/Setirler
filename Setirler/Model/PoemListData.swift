@@ -25,5 +25,12 @@ struct PoemListRawData: Codable {
 struct PoemListContent: Codable {
     let id: Int
     let name, sentence: String
+    let poetName: String?
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case poetName = "poet_name"
+        case name, sentence
+    }
 }
 
