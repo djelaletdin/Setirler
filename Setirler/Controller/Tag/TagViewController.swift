@@ -43,12 +43,13 @@ class TagViewController: BaseController, UICollectionViewDelegateFlowLayout {
     }()
         
     override func viewDidLoad() {
+        setupNavBar()
         super.viewDidLoad()
 //        fetchData()
         collectionView.backgroundColor = UIColor(named: "MainBackground")
         collectionView.register(TagGroupCell.self, forCellWithReuseIdentifier: tagCellId)
         
-        setupNavBar()
+
         
         let number: CGFloat = UIApplication.shared.windows.filter{$0.isKeyWindow}.first?.safeAreaInsets.top ?? 0
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self;

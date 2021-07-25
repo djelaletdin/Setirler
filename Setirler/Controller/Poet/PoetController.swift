@@ -62,8 +62,8 @@ class PoetController: BaseController, UICollectionViewDelegateFlowLayout {
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let safeArea: CGFloat = UIApplication.shared.windows.filter{$0.isKeyWindow}.first?.safeAreaInsets.top ?? 0
-        let alpha: CGFloat = ((scrollView.contentOffset.y + safeArea) / safeArea)
-        navTitleLabel.alpha = alpha
+        let alpha: CGFloat = 1 - ((scrollView.contentOffset.y + safeArea) / safeArea)
+        navTitleLabel.alpha = -alpha
 //        self.navigationController?.navigationBar.barTintColor = .yellow.withAlphaComponent(alpha)
     }
     

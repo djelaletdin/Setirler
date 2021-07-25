@@ -64,6 +64,7 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout {
     @objc fileprivate func headerTapped(){
         let newViewController = SearchViewController()
 //        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        newViewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(newViewController, animated: false)
     }
     

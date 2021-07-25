@@ -9,7 +9,7 @@ import UIKit
 
 class TagGroupCell: UICollectionViewCell {
 
-    let poetNameLabel = UILabel(text: "Title Name", font: UIFont(name: "SourceSansPro-Bold", size: 18)  ?? .systemFont(ofSize: 18))
+    let poetNameLabel = UILabel(text: "Title Name", font: UIFont(name: "SourceSansPro-Bold", size: 24)  ?? .systemFont(ofSize: 18))
     let descriptionLabel = UILabel(text: "Title Name", font: UIFont(name: "SourceSansPro-Regular", size: 16)  ?? .systemFont(ofSize: 18))
     let counterLabel = UILabel(text: "Counter", font: UIFont(name: "SourceSansPro-SemiBold", size: 16)  ?? .systemFont(ofSize: 14))
     
@@ -20,7 +20,7 @@ class TagGroupCell: UICollectionViewCell {
         
         descriptionLabel.numberOfLines = 0
         
-        let stackView = UIStackView(arrangedSubviews: [VerticalStackView(arrangedSubviews: [poetNameLabel, descriptionLabel , counterLabel], spacing: 10), UIView()])
+        let stackView = UIStackView(arrangedSubviews: [VerticalStackView(arrangedSubviews: [poetNameLabel, counterLabel, descriptionLabel], spacing: 10), UIView()])
         stackView.layoutMargins = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         stackView.isLayoutMarginsRelativeArrangement = true
         

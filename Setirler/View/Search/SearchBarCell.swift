@@ -22,6 +22,7 @@ class SearchBarCell: UICollectionViewCell {
         let field = UITextField()
         field.font = UIFont(name: "SourceSansPro-SemiBold", size: 14) ?? .systemFont(ofSize: 14)
         field.textColor = UIColor(named: "FontColor")
+        field.autocorrectionType = .no
         field.setLeftPaddingPoints(30)
         field.setRightPaddingPoints(30)
         field.layer.cornerRadius = 9
