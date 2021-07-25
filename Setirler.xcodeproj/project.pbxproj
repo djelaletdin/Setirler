@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E3E338F26AD40970097376A /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3E338E26AD40970097376A /* CategoryViewController.swift */; };
+		0E3E339126AD66730097376A /* CategoryRawData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3E339026AD66730097376A /* CategoryRawData.swift */; };
+		0E3E339426AD670B0097376A /* CategoryGroupListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3E339326AD670B0097376A /* CategoryGroupListCell.swift */; };
+		0E3E339626AD682A0097376A /* CategoryDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3E339526AD682A0097376A /* CategoryDetailController.swift */; };
+		0E3E339826AD6AEC0097376A /* CategoryRowListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3E339726AD6AEC0097376A /* CategoryRowListCell.swift */; };
 		0E4CA69B2699CA6B00E9382D /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0E4CA69A2699CA6B00E9382D /* Kingfisher */; };
 		0E4CA69F2699D72E00E9382D /* SourceSerifPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E4CA69C2699D72E00E9382D /* SourceSerifPro-Bold.ttf */; };
 		0E4CA6A02699D72E00E9382D /* SourceSerifPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E4CA69D2699D72E00E9382D /* SourceSerifPro-Regular.ttf */; };
@@ -82,6 +87,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E3E338E26AD40970097376A /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		0E3E339026AD66730097376A /* CategoryRawData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRawData.swift; sourceTree = "<group>"; };
+		0E3E339326AD670B0097376A /* CategoryGroupListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryGroupListCell.swift; sourceTree = "<group>"; };
+		0E3E339526AD682A0097376A /* CategoryDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailController.swift; sourceTree = "<group>"; };
+		0E3E339726AD6AEC0097376A /* CategoryRowListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRowListCell.swift; sourceTree = "<group>"; };
 		0E4CA69C2699D72E00E9382D /* SourceSerifPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSerifPro-Bold.ttf"; sourceTree = "<group>"; };
 		0E4CA69D2699D72E00E9382D /* SourceSerifPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSerifPro-Regular.ttf"; sourceTree = "<group>"; };
 		0E4CA69E2699D72E00E9382D /* SourceSerifPro-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSerifPro-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -170,6 +180,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E3E338D26AD40650097376A /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				0E3E338E26AD40970097376A /* CategoryViewController.swift */,
+				0E3E339526AD682A0097376A /* CategoryDetailController.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		0E3E339226AD66F30097376A /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				0E3E339326AD670B0097376A /* CategoryGroupListCell.swift */,
+				0E3E339726AD6AEC0097376A /* CategoryRowListCell.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		0E69ADD0261515B100A38562 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +205,7 @@
 				0E6EC4CC26623EAF00B1DD8C /* SearchData.swift */,
 				0ED871BF2670FD220021D792 /* PoemData.swift */,
 				0E9AE3BB26A8AE1200108512 /* PoemListData.swift */,
+				0E3E339026AD66730097376A /* CategoryRawData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -301,8 +330,6 @@
 		0E89321E25FD0BFE0051B668 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				0E75CC4926AAF6210067E181 /* Tag */,
-				0E6B8A4326A202AC0078C0AB /* Poet */,
 				0E6EC4C626623A6E00B1DD8C /* Search */,
 				0E6EC4C526623A6200B1DD8C /* Bookmark */,
 				0E89321F25FD0C1F0051B668 /* Home */,
@@ -316,6 +343,9 @@
 		0E89321F25FD0C1F0051B668 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				0E3E338D26AD40650097376A /* Category */,
+				0E6B8A4326A202AC0078C0AB /* Poet */,
+				0E75CC4926AAF6210067E181 /* Tag */,
 				0ED871BC2670F8C30021D792 /* Poem */,
 				0E89322A25FD0CA80051B668 /* HomeController.swift */,
 				0E89325525FD1DB60051B668 /* TagsPoemsHorizontalController.swift */,
@@ -327,6 +357,7 @@
 		0E89323525FD10560051B668 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0E3E339226AD66F30097376A /* Category */,
 				0E75CC4826AAF6080067E181 /* Tag */,
 				0EC8962826A63996008A48E2 /* Poet */,
 				0E6EC4C926623C3800B1DD8C /* Search */,
@@ -547,6 +578,7 @@
 			files = (
 				0EC8962726A5F906008A48E2 /* PoetDetailCell.swift in Sources */,
 				0E4CA6A32699F01C00E9382D /* TagCell.swift in Sources */,
+				0E3E339426AD670B0097376A /* CategoryGroupListCell.swift in Sources */,
 				0E6EC4CB26623C4800B1DD8C /* SearchResult.swift in Sources */,
 				0E98B25E26690E7200BD12F7 /* SearchBarCell.swift in Sources */,
 				0E69ADD22615163800A38562 /* RawData.swift in Sources */,
@@ -556,8 +588,10 @@
 				0E4CA6B1269C1BDF00E9382D /* SearchResultsRowCell.swift in Sources */,
 				0E4CA6A52699F1A100E9382D /* TagController.swift in Sources */,
 				0EC8962E26A641BE008A48E2 /* PoemListCell.swift in Sources */,
+				0E3E339826AD6AEC0097376A /* CategoryRowListCell.swift in Sources */,
 				0ED871C3267102DF0021D792 /* PoemCell.swift in Sources */,
 				0E89322B25FD0CA80051B668 /* HomeController.swift in Sources */,
+				0E3E339626AD682A0097376A /* CategoryDetailController.swift in Sources */,
 				0EC87EE02618724A00152313 /* CategoryController.swift in Sources */,
 				0EC8962C26A63B44008A48E2 /* PoetDetailController.swift in Sources */,
 				0EC8962A26A63A96008A48E2 /* PoetGroupCell.swift in Sources */,
@@ -570,8 +604,10 @@
 				0E7D2ED125FD0094004BE3A7 /* BaseTabBarController.swift in Sources */,
 				0EC87EDB261871E400152313 /* CategoryGroupRowCell.swift in Sources */,
 				0E4CA6A7269AFC2200E9382D /* PoemDetailCell.swift in Sources */,
+				0E3E338F26AD40970097376A /* CategoryViewController.swift in Sources */,
 				0E89322625FD0C5D0051B668 /* BaseController.swift in Sources */,
 				0E75CC4D26AAF6C60067E181 /* TagGroupCell.swift in Sources */,
+				0E3E339126AD66730097376A /* CategoryRawData.swift in Sources */,
 				0E50DBFA262828E20055DA86 /* PoemsRowCell.swift in Sources */,
 				0E9AE3BE26A8B3B400108512 /* LoadingFooterCell.swift in Sources */,
 				0ED871C02670FD220021D792 /* PoemData.swift in Sources */,

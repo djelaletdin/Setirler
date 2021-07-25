@@ -121,12 +121,6 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout {
                 let destinationController  = TagViewController(tagId: poem.id ?? 1)
                 destinationController.tag = tag
                 destinationController.navigationController?.title = poem.name
-//                destinationController.hidesBottomBarWhenPushed = true
-                
-//                let backImage = UIImage(named: "back")
-//                self?.navigationController?.navigationBar.tintColor = UIColor(named: "FontColor")
-//                self?.navigationController?.navigationBar.backIndicatorImage = backImage
-//                self?.navigationController?.navigationBar.backIndicatorTransitionMaskImage = backImage
                 self?.navigationController?.pushViewController(destinationController, animated: true)
             }
             
@@ -134,7 +128,17 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout {
         } else if indexPath.row == 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: categoryId, for: indexPath) as! CategoryGroupCell
             cell.titleLabel.text = feedData?.data?[indexPath.row].categoryName
+            
             cell.contentControlller.poemGroup = feedData?.data?[indexPath.row]
+            
+            cell.contentControlller.didSelectHandler = { [weak self] category in
+//                let tag = Tag(id: poem.id ?? 0, name: poem.name ?? "", tagDescription: poem.categoryContentDescription ?? "", poemCount: poem.poemCount ?? 0)
+                let destinationController  = CategoryViewController(cateogryId: category.id ?? 1)
+                destinationController.category = category
+                destinationController.navigationController?.title = category.name
+                self?.navigationController?.pushViewController(destinationController, animated: true)
+            }
+            
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: poemId, for: indexPath) as! PoemGroupCell

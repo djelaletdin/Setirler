@@ -21,6 +21,14 @@ class CategoryController: BaseController, UICollectionViewDelegateFlowLayout {
         
     }
     
+    var didSelectHandler: ((CategoryContent)->())?
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let category  = self.poemGroup?.categoryContent?[indexPath.row]{
+            didSelectHandler?(category)
+        }
+    }
+    
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
@@ -38,7 +46,7 @@ class CategoryController: BaseController, UICollectionViewDelegateFlowLayout {
         
         if let content = poemGroup?.categoryContent?[indexPath.row]{
             cell.titleLabel.text = content.name
-            cell.counterLabel.text = "\(String(describing: (content.poet))) şahyr"
+            cell.counterLabel.text = "\(content.poetCount ?? 0) şahyr"
             
             let url = URL(string: "http://poem.djelaletdin.com/public/images/\(content.photo ?? "asd")")
             cell.imageView.kf.setImage(with: url)

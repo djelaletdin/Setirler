@@ -31,17 +31,17 @@ struct CategoryContent: Codable {
     let name, categoryContentDescription: String?
     let poemCount: Int?
     let photo: String?
-    let view, poetID: Int?
-    let poet: String?
-    let sentence: String?
+    let poetCount, view, poetID: Int?
+    let sentence, poet: String?
 
     enum CodingKeys: String, CodingKey {
         case id, name
         case categoryContentDescription = "description"
         case poemCount = "poem_count"
-        case photo, view
+        case photo
+        case poetCount = "poet_count"
+        case view
         case poetID = "poet_id"
-        case poet
-        case sentence
+        case sentence, poet
     }
 }

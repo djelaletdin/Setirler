@@ -1,36 +1,15 @@
 //
-//  PoetDetailCell.swift
+//  CategoryRowListCell.swift
 //  Setirler
 //
-//  Created by Didar Jelaletdinov on 2021/07/20.
+//  Created by Didar Jelaletdinov on 2021/07/25.
 //
 
 import UIKit
-import Kingfisher
 
-class PoetDetailCell: UICollectionViewCell {
+class CategoryRowListCell: UICollectionViewCell {
     
-    var poet: PoemData?{
-        didSet{
-            poetNameLabel.text = poet?.poetName
-            counterLabel.text = "\(poet?.poemCount ?? 0) eser"
-            let url = URL(string: "http://poem.djelaletdin.com/public/images/\(poet?.poetImage ?? "asd")")
-            imageView.kf.setImage(with: url)
-        }
-    }
-    
-    let imageView: UIImageView = {
-        let iv = UIImageView(cornerRadius: 20)
-        iv.constrainWidth(constant: 40)
-        iv.constrainHeight(constant: 40)
-        iv.layer.masksToBounds = false
-        iv.clipsToBounds = true
-        iv.contentMode = .scaleAspectFill
-        return iv
-    }()
-    
-    let poetNameLabel = UILabel(text: "Poet Name", font: UIFont(name: "SourceSansPro-Bold", size: 14)  ?? .systemFont(ofSize: 14))
-    
+    let titleLabel = UILabel(text: "Title Name", font: UIFont(name: "SourceSansPro-Bold", size: 16)  ?? .systemFont(ofSize: 14))
     let counterLabel = UILabel(text: "Counter", font: UIFont(name: "SourceSansPro-Regular", size: 14)  ?? .systemFont(ofSize: 14))
     
     override init(frame: CGRect) {
@@ -46,15 +25,14 @@ class PoetDetailCell: UICollectionViewCell {
         self.layer.shadowRadius = 9.0
         self.layer.shadowOpacity = 0.4
         self.layer.masksToBounds = false
-        
-//        imageView.backgroundColor = .orange
-        let stackView = UIStackView(arrangedSubviews: [imageView, VerticalStackView(arrangedSubviews: [poetNameLabel, counterLabel], spacing: 10), UIView()])
-        stackView.layoutMargins = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
+
+
+        let stackView = UIStackView(arrangedSubviews: [VerticalStackView(arrangedSubviews: [titleLabel, UIView(), counterLabel], spacing: 4)])
+        stackView.layoutMargins = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
         stackView.isLayoutMarginsRelativeArrangement = true
-        
-        stackView.alignment = .center
-        stackView.spacing = 16
         addSubview(stackView)
+        stackView.alignment = .fill
+        stackView.spacing = 16
         stackView.fillSuperview()
     }
     
