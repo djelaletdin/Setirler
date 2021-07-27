@@ -38,16 +38,31 @@ class PoemController: BaseController, UICollectionViewDelegateFlowLayout {
 //        iv.constrainWidth(constant: 23)
         return iv
     }()
-        
+    
+    var indicator = UIActivityIndicatorView()
+
+    func activityIndicatorSetup() {
+        indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
+        indicator.isOpaque = false
+        indicator.backgroundColor = UIColor(named: "MainBackground")
+        indicator.center = .init(x: view.frame.width/2, y: view.frame.height/2-view.frame.height/10)
+        indicator.style = .gray
+        indicator.hidesWhenStopped = true
+        indicator.color = UIColor(named: "FontColor")
+        view.addSubview(indicator)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchData()
         collectionView.backgroundColor = UIColor(named: "MainBackground")
+        activityIndicatorSetup()
+        indicator.startAnimating()
+        
+        fetchData()
+
         collectionView.register(PoemCell.self, forCellWithReuseIdentifier: poemCellId)
         collectionView.register(PoemDetailCell.self, forCellWithReuseIdentifier: tagsCellId)
         collectionView.register(PoetDetailCell.self, forCellWithReuseIdentifier: poetDetailCellId)
-
-        
         setupNavBar()
         
         let number: CGFloat = UIApplication.shared.windows.filter{$0.isKeyWindow}.first?.safeAreaInsets.top ?? 0
@@ -96,6 +111,7 @@ class PoemController: BaseController, UICollectionViewDelegateFlowLayout {
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                     self.navTitleLabel.text = poemData.name
+                    self.indicator.stopAnimating()
                 }
             }
         }

@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Artboard 1.pdf",
+      "filename" : "icons8-home-192.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "icons8-home-192@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "icons8-home-192@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

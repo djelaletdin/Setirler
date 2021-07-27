@@ -67,7 +67,7 @@ class CategoryViewController: BaseController, UICollectionViewDelegateFlowLayout
         navTitleLabel.alpha = -alpha
         
         self.navigationController?.navigationBar.barTintColor = UIColor(named: "MainBackground")
-        self.navigationController?.navigationBar.isTranslucent = false
+//        self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.interactivePopGestureRecognizer!.delegate = self;
     }
@@ -107,7 +107,7 @@ class CategoryViewController: BaseController, UICollectionViewDelegateFlowLayout
                 cell.categoryDetailController.categoryId = self.category?.id
                 cell.categoryDetailController.didSelectHandler = { [weak self] poet in
                     
-                    var dummyPoem = PoemData(id: 0, poetID: poet.id, name: "", content: "", view: 0, poetName: poet.name, poetImage: poet.photo, poemCount: poet.poemCount, tags: [])
+                    let dummyPoem = PoemData(id: 0, poetID: poet.id, name: "", content: "", view: 0, poetName: poet.name, poetImage: poet.photo, poemCount: poet.poemCount, tags: [])
                     
                     let destinationController  = PoetController(poemId: poet.id)
                     destinationController.navigationController?.title = poet.name

@@ -26,17 +26,21 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout {
     
     var indicator = UIActivityIndicatorView()
 
-     func activityIndicatorTest() {
-         indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-         indicator.style = UIActivityIndicatorView.Style.gray
-         indicator.center = self.view.center
-         self.view.addSubview(indicator)
+    func activityIndicatorSetup() {
+        indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
+        indicator.isOpaque = false
+        indicator.backgroundColor = UIColor(named: "MainBackground")
+        indicator.center = view.center
+        indicator.style = .gray
+        indicator.hidesWhenStopped = true
+        indicator.color = UIColor(named: "FontColor")
+        view.addSubview(indicator)
      }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        activityIndicatorTest()
+        activityIndicatorSetup()
         indicator.startAnimating()
         
         collectionView.backgroundColor = UIColor(named: "MainBackground")
@@ -45,7 +49,6 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout {
         collectionView.register(CategoryGroupCell.self, forCellWithReuseIdentifier: categoryId)
         collectionView?.register(SearchViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
         collectionView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
-        collectionView.isHidden = true
         
         fetchData()
         collectionView.reloadData()
@@ -80,8 +83,6 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout {
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                     self.indicator.stopAnimating()
-                    self.indicator.hidesWhenStopped = true
-                    self.collectionView.isHidden = false
                 }
             }
         }

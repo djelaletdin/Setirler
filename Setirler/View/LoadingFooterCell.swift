@@ -13,7 +13,7 @@ class LoadingFooterCell: UICollectionReusableView {
         super.init(frame: frame)
         
         let aiv = UIActivityIndicatorView(style: .white)
-        aiv.color = .darkGray
+        aiv.color = UIColor(named: "FontColor")
         aiv.startAnimating()
         
 

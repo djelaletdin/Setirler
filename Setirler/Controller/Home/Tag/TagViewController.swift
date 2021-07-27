@@ -67,7 +67,6 @@ class TagViewController: BaseController, UICollectionViewDelegateFlowLayout {
         navTitleLabel.alpha = -alpha
         
         self.navigationController?.navigationBar.barTintColor = UIColor(named: "MainBackground")
-        self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.interactivePopGestureRecognizer!.delegate = self;
     }
@@ -81,6 +80,7 @@ class TagViewController: BaseController, UICollectionViewDelegateFlowLayout {
         stackView.isLayoutMarginsRelativeArrangement = true
         navTitleLabel.text = tag?.name
         stackView.constrainWidth(constant: view.frame.width)
+        self.navigationController?.navigationBar.isTranslucent = false
         navigationItem.hidesBackButton = true
         navigationItem.titleView = stackView
     }

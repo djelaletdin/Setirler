@@ -20,14 +20,11 @@ class SearchViewController: BaseController, UICollectionViewDelegateFlowLayout, 
     var progressIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         indicator.hidesWhenStopped = true
-        indicator.style = UIActivityIndicatorView.Style.gray
+        indicator.color = UIColor(named: "FontColor")
         indicator.contentMode = .center
         return indicator
     }()
 
-     func activityIndicatorTest() {
-         
-     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
