@@ -27,37 +27,33 @@ class InnerSearchController: BaseController, UICollectionViewDelegateFlowLayout 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = UIColor(named: "MainBackground")
         collectionView.register(SearchResultsRowCell.self, forCellWithReuseIdentifier: cellId)
         
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
-            
-        return searchResultSentences?.count ?? 0
-        
-//        return 3
-    }
+            return searchResultSentences?.count ?? 0
+        }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! SearchResultsRowCell
         
         if let result = self.searchResultSentences?[indexPath.row]{
-            let styledString = "<style>b{font-family: SourceSansPro-Bold;color:#545050;'}</style><div style='color:#9E9999; font-family: SourceSansPro-SemiBold; font-size: 15;'>\(result.content)</div>"
+            let styledString = "<style>b{font-family: SourceSansPro-Bold;}</style><div style='font-family: SourceSansPro-Regular;'>\(result.content)</div>"
             cell.resultSentenceLabel.attributedText = styledString.htmlToAttributedString
+            cell.resultSentenceLabel.textColor = UIColor(named: "FontColor")
 //            cell.resultSentenceLabel.text = result.content
         }
         return cell
     }
     
-    let topBottomPadding: CGFloat = 12
-    let lineSpacing: CGFloat = 20
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 //        let height = (view.frame.height - 2*topBottomPadding - 2*lineSpacing)
-        return .init(width: view.frame.width, height:30)
+        return .init(width: view.frame.width, height:20)
     }
 }
 

@@ -10,12 +10,11 @@ import UIKit
 class SearchResultsRowCell: UICollectionViewCell {
     
     
-    let resultSentenceLabel = UILabel(text: "Title Name", font: UIFont(name: "SourceSansPro-Bold", size: 14) ?? .systemFont(ofSize: 14))
+    let resultSentenceLabel = UILabel(text: "Title Name", font: UIFont(name: "SourceSansPro-Bold", size: 15) ?? .systemFont(ofSize: 14))
 
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .white
+        backgroundColor = UIColor(named: "MainBackground")
         addSubview(resultSentenceLabel)
         resultSentenceLabel.fillSuperview(padding: .init(top: 0, left: 0, bottom: 0, right: 0))
     }

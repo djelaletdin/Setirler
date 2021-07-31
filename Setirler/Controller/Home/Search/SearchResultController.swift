@@ -20,8 +20,7 @@ class SearchResultController: BaseController, UICollectionViewDelegateFlowLayout
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("bashyrakda")
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor =  UIColor(named: "MainBackground")
         collectionView.register(SearchResultGroupCell.self, forCellWithReuseIdentifier: cellId)
 //        collectionView.contentInset = .init(top: 0, left: 16, bottom: 0, right: 16)
         collectionView.reloadData()
@@ -37,7 +36,6 @@ class SearchResultController: BaseController, UICollectionViewDelegateFlowLayout
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! SearchResultGroupCell
-        print("wassap")
         if let content = searchResultGroup?[indexPath.row]{
             cell.titleLabel.text = content.categoryName
             cell.contentControlller.searchResultSentences = content.peomData
@@ -62,7 +60,7 @@ class SearchResultController: BaseController, UICollectionViewDelegateFlowLayout
         
         if let content = searchResultGroup?[indexPath.row]{
             
-            let height = content.peomData.count * 50
+            let height = content.peomData.count * 40+20
             
             return .init(width: Int(view.frame.width), height:height)
         } else{

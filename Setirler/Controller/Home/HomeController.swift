@@ -149,7 +149,6 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout {
             cell.contentControlller.didSelectHandler = { [weak self] poem in
                 let destinationController  = PoemController(poemId: poem.id ?? 0)
                 destinationController.navigationController?.title = poem.name
-                destinationController.hidesBottomBarWhenPushed = true
                 self?.navigationController?.pushViewController(destinationController, animated: true)
             }
             

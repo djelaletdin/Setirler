@@ -28,6 +28,7 @@ class SearchViewController: BaseController, UICollectionViewDelegateFlowLayout, 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         collectionView.backgroundColor = UIColor(named: "MainBackground")
         collectionView.register(SearchBarCell.self, forCellWithReuseIdentifier: searchBarId)
         collectionView.register(SearchResultCell.self, forCellWithReuseIdentifier: searchResultId)
@@ -44,6 +45,7 @@ class SearchViewController: BaseController, UICollectionViewDelegateFlowLayout, 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -99,7 +101,7 @@ class SearchViewController: BaseController, UICollectionViewDelegateFlowLayout, 
                     if search.count == 0{
                         return .init(width: view.frame.width, height: 500 )
                     } else{
-                        return .init(width: view.frame.width-16, height: view.frame.height-60 )
+                        return .init(width: view.frame.width-16, height: view.frame.height-140 )
                     }
                 } else{
                     return .init(width: view.frame.width, height: 500 )

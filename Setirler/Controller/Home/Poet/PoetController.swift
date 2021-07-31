@@ -88,6 +88,10 @@ class PoetController: BaseController, UICollectionViewDelegateFlowLayout {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        setupNavBar()
+    }
+    
     @objc func backButtonImageTapped(tapGestureRecognizer: UITapGestureRecognizer){
         self.navigationController?.popViewController(animated: true)
     }
