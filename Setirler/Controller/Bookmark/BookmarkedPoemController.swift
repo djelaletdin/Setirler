@@ -1,14 +1,14 @@
 //
-//  PoemController.swift
+//  File.swift
 //  Setirler
 //
-//  Created by Didar Jelaletdinov on 2021/06/09.
+//  Created by Didar Jelaletdinov on 2021/08/01.
 //
 
 import UIKit
 import RealmSwift
 
-class PoemController: BaseController, UICollectionViewDelegateFlowLayout {
+class BookmarkedPoemController: BaseController, UICollectionViewDelegateFlowLayout {
 
     fileprivate var poemId: Int
 
@@ -47,33 +47,15 @@ class PoemController: BaseController, UICollectionViewDelegateFlowLayout {
         iv.image = UIImage(named: "heart-empty")
         return iv
     }()
-    
-    var indicator = UIActivityIndicatorView()
 
-    func activityIndicatorSetup() {
-        indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
-        indicator.isOpaque = false
-        indicator.backgroundColor = UIColor(named: "MainBackground")
-        indicator.center = .init(x: view.frame.width/2, y: view.frame.height/2-view.frame.height/10)
-        indicator.style = .gray
-        indicator.hidesWhenStopped = true
-        indicator.color = UIColor(named: "FontColor")
-        view.addSubview(indicator)
-    }
     
     let realm = try! Realm()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.backgroundColor = UIColor(named: "MainBackground")
-        activityIndicatorSetup()
-        indicator.startAnimating()
-        
-        fetchData()
 
         collectionView.register(PoemCell.self, forCellWithReuseIdentifier: poemCellId)
-        collectionView.register(PoemDetailCell.self, forCellWithReuseIdentifier: tagsCellId)
-        collectionView.register(PoetDetailCell.self, forCellWithReuseIdentifier: poetDetailCellId)
         setupNavBar()
                 
         if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
@@ -159,77 +141,30 @@ class PoemController: BaseController, UICollectionViewDelegateFlowLayout {
                 isAddedToFavorites = false
             }
     }
-    
-    
-    
-    fileprivate func fetchData(){
-        let urlString = "http://poem.djelaletdin.com/public/api/poem/\(poemId)"
-        Service.shared.fetchGenericJSONData(urlString: urlString) { (result: PoemRawData?, error) in
-            if let poemData = result?.data{
-                self.poem = poemData
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                    self.navTitleLabel.text = poemData.name
-                    self.indicator.stopAnimating()
-                }
-            }
-        }
-    }
-
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        navigationController?.setNavigationBarHidden(true, animated: animated)
-//    }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
 
-extension PoemController{
+extension BookmarkedPoemController{
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return 1
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        if indexPath.row == 0 {
+                
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: poemCellId, for: indexPath) as! PoemCell
             cell.poem = self.poem
             return cell
-        } else if indexPath.row == 1 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: tagsCellId, for: indexPath) as! PoemDetailCell
-            cell.tagsController.tags = self.poem?.tags
-            cell.tagsController.rootView = self
-            return cell
-        } else{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: poetDetailCellId, for: indexPath) as! PoetDetailCell
-            cell.poet = self.poem
-            return cell
-        }
+
         
     }
     
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.row == 2{
-            if let poetId = self.poem?.poetID{
-                let destinationController  = PoetController(poemId: poetId)
-                destinationController.poem = self.poem
-                self.navigationController?.pushViewController(destinationController, animated: true)
-            }
-            
-        }
-    }
+
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if indexPath.row == 0 {
             return .init(width: view.frame.width-16-16, height: view.frame.height-16)
-        }else if indexPath.row == 1{
-            return .init(width: view.frame.width-16-16, height: 70)
-        } else{
-            return .init(width: view.frame.width-16-16, height: 100)
-        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -240,8 +175,11 @@ extension PoemController{
     
 }
 
-extension PoemController: UIGestureRecognizerDelegate {
+extension BookmarkedPoemController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
 }
+
+
+

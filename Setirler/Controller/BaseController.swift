@@ -9,7 +9,7 @@ import UIKit
 
 class BaseController: UICollectionViewController {
     override func viewDidLoad() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "MainBackground")
     }
     init() {
         super.init(collectionViewLayout: UICollectionViewFlowLayout())

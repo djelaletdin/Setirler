@@ -17,7 +17,7 @@ class BaseTabBarController: UITabBarController {
         tabBar.tintColor = UIColor(named: "FontColor")
         viewControllers = [
             createNavController(viewController: HomeController(),  image: #imageLiteral(resourceName: "home"), selectedImage: #imageLiteral(resourceName: "home-selected")),
-            createNavController(viewController: UIViewController(), image: #imageLiteral(resourceName: "bookmark"), selectedImage: #imageLiteral(resourceName: "bookmark-selected")),
+            createNavController(viewController: BookmarkViewController(), image: #imageLiteral(resourceName: "bookmark"), selectedImage: #imageLiteral(resourceName: "bookmark-selected")),
             createNavController(viewController: AllPoetsViewController(),  image: #imageLiteral(resourceName: "poets"),  selectedImage: #imageLiteral(resourceName: "poets-selected")),
             
         ]
