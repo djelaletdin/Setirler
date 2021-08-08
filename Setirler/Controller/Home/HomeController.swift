@@ -14,6 +14,7 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout, UINavi
     }
     
     
+    
     let tagsId = "tagcellid"
     let poemId = "poemID"
     let categoryId = "categoryid"
@@ -44,21 +45,7 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout, UINavi
         indicator.startAnimating()
         
         navigationController?.delegate = self
-        
-        func navigationControlle(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
 
-
-            if (navigationController.viewControllers.count > 1)
-            {
-                self.navigationController?.interactivePopGestureRecognizer?.delegate = self as? UIGestureRecognizerDelegate
-                navigationController.interactivePopGestureRecognizer?.isEnabled = true;
-            }
-            else
-            {
-                 self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
-                navigationController.interactivePopGestureRecognizer?.isEnabled = false;
-            }
-        }
         
         collectionView.backgroundColor = UIColor(named: "MainBackground")
         collectionView.register(TagsGroupCell.self, forCellWithReuseIdentifier: tagsId)
@@ -69,6 +56,17 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout, UINavi
         
         fetchData()
         collectionView.reloadData()
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        if (navigationController.viewControllers.count > 1){
+            self.navigationController?.interactivePopGestureRecognizer?.delegate = self as? UIGestureRecognizerDelegate
+            navigationController.interactivePopGestureRecognizer?.isEnabled = true;
+        }
+        else{
+            self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
+            navigationController.interactivePopGestureRecognizer?.isEnabled = false;
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
