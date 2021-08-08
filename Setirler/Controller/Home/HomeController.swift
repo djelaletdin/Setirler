@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeController: BaseController, UICollectionViewDelegateFlowLayout {
+class HomeController: BaseController, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate {
     
     func updateSearchResults(for searchController: UISearchController) {
         print("asasd")
@@ -42,6 +42,23 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout {
         
         activityIndicatorSetup()
         indicator.startAnimating()
+        
+        navigationController?.delegate = self
+        
+        func navigationControlle(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+
+
+            if (navigationController.viewControllers.count > 1)
+            {
+                self.navigationController?.interactivePopGestureRecognizer?.delegate = self as? UIGestureRecognizerDelegate
+                navigationController.interactivePopGestureRecognizer?.isEnabled = true;
+            }
+            else
+            {
+                 self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
+                navigationController.interactivePopGestureRecognizer?.isEnabled = false;
+            }
+        }
         
         collectionView.backgroundColor = UIColor(named: "MainBackground")
         collectionView.register(TagsGroupCell.self, forCellWithReuseIdentifier: tagsId)
