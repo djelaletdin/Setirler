@@ -34,6 +34,8 @@ class AllPoetsViewController: BaseController, UICollectionViewDelegateFlowLayout
     
     override func viewWillAppear(_ animated: Bool) {
         setupNavBar()
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+
     }
     
     func setupNavBar(){
@@ -41,7 +43,7 @@ class AllPoetsViewController: BaseController, UICollectionViewDelegateFlowLayout
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.title = "Şahyrlar"
+        self.navigationItem.title = "Şahyrlar"
         self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "FontColor") ?? .white, NSAttributedString.Key.font: UIFont(name: "SourceSansPro-Bold", size: 30)!]
     }
     

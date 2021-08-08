@@ -1,14 +1,13 @@
 //
-//  EmptySearchCell.swift
+//  ErrorViewController.swift
 //  Setirler
 //
-//  Created by Didar Jelaletdinov on 2021/07/12.
+//  Created by Didar Jelaletdinov on 2021/08/06.
 //
 
 import UIKit
 
-class EmptySearchCell: UICollectionViewCell {
-    
+class ErrorViewController: UIViewController {
     let imageView: UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named: "reading")
@@ -34,25 +33,23 @@ class EmptySearchCell: UICollectionViewCell {
         label.numberOfLines = 0
         label.textAlignment = .center
         label.textColor = UIColor(named: "FontColor")
-        label.text = "Gözlege gabat gelýän eser tapylmady"
+        label.text = "Näsazlyk çykdy. Täzeden synanşyp görüň"
         return label
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-
-            let stackView = VerticalStackView(arrangedSubviews: [imageView, poemSentenceLabel, warningLabel], spacing: 0)
-            stackView.distribution = .equalSpacing
-            stackView.alignment = .center
-            addSubview(stackView)
-            stackView.fillSuperview(padding: .init(top: 120, left: 10, bottom: 0, right: 10))
-       
-
-        
+    override func viewDidLoad() {
+        self.tabBarController?.tabBar.isHidden = true
+        let stackView = VerticalStackView(arrangedSubviews: [imageView, poemSentenceLabel, warningLabel], spacing: 0)
+        stackView.distribution = .equalCentering
+        stackView.alignment = .center
+        view.addSubview(stackView)
+        stackView.fillSuperview(padding: .init(top: 120, left: 16, bottom: 120, right: 16))
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
 }

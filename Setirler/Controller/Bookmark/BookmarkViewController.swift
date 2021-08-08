@@ -35,16 +35,18 @@ class BookmarkViewController: BaseController, UICollectionViewDelegateFlowLayout
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        self.navigationController?.navigationBar.prefersLargeTitles = true
         setupNavBar()
         collectionView.reloadData()
     }
     
     func setupNavBar(){
+        self.navigationItem.title = "Halanlarym"
         self.navigationController?.navigationBar.barTintColor = UIColor(named: "MainBackground")
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.title = "Halanlarym"
         self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "FontColor") ?? .white, NSAttributedString.Key.font: UIFont(name: "SourceSansPro-Bold", size: 30)!]
     }
 

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0E1375F926B695CC0094F73F /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1375F826B695CC0094F73F /* BookmarkViewController.swift */; };
 		0E1375FB26B69D4B0094F73F /* BookmarkedPoemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1375FA26B69D4B0094F73F /* BookmarkedPoemController.swift */; };
+		0E2F599C26BD287700185D5C /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2F599B26BD287700185D5C /* ErrorViewController.swift */; };
 		0E3E338F26AD40970097376A /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3E338E26AD40970097376A /* CategoryViewController.swift */; };
 		0E3E339126AD66730097376A /* CategoryRawData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3E339026AD66730097376A /* CategoryRawData.swift */; };
 		0E3E339426AD670B0097376A /* CategoryGroupListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3E339326AD670B0097376A /* CategoryGroupListCell.swift */; };
@@ -95,6 +96,7 @@
 /* Begin PBXFileReference section */
 		0E1375F826B695CC0094F73F /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		0E1375FA26B69D4B0094F73F /* BookmarkedPoemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkedPoemController.swift; sourceTree = "<group>"; };
+		0E2F599B26BD287700185D5C /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
 		0E3E338E26AD40970097376A /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		0E3E339026AD66730097376A /* CategoryRawData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRawData.swift; sourceTree = "<group>"; };
 		0E3E339326AD670B0097376A /* CategoryGroupListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryGroupListCell.swift; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 				0E89322A25FD0CA80051B668 /* HomeController.swift */,
 				0E89325525FD1DB60051B668 /* TagsPoemsHorizontalController.swift */,
 				0EC87EDF2618724A00152313 /* CategoryController.swift */,
+				0E2F599B26BD287700185D5C /* ErrorViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -610,6 +613,7 @@
 				0E98B25E26690E7200BD12F7 /* SearchBarCell.swift in Sources */,
 				0E69ADD22615163800A38562 /* RawData.swift in Sources */,
 				0ED871BE2670F8FB0021D792 /* PoemController.swift in Sources */,
+				0E2F599C26BD287700185D5C /* ErrorViewController.swift in Sources */,
 				0E69ADE2261522EF00A38562 /* Service.swift in Sources */,
 				0EC87ED626186D7100152313 /* CategoryGroupCell.swift in Sources */,
 				0E4CA6B1269C1BDF00E9382D /* SearchResultsRowCell.swift in Sources */,
@@ -831,10 +835,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.djelaletdin.Setirler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -851,10 +856,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.djelaletdin.Setirler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

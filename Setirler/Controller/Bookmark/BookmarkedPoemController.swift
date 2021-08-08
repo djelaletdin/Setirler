@@ -113,7 +113,8 @@ class BookmarkedPoemController: BaseController, UICollectionViewDelegateFlowLayo
     }
     
     @objc func addToFavorites(tapGestureRecognizer: UITapGestureRecognizer){
-        
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
         if let poem = self.poem{
             let poemRealm = PoemRealmData()
             poemRealm.id = poem.id
@@ -132,7 +133,8 @@ class BookmarkedPoemController: BaseController, UICollectionViewDelegateFlowLayo
     }
     
     @objc func deleteFromFavorites(tapGestureRecognizer: UITapGestureRecognizer){
-        
+        let generator = UIImpactFeedbackGenerator(style: .heavy)
+        generator.impactOccurred()
             let poem: Results<PoemRealmData> = { self.realm.objects(PoemRealmData.self).filter("id = \(self.poemId)")  }()
             try! realm.write {
                 realm.delete(poem)

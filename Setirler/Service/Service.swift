@@ -5,11 +5,17 @@
 //  Created by Didar Jelaletdinov on 01.04.2021.
 //
 
-import Foundation
+import UIKit
 
 class Service {
     
     static let shared = Service()
+    
+    func showError(rootView: UICollectionViewController, message: String) {
+        let newViewController = ErrorViewController()
+        rootView.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        rootView.navigationController?.pushViewController(newViewController, animated: false)
+    }
     
     func fetchHomeFeed(completion: @escaping (OrderRawData?, Error?) -> ()) {
         let urlString = "http://poem.djelaletdin.com/public/api/index"

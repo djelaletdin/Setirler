@@ -145,7 +145,8 @@ extension PoetController{
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            return .init(width: view.frame.width, height: view.frame.height-16)
+        let height: CGFloat = CGFloat((self.poem?.poemCount ?? 0)*120)+150
+        return .init(width: view.frame.width, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

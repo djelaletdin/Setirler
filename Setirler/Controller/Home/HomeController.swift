@@ -71,12 +71,19 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout {
         self.navigationController?.pushViewController(newViewController, animated: false)
     }
     
+    
+    
     fileprivate func fetchData(){
         Service.shared.fetchHomeFeed { (rawData, error) in
             if let error = error{
                 // TODO: - Show error to the user
                 print("error while fetching app groups", error)
+                
+                DispatchQueue.main.async {
+                    Service.shared.showError(rootView: self, message: "Sup")
+                }
                 return
+                
             }
             if let data = rawData{
                 self.feedData = data
