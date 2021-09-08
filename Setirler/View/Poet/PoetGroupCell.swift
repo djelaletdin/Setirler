@@ -27,12 +27,12 @@ class PoetGroupCell: UICollectionViewCell {
         let stackView = UIStackView(arrangedSubviews: [imageView, VerticalStackView(arrangedSubviews: [poetNameLabel, counterLabel], spacing: 10), UIView()])
         stackView.layoutMargins = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         stackView.isLayoutMarginsRelativeArrangement = true
-        
+
         stackView.alignment = .center
         stackView.spacing = 16
         addSubview(stackView)
         stackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor)
-        
+
         addSubview(poetDetailController.view)
         poetDetailController.view.anchor(top: stackView.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
     }

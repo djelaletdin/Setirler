@@ -34,6 +34,7 @@ class Service {
         switch type {
         case "poet":
             let urlString = "http://poem.djelaletdin.com/public/api/poet/\(id)?page=\(page)"
+            print(urlString)
             fetchGenericJSONData(urlString: urlString, completion: completion)
         case "tag":
             let urlString = "http://poem.djelaletdin.com/public/api/tag/\(id)?page=\(page)"

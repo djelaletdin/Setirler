@@ -46,16 +46,12 @@ class PoetController: BaseController, UICollectionViewDelegateFlowLayout {
 //        fetchData()
         collectionView.backgroundColor = UIColor(named: "MainBackground")
         collectionView.register(PoetGroupCell.self, forCellWithReuseIdentifier: poetCellId)
-        
         setupNavBar()
         
-        let number: CGFloat = UIApplication.shared.windows.filter{$0.isKeyWindow}.first?.safeAreaInsets.top ?? 0
         
-        print(number)
-
         if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
-              flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        }
+           flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+         }
   
         
     }
@@ -96,25 +92,6 @@ class PoetController: BaseController, UICollectionViewDelegateFlowLayout {
         self.navigationController?.popViewController(animated: true)
     }
     
-//    fileprivate func fetchData(){
-//        print(poemId)
-//        let urlString = "http://poem.djelaletdin.com/public/api/poem/\(poemId)"
-//        Service.shared.fetchGenericJSONData(urlString: urlString) { (result: PoemRawData?, error) in
-//            if let poemData = result?.data{
-//                self.poem = poemData
-//                DispatchQueue.main.async {
-//                    self.collectionView.reloadData()
-//                    self.navTitleLabel.text = poemData.name
-//                }
-//            }
-//        }
-//    }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        navigationController?.setNavigationBarHidden(true, animated: animated)
-//    }
-
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

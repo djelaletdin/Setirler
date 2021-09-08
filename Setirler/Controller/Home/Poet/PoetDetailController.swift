@@ -110,16 +110,11 @@ extension PoetDetailController{
                         print("error while fetching app groups", error)
                         return
                     }
-                    
-                    sleep(1)
+                    sleep(2)
                     if let data = rawData{
                         self.poemGroup?.data += data.data
                         DispatchQueue.main.async {
-
                             self.collectionView.reloadData()
-        //                    self.indicator.stopAnimating()
-        //                    self.indicator.hidesWhenStopped = true
-        //                    self.collectionView.isHidden = false
                         }
                         self.page+=1
                         self.isPaginating = false
@@ -152,14 +147,7 @@ extension PoetDetailController{
                 }
                 return cell
         }
-        
-        
-        
-        
-        
 
-        
-        
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

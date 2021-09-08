@@ -90,6 +90,9 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout, UINavi
     
     fileprivate func fetchData(){
         Service.shared.fetchHomeFeed { (rawData, error) in
+            
+            print("data is being fetched")
+            
             if let error = error{
                 // TODO: - Show error to the user
                 print("error while fetching app groups", error)
@@ -97,12 +100,14 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout, UINavi
                 DispatchQueue.main.async {
                     Service.shared.showError(rootView: self, message: "Sup")
                 }
+                
                 return
                 
             }
             if let data = rawData{
                 self.feedData = data
                 DispatchQueue.main.async {
+                    print("data is fetched")
                     self.collectionView.reloadData()
                     self.indicator.stopAnimating()
                 }

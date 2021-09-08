@@ -75,11 +75,10 @@ extension BookmarkViewController{
    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: poemRowCell, for: indexPath) as! PoemsRowCell
-        cell.titleLabel.text = poems[indexPath.row].name
-        cell.sentenceLabel.text = poems[indexPath.row].content
-        cell.contentLabel.text = poems[indexPath.row].poetName
-        return cell
-           
+            cell.titleLabel.text = poems[indexPath.row].name
+            cell.sentenceLabel.text = poems[indexPath.row].content
+            cell.contentLabel.text = poems[indexPath.row].poetName
+            return cell
         }
         
 

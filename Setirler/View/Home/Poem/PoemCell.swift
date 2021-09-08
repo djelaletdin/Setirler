@@ -36,8 +36,10 @@ class PoemCell: UICollectionViewCell {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.constrainHeight(constant: 30)
+//        label.constrainHeight(constant: 30)
         label.textColor = UIColor(named: "FontColor")
+        label.textAlignment = .center
+        label.numberOfLines = 0
 //        label.backgroundColor = .red
         label.text = "Title Name"
         label.font = UIFont(name: "SourceSansPro-Bold", size: 24) ?? .systemFont(ofSize: 24)
@@ -65,7 +67,11 @@ class PoemCell: UICollectionViewCell {
         let stackView = VerticalStackView(arrangedSubviews: [titleLabel, contentTextView], spacing: 15)
         addSubview(stackView)
         stackView.alignment = .center
-        stackView.fillSuperview(padding: .init(top: 0, left: 10, bottom: 20, right: 10))
+        stackView.layoutMargins = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        stackView.isLayoutMarginsRelativeArrangement = true
+//        stackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0))
+        stackView.fillSuperview(padding: .init(top: 0, left: 10, bottom: 10, right: 10))
+        
         }
     
     required init?(coder aDecoder: NSCoder) {
