@@ -41,7 +41,7 @@
 		0E70281526472FC1007F7A3A /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E70281426472FC1007F7A3A /* SourceSansPro-Bold.ttf */; };
 		0E70281726472FCB007F7A3A /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E70281626472FCB007F7A3A /* SourceSansPro-Regular.ttf */; };
 		0E75CC4B26AAF6440067E181 /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E75CC4A26AAF6440067E181 /* TagViewController.swift */; };
-		0E75CC4D26AAF6C60067E181 /* TagGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E75CC4C26AAF6C60067E181 /* TagGroupCell.swift */; };
+		0E75CC4D26AAF6C60067E181 /* TagHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E75CC4C26AAF6C60067E181 /* TagHeaderCell.swift */; };
 		0E7D2ECD25FD0094004BE3A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7D2ECC25FD0094004BE3A7 /* AppDelegate.swift */; };
 		0E7D2ED125FD0094004BE3A7 /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7D2ED025FD0094004BE3A7 /* BaseTabBarController.swift */; };
 		0E7D2ED625FD0096004BE3A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E7D2ED525FD0096004BE3A7 /* Assets.xcassets */; };
@@ -63,7 +63,7 @@
 		0EC87EDB261871E400152313 /* CategoryGroupRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC87EDA261871E400152313 /* CategoryGroupRowCell.swift */; };
 		0EC87EE02618724A00152313 /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC87EDF2618724A00152313 /* CategoryController.swift */; };
 		0EC8962726A5F906008A48E2 /* PoetDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8962626A5F906008A48E2 /* PoetDetailCell.swift */; };
-		0EC8962A26A63A96008A48E2 /* PoetGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8962926A63A96008A48E2 /* PoetGroupCell.swift */; };
+		0EC8962A26A63A96008A48E2 /* PoetHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8962926A63A96008A48E2 /* PoetHeaderCell.swift */; };
 		0EC8962C26A63B44008A48E2 /* PoetDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8962B26A63B44008A48E2 /* PoetDetailController.swift */; };
 		0EC8962E26A641BE008A48E2 /* PoemListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8962D26A641BE008A48E2 /* PoemListCell.swift */; };
 		0ED4943A26B54232001E2BAF /* AllPoetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED4943926B54232001E2BAF /* AllPoetsViewController.swift */; };
@@ -127,7 +127,7 @@
 		0E70281426472FC1007F7A3A /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
 		0E70281626472FCB007F7A3A /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.ttf"; sourceTree = "<group>"; };
 		0E75CC4A26AAF6440067E181 /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
-		0E75CC4C26AAF6C60067E181 /* TagGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagGroupCell.swift; sourceTree = "<group>"; };
+		0E75CC4C26AAF6C60067E181 /* TagHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagHeaderCell.swift; sourceTree = "<group>"; };
 		0E7D2EC925FD0094004BE3A7 /* Setirler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Setirler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E7D2ECC25FD0094004BE3A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E7D2ED025FD0094004BE3A7 /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
@@ -155,7 +155,7 @@
 		0EC87EDA261871E400152313 /* CategoryGroupRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryGroupRowCell.swift; sourceTree = "<group>"; };
 		0EC87EDF2618724A00152313 /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
 		0EC8962626A5F906008A48E2 /* PoetDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetDetailCell.swift; sourceTree = "<group>"; };
-		0EC8962926A63A96008A48E2 /* PoetGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetGroupCell.swift; sourceTree = "<group>"; };
+		0EC8962926A63A96008A48E2 /* PoetHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetHeaderCell.swift; sourceTree = "<group>"; };
 		0EC8962B26A63B44008A48E2 /* PoetDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoetDetailController.swift; sourceTree = "<group>"; };
 		0EC8962D26A641BE008A48E2 /* PoemListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemListCell.swift; sourceTree = "<group>"; };
 		0ED4943926B54232001E2BAF /* AllPoetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPoetsViewController.swift; sourceTree = "<group>"; };
@@ -274,7 +274,7 @@
 		0E75CC4826AAF6080067E181 /* Tag */ = {
 			isa = PBXGroup;
 			children = (
-				0E75CC4C26AAF6C60067E181 /* TagGroupCell.swift */,
+				0E75CC4C26AAF6C60067E181 /* TagHeaderCell.swift */,
 			);
 			path = Tag;
 			sourceTree = "<group>";
@@ -413,7 +413,7 @@
 		0EC8962826A63996008A48E2 /* Poet */ = {
 			isa = PBXGroup;
 			children = (
-				0EC8962926A63A96008A48E2 /* PoetGroupCell.swift */,
+				0EC8962926A63A96008A48E2 /* PoetHeaderCell.swift */,
 				0EC8962D26A641BE008A48E2 /* PoemListCell.swift */,
 			);
 			path = Poet;
@@ -625,7 +625,7 @@
 				0E3E339626AD682A0097376A /* CategoryDetailController.swift in Sources */,
 				0EC87EE02618724A00152313 /* CategoryController.swift in Sources */,
 				0EC8962C26A63B44008A48E2 /* PoetDetailController.swift in Sources */,
-				0EC8962A26A63A96008A48E2 /* PoetGroupCell.swift in Sources */,
+				0EC8962A26A63A96008A48E2 /* PoetHeaderCell.swift in Sources */,
 				0E69ADCC261514C200A38562 /* BetterSnappingLayout.swift in Sources */,
 				0E6EC4CD26623EAF00B1DD8C /* SearchData.swift in Sources */,
 				0E89324425FD1CEA0051B668 /* Extensions.swift in Sources */,
@@ -637,7 +637,7 @@
 				0E4CA6A7269AFC2200E9382D /* PoemDetailCell.swift in Sources */,
 				0E3E338F26AD40970097376A /* CategoryViewController.swift in Sources */,
 				0E89322625FD0C5D0051B668 /* BaseController.swift in Sources */,
-				0E75CC4D26AAF6C60067E181 /* TagGroupCell.swift in Sources */,
+				0E75CC4D26AAF6C60067E181 /* TagHeaderCell.swift in Sources */,
 				0E3E339126AD66730097376A /* CategoryRawData.swift in Sources */,
 				0E50DBFA262828E20055DA86 /* PoemsRowCell.swift in Sources */,
 				0E9AE3BE26A8B3B400108512 /* LoadingFooterCell.swift in Sources */,

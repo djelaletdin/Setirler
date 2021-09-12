@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PoetGroupCell: UICollectionViewCell {
+class PoetHeaderCell: UICollectionReusableView {
     
     let imageView: UIImageView = {
         let iv = UIImageView(cornerRadius: 30)
@@ -20,7 +20,6 @@ class PoetGroupCell: UICollectionViewCell {
     let poetNameLabel = UILabel(text: "Title Name", font: UIFont(name: "SourceSansPro-Bold", size: 18)  ?? .systemFont(ofSize: 18))
     let counterLabel = UILabel(text: "Counter", font: UIFont(name: "SourceSansPro-SemiBold", size: 16)  ?? .systemFont(ofSize: 14))
     
-    let poetDetailController = PoetDetailController()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,9 +31,6 @@ class PoetGroupCell: UICollectionViewCell {
         stackView.spacing = 16
         addSubview(stackView)
         stackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor)
-
-        addSubview(poetDetailController.view)
-        poetDetailController.view.anchor(top: stackView.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
     }
     
     required init?(coder: NSCoder) {

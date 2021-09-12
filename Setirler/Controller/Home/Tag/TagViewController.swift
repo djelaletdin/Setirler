@@ -16,7 +16,11 @@ class TagViewController: BaseController, UICollectionViewDelegateFlowLayout {
         super.init()
     }
     
-    var tagCellId = "TagGroupCell"
+    fileprivate let poemRowCellId = "poemRowCellId"
+    fileprivate let footerCellId = "footerCellId"
+    fileprivate let headerCellId = "headercellid"
+    fileprivate var page = 1
+    fileprivate var isPaginating = false
 
     var tag: Tag?{
         didSet{
@@ -24,6 +28,8 @@ class TagViewController: BaseController, UICollectionViewDelegateFlowLayout {
         }
     }
     
+    
+    var poemGroup: PoemListRawData?
     
     let navTitleLabel: UILabel = {
         let label = UILabel()
@@ -37,28 +43,18 @@ class TagViewController: BaseController, UICollectionViewDelegateFlowLayout {
     let backButtonImageView: UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named: "back")
-//        iv.constrainHeight(constant: 23)
-//        iv.constrainWidth(constant: 23)
         return iv
     }()
         
     override func viewDidLoad() {
         setupNavBar()
         super.viewDidLoad()
-//        fetchData()
+        fetchData()
         collectionView.backgroundColor = UIColor(named: "MainBackground")
-        collectionView.register(TagGroupCell.self, forCellWithReuseIdentifier: tagCellId)
-        
+        collectionView.register(PoemsRowCell.self, forCellWithReuseIdentifier: poemRowCellId)
+        collectionView?.register(TagHeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerCellId)
 
-        
-        let number: CGFloat = UIApplication.shared.windows.filter{$0.isKeyWindow}.first?.safeAreaInsets.top ?? 0
-        self.navigationController?.interactivePopGestureRecognizer?.delegate = self;
-
-        print(number)
-
-        if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
-              flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        }
+        collectionView.register(LoadingFooterCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerCellId)
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -69,6 +65,24 @@ class TagViewController: BaseController, UICollectionViewDelegateFlowLayout {
         self.navigationController?.navigationBar.barTintColor = UIColor(named: "MainBackground")
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.interactivePopGestureRecognizer!.delegate = self;
+    }
+    
+    func fetchData(){
+        Service.shared.fetchPoems(id: self.tag?.id ?? 0, page: self.page, type: "poem" ) { rawData, error in
+            if let error = error{
+                // TODO: - Show error to the user
+                print("error while fetching app groups", error)
+                return
+            }
+            if let data = rawData{
+                self.poemGroup = data
+                DispatchQueue.main.async {
+
+                    self.collectionView.reloadData()
+                }
+                self.page+=1
+            }
+        }
     }
     
     fileprivate func setupNavBar(){
@@ -96,40 +110,107 @@ class TagViewController: BaseController, UICollectionViewDelegateFlowLayout {
 }
 
 extension TagViewController{
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: view.frame.width, height: 120)
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        switch kind {
+        
+        case UICollectionView.elementKindSectionHeader:
+            print("header is here")
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerCellId, for: indexPath) as! TagHeaderCell
+            headerView.poetNameLabel.text = self.tag?.name
+            headerView.counterLabel.text = "\(self.tag?.poemCount ?? 0) eser"
+            headerView.descriptionLabel.text = self.tag?.tagDescription
+            return headerView
+            
+        case UICollectionView.elementKindSectionFooter:
+            print("footer is here")
+            let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerCellId, for: indexPath)
+            return footer
+            
+        default:
+            assert(false, "Unexpected element kind")
+        }
+    }
+    
+    
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return self.poemGroup?.data.count ?? 0
+    }
+    
+//    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+//        let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerCellId, for: indexPath)
+//        return footer
+//    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        
+        if let poem = poemGroup{
+            if poem.data.count >= poem.total{
+                print("i am small")
+                return .init(width: view.frame.width, height: 0)
+            } else{
+                return .init(width: view.frame.width, height: 100)
+            }
+        } else{
+            return .init(width: view.frame.width, height: 100)
+        }
+    }
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("pressed")
+        if let poem  = self.poemGroup?.data[indexPath.row]{
+            let destinationController  = PoemController(poemId: poem.id)
+            destinationController.navigationController?.title = poem.name
+            self.navigationController?.pushViewController(destinationController, animated: true)
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: tagCellId, for: indexPath) as! TagGroupCell
-                cell.poetNameLabel.text = self.tag?.name
-                cell.counterLabel.text = "\(self.tag?.poemCount ?? 0) eser"
-                cell.descriptionLabel.text = self.tag?.tagDescription
-                cell.poetDetailController.type = "tag"
-                cell.poetDetailController.poetId = self.tag?.id
-                cell.poetDetailController.didSelectHandler = { [weak self] poem in
-                    let destinationController  = PoemController(poemId: poem.id)
-                    destinationController.navigationController?.title = poem.name
-                    self?.navigationController?.pushViewController(destinationController, animated: true)
+        if let poem = poemGroup{
+            if indexPath.row == poem.data.count-1 && poem.data.count < poem.total && !isPaginating{
+                self.isPaginating = true
+                Service.shared.fetchPoems(id: self.tag?.id ?? 0, page: self.page, type: "tag") { rawData, error in
+                    if let error = error{
+                        // TODO: - Show error to the user
+                        print("error while fetching app groups", error)
+                        return
+                    }
+                    sleep(1)
+                    if let data = rawData{
+                        self.poemGroup?.data += data.data
+                        DispatchQueue.main.async {
+                            self.collectionView.reloadData()
+                        }
+                        self.page+=1
+                        self.isPaginating = false
+                    }
                 }
-        
-//            cell.poetDetailController.didSelectHandler = { [weak self] poem in
-//                let destinationController  = PoemController(poemId: poem.id)
-//                destinationController.navigationController?.title = poem.name
-//                destinationController.hidesBottomBarWhenPushed = true
-//                self?.navigationController?.pushViewController(destinationController, animated: true)
-//            }
-
-            return cell
-        
+            }
+        }
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: poemRowCellId, for: indexPath) as! PoemsRowCell
+                if let content = poemGroup?.data[indexPath.row]{
+                    cell.titleLabel.text = content.name
+                    cell.contentLabel.text = content.poetName
+                    cell.sentenceLabel.text = "\(String(describing: (content.sentence)))"
+                }
+                return cell
+            
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.width, height: CGFloat(self.tag?.poemCount ?? 0)*140+150)
+        return .init(width: view.frame.width-32, height: 125)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return .init(top: 5, left: 0, bottom: 0, right: 0)
+        return .init(top: 12, left: 0, bottom: 16, right: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 20
     }
     
 }

@@ -7,13 +7,11 @@
 
 import UIKit
 
-class TagGroupCell: UICollectionViewCell {
+class TagHeaderCell: UICollectionReusableView {
 
     let poetNameLabel = UILabel(text: "Title Name", font: UIFont(name: "SourceSansPro-Bold", size: 24)  ?? .systemFont(ofSize: 18))
     let descriptionLabel = UILabel(text: "Title Name", font: UIFont(name: "SourceSansPro-Regular", size: 16)  ?? .systemFont(ofSize: 18))
     let counterLabel = UILabel(text: "Counter", font: UIFont(name: "SourceSansPro-SemiBold", size: 16)  ?? .systemFont(ofSize: 14))
-    
-    let poetDetailController = PoetDetailController()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,9 +26,7 @@ class TagGroupCell: UICollectionViewCell {
         stackView.spacing = 16
         addSubview(stackView)
         stackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor)
-        
-        addSubview(poetDetailController.view)
-        poetDetailController.view.anchor(top: stackView.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
+
     }
     
     required init?(coder: NSCoder) {

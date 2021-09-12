@@ -35,6 +35,14 @@ class PoetDetailController: BaseController, UICollectionViewDelegateFlowLayout {
         
     }
     
+//    override func viewDidLayoutSubviews() {
+//        super.viewDidLayoutSubviews()
+//        let height = collectionView.collectionViewLayout.collectionViewContentSize.height
+////        self.verticalLayoutConstraint.constant = height
+//        
+//        collectionView.constrainHeight(constant: height)
+//        self.view.layoutIfNeeded()
+//    }
     
 
     

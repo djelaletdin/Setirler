@@ -11,7 +11,7 @@ class PoemsRowCell: UICollectionViewCell {
     
     
     let titleLabel = UILabel(text: "Title Name", font: UIFont(name: "SourceSansPro-Bold", size: 16) ?? .systemFont(ofSize: 14))
-    let contentLabel = UILabel(text: "Content", font: UIFont(name: "SourceSansPro-SemiBold", size: 14) ?? .systemFont(ofSize: 14))
+    let contentLabel = UILabel(text: "Poet Name", font: UIFont(name: "SourceSansPro-SemiBold", size: 14) ?? .systemFont(ofSize: 14))
     let sentenceLabel = UILabel(text: "lll", font: UIFont(name: "SourceSansPro-Regular", size: 14) ?? .systemFont(ofSize: 14))
     
     override init(frame: CGRect) {
