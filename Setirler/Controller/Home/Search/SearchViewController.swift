@@ -141,7 +141,7 @@ extension SearchViewController: SearchBarCellDelegate {
                     if let _ = error{return}
                     if let searchResults  = result{
                         self.searchResults = searchResults.data
-                        print(searchResults.data)
+//                        print(searchResults.data)
                     }else{
                         self.progressIndicator.stopAnimating()
                     }

@@ -60,7 +60,7 @@ class SearchResultController: BaseController, UICollectionViewDelegateFlowLayout
         
         if let content = searchResultGroup?[indexPath.row]{
             
-            let height = content.peomData.count * 40+20
+            let height = content.peomData.count * 30+30
             
             return .init(width: Int(view.frame.width), height:height)
         } else{
