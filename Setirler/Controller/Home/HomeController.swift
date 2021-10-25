@@ -57,17 +57,7 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout, UINavi
         fetchData()
         collectionView.reloadData()
     }
-    
-    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-        if (navigationController.viewControllers.count > 1){
-            self.navigationController?.interactivePopGestureRecognizer?.delegate = self as? UIGestureRecognizerDelegate
-            navigationController.interactivePopGestureRecognizer?.isEnabled = true;
-        }
-        else{
-            self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
-            navigationController.interactivePopGestureRecognizer?.isEnabled = false;
-        }
-    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
