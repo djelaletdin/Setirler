@@ -10,6 +10,7 @@ import UIKit
 class AllPoetsViewController: BaseController, UICollectionViewDelegateFlowLayout {
     
     fileprivate let categoryDetailCell = "categoryDetailCell"
+    fileprivate let headerCellId = "headerCellId"
     fileprivate let footerCellId = "footerCellId"
     fileprivate var page = 1
     fileprivate var isPaginating = false
@@ -19,34 +20,23 @@ class AllPoetsViewController: BaseController, UICollectionViewDelegateFlowLayout
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchData()
-        setupNavBar()
         collectionView.register(PoetDetailCell.self, forCellWithReuseIdentifier: categoryDetailCell)
         collectionView.register(LoadingFooterCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerCellId)
+        collectionView.register(TitleHeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerCellId)
         collectionView.backgroundColor = UIColor(named: "MainBackground")
         collectionView.contentInset = .init(top: 0, left: 0, bottom: 0, right: 0)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.title = ""
-        self.navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        setupNavBar()
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-
-    }
-    
-    func setupNavBar(){
-        self.navigationController?.navigationBar.barTintColor = UIColor(named: "MainBackground")
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationItem.title = "Şahyrlar"
-        self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "FontColor") ?? .white, NSAttributedString.Key.font: UIFont(name: "SourceSansPro-Bold", size: 30)!]
-    }
-    
 
     
     func fetchData(){
@@ -86,11 +76,28 @@ extension AllPoetsViewController{
         return categoryGroup?.data.count ?? 0
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: view.frame.width, height: 90)
+    }
     
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerCellId, for: indexPath)
-        return footer
+        
+        switch kind {
+            case UICollectionView.elementKindSectionHeader:
+                let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerCellId, for: indexPath) as! TitleHeaderCell
+                headerView.titleLabel.text = "Şahyrlar"
+                headerView.counterLabel.text = "\(categoryGroup?.total ?? 0) şahyr"
+                print("header is here")
+
+                return headerView
+            
+            case UICollectionView.elementKindSectionFooter:
+                let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerCellId, for: indexPath)
+                return footer
+            default:
+                assert(false, "Unexpected element kind")
+           }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
@@ -154,18 +161,19 @@ extension AllPoetsViewController{
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 //        let height = (view.frame.height - 2*topBottomPadding - 2*lineSpacing)
-            return .init(width: view.frame.width-32, height:80)
+            return .init(width: view.frame.width-40, height:80)
 
         
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return .init(top: 12, left: 0, bottom: 12, right: 0)
+        return .init(top: 12, left: 20, bottom: 12, right: 20)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 20
     }
 
+    
 
 }

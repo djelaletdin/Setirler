@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E040E5D27267D1600096C7E /* TitleHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E040E5C27267D1600096C7E /* TitleHeaderCell.swift */; };
 		0E1375F926B695CC0094F73F /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1375F826B695CC0094F73F /* BookmarkViewController.swift */; };
 		0E1375FB26B69D4B0094F73F /* BookmarkedPoemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1375FA26B69D4B0094F73F /* BookmarkedPoemController.swift */; };
 		0E2F599C26BD287700185D5C /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2F599B26BD287700185D5C /* ErrorViewController.swift */; };
@@ -94,6 +95,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E040E5C27267D1600096C7E /* TitleHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleHeaderCell.swift; sourceTree = "<group>"; };
 		0E1375F826B695CC0094F73F /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		0E1375FA26B69D4B0094F73F /* BookmarkedPoemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkedPoemController.swift; sourceTree = "<group>"; };
 		0E2F599B26BD287700185D5C /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 				0E6EC4C926623C3800B1DD8C /* Search */,
 				0E89323625FD105E0051B668 /* Home */,
 				0E9AE3BD26A8B3B400108512 /* LoadingFooterCell.swift */,
+				0E040E5C27267D1600096C7E /* TitleHeaderCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -642,6 +645,7 @@
 				0E50DBFA262828E20055DA86 /* PoemsRowCell.swift in Sources */,
 				0E9AE3BE26A8B3B400108512 /* LoadingFooterCell.swift in Sources */,
 				0ED4943A26B54232001E2BAF /* AllPoetsViewController.swift in Sources */,
+				0E040E5D27267D1600096C7E /* TitleHeaderCell.swift in Sources */,
 				0ED871C02670FD220021D792 /* PoemData.swift in Sources */,
 				0E50DBF2262828530055DA86 /* PoemsGroupCell.swift in Sources */,
 				0E69ADDA2615174100A38562 /* TagsRowCell.swift in Sources */,

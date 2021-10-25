@@ -121,7 +121,7 @@ class PoemController: BaseController, UICollectionViewDelegateFlowLayout {
         navigationItem.hidesBackButton = true
         navigationItem.titleView = stackView
         
-        self.navigationController?.navigationBar.isTranslucent = false
+//        self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.interactivePopGestureRecognizer!.delegate = self;
     }

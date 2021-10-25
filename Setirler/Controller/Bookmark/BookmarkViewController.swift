@@ -19,7 +19,6 @@ class BookmarkViewController: BaseController, UICollectionViewDelegateFlowLayout
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavBar()
         collectionView.register(PoemsRowCell.self, forCellWithReuseIdentifier: poemRowCell)
         collectionView.backgroundColor = UIColor(named: "MainBackground")
         collectionView.contentInset = .init(top: 0, left: 0, bottom: 0, right: 0)
@@ -27,29 +26,18 @@ class BookmarkViewController: BaseController, UICollectionViewDelegateFlowLayout
         poems = realm.objects(PoemRealmData.self)
         
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.title = ""
-        self.navigationController?.navigationBar.prefersLargeTitles = false
-    }
+
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        setupNavBar()
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
         collectionView.reloadData()
     }
-    
-    func setupNavBar(){
-        self.navigationItem.title = "Halanlarym"
-        self.navigationController?.navigationBar.barTintColor = UIColor(named: "MainBackground")
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "FontColor") ?? .white, NSAttributedString.Key.font: UIFont(name: "SourceSansPro-Bold", size: 30)!]
-    }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
         
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -57,7 +45,7 @@ class BookmarkViewController: BaseController, UICollectionViewDelegateFlowLayout
         
         let dummyPoem = PoemData(id: poem.id, poetID: 0, name: poem.name, content: poem.content, view: 0, poetName: poem.poetName, poetImage: "", poemCount: 0, tags: [])
 
-        let destinationController  = BookmarkedPoemController(poemId: poems[indexPath.row].id)
+        let destinationController  = PoemController(poemId: poems[indexPath.row].id)
             destinationController.poem = dummyPoem
             self.navigationController?.pushViewController(destinationController, animated: true)
 

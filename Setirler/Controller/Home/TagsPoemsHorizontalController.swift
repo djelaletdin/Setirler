@@ -47,6 +47,7 @@ class TagsPoemsHorizontalController: HorizontalSnappingController, UICollectionV
         if self.type == 1{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: poemCellId, for: indexPath) as! PoemsRowCell
             cell.titleLabel.text = String(indexPath.row)
+            cell.backgroundColor = .green
             
             if let content = poemGroup?.categoryContent?[indexPath.row]{
                 cell.titleLabel.text = (content.name)
@@ -92,7 +93,7 @@ class TagsPoemsHorizontalController: HorizontalSnappingController, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return .init(top: -10, left: 0, bottom: topBottomPadding, right: 0)
+        return .init(top: topBottomPadding, left: 0, bottom: topBottomPadding, right: 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
