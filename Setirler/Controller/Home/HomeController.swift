@@ -181,7 +181,7 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout, UINavi
         case 1:
             return .init(width: view.frame.width, height: 420 )
         case 2:
-            return .init(width: view.frame.width, height: 190 )
+            return .init(width: view.frame.width, height: 200 )
             
         default:
             return .init(width: view.frame.width, height: 150 )

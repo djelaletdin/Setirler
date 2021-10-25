@@ -86,8 +86,16 @@ class TagsPoemsHorizontalController: HorizontalSnappingController, UICollectionV
     let lineSpacing: CGFloat = 20
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = (162 - 2*topBottomPadding - lineSpacing)
-        return .init(width: view.frame.width - 150, height: height)
+       
+        
+        if self.type == 1 {
+            return .init(width: view.frame.width - 150, height: 130)
+        } else{
+            let height = (view.frame.height - 2*topBottomPadding - lineSpacing)
+            print(view.frame.height)
+            return .init(width: view.frame.width - 150, height: height)
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
