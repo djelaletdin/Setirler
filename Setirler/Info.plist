@@ -27,6 +27,8 @@
 	</dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>SourceSerifPro-Italic.ttf</string>
+		<string>SourceSansPro-LightItalic.ttf</string>
 		<string>SourceSansPro-SemiBold.ttf</string>
 		<string>SourceSerifPro-SemiBold.ttf</string>
 		<string>SourceSansPro-Regular.ttf</string>

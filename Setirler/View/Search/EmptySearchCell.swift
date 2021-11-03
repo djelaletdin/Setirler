@@ -46,9 +46,6 @@ class EmptySearchCell: UICollectionViewCell {
             stackView.alignment = .center
             addSubview(stackView)
             stackView.fillSuperview(padding: .init(top: 100, left: 10, bottom: 10, right: 10))
-       
-
-        
     }
     
     required init?(coder: NSCoder) {

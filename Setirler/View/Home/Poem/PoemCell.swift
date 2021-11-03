@@ -15,7 +15,13 @@ class PoemCell: UICollectionViewCell {
         didSet{
             contentTextView.textColor = UIColor(named: "FontColor")
             contentTextView.backgroundColor = UIColor(named: "MainBackground")
-            contentTextView.text = poem?.content
+            
+            let styledString = "<style>p{font-family: SourceSerifPro-Bold; text-align:center;} h3{font-family: 'Source Serif Pro', serif; font-weight:100; text-align:right; font-size: 16; font-style: italic;    padding: 0px;margin: 0px;}</style><div style='font-family: SourceSerifPro-Regular; font-size: 18; word-wrap: break-word; float: right; margin: 0 auto;'>\(poem?.content.replacingOccurrences(of: "\r\n", with: "<br/>").replacingOccurrences(of: " ", with: "&nbsp") ?? "")</div>"
+            
+            contentTextView.attributedText = styledString.htmlToAttributedString
+//            contentTextView.textContainer.lineBreakMode = .byWordWrapping
+
+//            contentTextView.text = poem?.content
             titleLabel.text = poem?.name
             tagsController.tags = poem?.tags
         }
@@ -36,28 +42,14 @@ class PoemCell: UICollectionViewCell {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-//        label.constrainHeight(constant: 30)
         label.textColor = UIColor(named: "FontColor")
         label.textAlignment = .center
         label.numberOfLines = 0
-//        label.backgroundColor = .red
         label.text = "Title Name"
         label.font = UIFont(name: "SourceSansPro-Bold", size: 24) ?? .systemFont(ofSize: 24)
         return label
     }()
 
-    
-    let tagTextView: UITextView = {
-        let f = UITextView()
-        f.font = UIFont(name: "SourceSerifPro-Regular", size: 18) ?? .systemFont(ofSize: 18)
-        f.backgroundColor = UIColor(named: "MainBackground")
-        f.textColor = UIColor(named: "FontColor")
-        f.isScrollEnabled = false
-        f.isEditable = false
-        f.textAlignment = .natural
-        return f
-    }()
-    
     let tagsController = TagController()
     
     override init(frame: CGRect) {
@@ -69,7 +61,6 @@ class PoemCell: UICollectionViewCell {
         stackView.alignment = .center
         stackView.layoutMargins = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         stackView.isLayoutMarginsRelativeArrangement = true
-//        stackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0))
         stackView.fillSuperview(padding: .init(top: 0, left: 10, bottom: 10, right: 10))
         
         }
