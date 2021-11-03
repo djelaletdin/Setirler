@@ -68,7 +68,7 @@ class TagViewController: BaseController, UICollectionViewDelegateFlowLayout {
     }
     
     func fetchData(){
-        Service.shared.fetchPoems(id: self.tag?.id ?? 0, page: self.page, type: "poem" ) { rawData, error in
+        Service.shared.fetchPoems(id: self.tag?.id ?? 0, page: self.page, type: "tag" ) { rawData, error in
             if let error = error{
                 // TODO: - Show error to the user
                 print("error while fetching app groups", error)

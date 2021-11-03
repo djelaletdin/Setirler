@@ -226,7 +226,7 @@ extension PoemController{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.row == 0 {
-            return .init(width: view.frame.width-16-16, height: view.frame.height-16)
+            return .init(width: view.frame.width, height: view.frame.height-16)
         }else if indexPath.row == 1{
             return .init(width: view.frame.width-16-16, height: 70)
         } else{
@@ -235,7 +235,7 @@ extension PoemController{
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return .init(top: 16, left: 16, bottom: 40, right: 16)
+        return .init(top: 16, left: 0, bottom: 40, right: 0)
     }
     
     

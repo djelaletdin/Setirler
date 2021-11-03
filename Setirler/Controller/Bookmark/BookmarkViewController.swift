@@ -12,6 +12,7 @@ class BookmarkViewController: BaseController, UICollectionViewDelegateFlowLayout
     
     fileprivate let poemRowCell = "categoryDetailCell"
     fileprivate let footerCellId = "footerCellId"
+    fileprivate let headerCellId = "headerCellId"
     fileprivate var page = 1
 
     let realm = try! Realm()
@@ -20,6 +21,7 @@ class BookmarkViewController: BaseController, UICollectionViewDelegateFlowLayout
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.register(PoemsRowCell.self, forCellWithReuseIdentifier: poemRowCell)
+        collectionView.register(TitleHeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerCellId)
         collectionView.backgroundColor = UIColor(named: "MainBackground")
         collectionView.contentInset = .init(top: 0, left: 0, bottom: 0, right: 0)
         
@@ -69,6 +71,28 @@ extension BookmarkViewController{
             return cell
         }
         
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: view.frame.width, height: 90)
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        switch kind {
+            case UICollectionView.elementKindSectionHeader:
+                let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerCellId, for: indexPath) as! TitleHeaderCell
+                headerView.titleLabel.text = "Halanlarym"
+            headerView.counterLabel.text = "\(self.poems.count) halanan eser"
+                print("header is here")
+
+                return headerView
+            
+            case UICollectionView.elementKindSectionFooter:
+                let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerCellId, for: indexPath)
+                return footer
+            default:
+                assert(false, "Unexpected element kind")
+           }
+    }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 //        let height = (view.frame.height - 2*topBottomPadding - 2*lineSpacing)

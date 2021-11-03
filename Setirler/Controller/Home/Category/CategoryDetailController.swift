@@ -99,6 +99,7 @@ extension CategoryDetailController{
                 Service.shared.fetchCategoryDetails(id: self.categoryId ?? 0, page: self.page) { categoryRawData, error in
                     if let error = error{
                         // TODO: - Show error to the user
+                        print("eheheheheh")
                         print("error while fetching app groups", error)
                         return
                     }

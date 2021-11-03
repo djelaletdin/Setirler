@@ -38,6 +38,7 @@ class Service {
             fetchGenericJSONData(urlString: urlString, completion: completion)
         case "tag":
             let urlString = "http://poem.djelaletdin.com/public/api/tag/\(id)?page=\(page)"
+            print("i am here heereeee")
             print(urlString)
             fetchGenericJSONData(urlString: urlString, completion: completion)
         case "category":
