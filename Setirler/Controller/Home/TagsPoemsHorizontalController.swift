@@ -92,7 +92,6 @@ class TagsPoemsHorizontalController: HorizontalSnappingController, UICollectionV
             return .init(width: view.frame.width - 150, height: 130)
         } else{
             let height = (view.frame.height - 2*topBottomPadding - lineSpacing)
-            print(view.frame.height)
             return .init(width: view.frame.width - 150, height: height)
         }
         

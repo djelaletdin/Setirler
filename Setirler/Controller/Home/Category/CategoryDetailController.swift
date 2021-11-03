@@ -38,7 +38,7 @@ class CategoryDetailController: BaseController, UICollectionViewDelegateFlowLayo
         Service.shared.fetchCategoryDetails(id: self.categoryId ?? 0, page: self.page) { categoryRawData, error in
             if let error = error{
                 // TODO: - Show error to the user
-                print("error while fetching app groups", error)
+                print("error while fetching category groups", error)
                 return
             }
             if let data = categoryRawData{

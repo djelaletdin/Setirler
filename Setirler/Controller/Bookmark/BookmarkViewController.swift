@@ -12,6 +12,7 @@ class BookmarkViewController: BaseController, UICollectionViewDelegateFlowLayout
     
     fileprivate let poemRowCell = "categoryDetailCell"
     fileprivate let footerCellId = "footerCellId"
+    fileprivate let emptyCellId = "emptyCellId"
     fileprivate let headerCellId = "headerCellId"
     fileprivate var page = 1
 
@@ -21,6 +22,7 @@ class BookmarkViewController: BaseController, UICollectionViewDelegateFlowLayout
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.register(PoemsRowCell.self, forCellWithReuseIdentifier: poemRowCell)
+        collectionView.register(EmptySearchCell.self, forCellWithReuseIdentifier: emptyCellId)
         collectionView.register(TitleHeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerCellId)
         collectionView.backgroundColor = UIColor(named: "MainBackground")
         collectionView.contentInset = .init(top: 0, left: 0, bottom: 0, right: 0)
@@ -42,14 +44,16 @@ class BookmarkViewController: BaseController, UICollectionViewDelegateFlowLayout
     }
         
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        let poem = poems[indexPath.row]
-        
-        let dummyPoem = PoemData(id: poem.id, poetID: 0, name: poem.name, content: poem.content, view: 0, poetName: poem.poetName, poetImage: "", poemCount: 0, tags: [])
+        if poems.count != 0{
+            let poem = poems[indexPath.row]
+            
+            let dummyPoem = PoemData(id: poem.id, poetID: 0, name: poem.name, content: poem.content, view: 0, poetName: poem.poetName, poetImage: "", poemCount: 0, tags: [])
 
-        let destinationController  = PoemController(poemId: poems[indexPath.row].id)
-            destinationController.poem = dummyPoem
-            self.navigationController?.pushViewController(destinationController, animated: true)
+            let destinationController  = PoemController(poemId: poems[indexPath.row].id)
+                destinationController.poem = dummyPoem
+                self.navigationController?.pushViewController(destinationController, animated: true)
+        }
+        
 
     }
 
@@ -59,20 +63,35 @@ class BookmarkViewController: BaseController, UICollectionViewDelegateFlowLayout
 extension BookmarkViewController{
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return poems.count
+        if poems.count == 0{
+            return 1
+        } else{
+            return poems.count
+        }
     }
     
    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: poemRowCell, for: indexPath) as! PoemsRowCell
-            cell.titleLabel.text = poems[indexPath.row].name
-            cell.sentenceLabel.text = poems[indexPath.row].content
-            cell.contentLabel.text = poems[indexPath.row].poetName
-            return cell
+            if poems.count == 0{
+                print("i should have asdas")
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: emptyCellId, for: indexPath) as! EmptySearchCell
+                return cell
+            } else{
+                print("asdasd")
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: poemRowCell, for: indexPath) as! PoemsRowCell
+                cell.titleLabel.text = poems[indexPath.row].name
+                cell.sentenceLabel.text = poems[indexPath.row].content
+                cell.contentLabel.text = poems[indexPath.row].poetName
+                return cell
+            }
         }
         
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: view.frame.width, height: 90)
+        if poems.count == 0{
+            return CGSize(width: 0, height: 0)
+        } else{
+            return CGSize(width: view.frame.width, height: 90)
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -82,7 +101,6 @@ extension BookmarkViewController{
                 let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerCellId, for: indexPath) as! TitleHeaderCell
                 headerView.titleLabel.text = "Halanlarym"
             headerView.counterLabel.text = "\(self.poems.count) halanan eser"
-                print("header is here")
 
                 return headerView
             
@@ -95,14 +113,19 @@ extension BookmarkViewController{
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let height = (view.frame.height - 2*topBottomPadding - 2*lineSpacing)
-            return .init(width: view.frame.width-32, height:120)
+
+        if poems.count == 0{
+            return CGSize(width: view.frame.width-32, height: view.frame.height - view.frame.height/3)
+        } else{
+            return CGSize(width: view.frame.width-32, height: 120)
+        }
+
 
         
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return .init(top: 12, left: 0, bottom: 12, right: 0)
+        return .init(top: 12, left: 16, bottom: 12, right: 16)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

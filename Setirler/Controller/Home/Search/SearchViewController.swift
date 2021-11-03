@@ -99,7 +99,7 @@ class SearchViewController: BaseController, UICollectionViewDelegateFlowLayout, 
             case 1:
                 if let search = searchResults{
                     if search.count == 0{
-                        return .init(width: view.frame.width, height: 500 )
+                        return .init(width: view.frame.width, height: view.frame.height - view.frame.height/3 )
                     } else{
                         return .init(width: view.frame.width-16, height: view.frame.height-140 )
                     }
