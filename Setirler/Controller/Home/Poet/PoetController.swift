@@ -140,7 +140,7 @@ extension PoetController{
             headerView.poetNameLabel.text = self.poem?.poetName
             headerView.counterLabel.text = "\(self.poem?.poemCount ?? 0) eser"
             
-            let url = URL(string: "http://poem.djelaletdin.com/public/images/\(self.poem?.poetImage ?? "default.jpg")")
+            let url = URL(string: "http://poem.realapps.xyz/images/\(self.poem?.poetImage ?? "default.jpg")")
             headerView.imageView.kf.setImage(with: url)
             return headerView
             

@@ -14,7 +14,7 @@ class PoetDetailCell: UICollectionViewCell {
         didSet{
             poetNameLabel.text = poet?.poetName
             counterLabel.text = "\(poet?.poemCount ?? 0) eser"
-            let url = URL(string: "http://poem.djelaletdin.com/public/images/\(poet?.poetImage ?? "asd")")
+            let url = URL(string: "http://poem.realapps.xyz/images/\(poet?.poetImage ?? "asd")")
             imageView.kf.setImage(with: url)
         }
     }

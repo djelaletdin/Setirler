@@ -165,7 +165,7 @@ class PoemController: BaseController, UICollectionViewDelegateFlowLayout {
     
     
     fileprivate func fetchData(){
-        let urlString = "http://poem.djelaletdin.com/public/api/poem/\(poemId)"
+        let urlString = "http://poem.realapps.xyz/api/poem/\(poemId)"
         Service.shared.fetchGenericJSONData(urlString: urlString) { (result: PoemRawData?, error) in
             if let poemData = result?.data{
                 self.poem = poemData

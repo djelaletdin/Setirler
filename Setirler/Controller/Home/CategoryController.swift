@@ -48,7 +48,7 @@ class CategoryController: BaseController, UICollectionViewDelegateFlowLayout {
             cell.titleLabel.text = content.name
             cell.counterLabel.text = "\(content.poetCount ?? 0) şahyr"
             
-            let url = URL(string: "http://poem.djelaletdin.com/public/images/\(content.photo ?? "asd")")
+            let url = URL(string: "http://poem.realapps.xyz/images/\(content.photo ?? "asd")")
             cell.imageView.kf.setImage(with: url)
         }
 

@@ -18,13 +18,13 @@ class Service {
     }
     
     func fetchHomeFeed(completion: @escaping (OrderRawData?, Error?) -> ()) {
-        let urlString = "http://poem.djelaletdin.com/public/api/index"
+        let urlString = "http://poem.realapps.xyz/api/index"
         fetchGenericJSONData(urlString: urlString, completion: completion)
     }
     
     func fetchSearchTerm(searchTerm: String, completion: @escaping (SearchRawData?, Error?) -> ()) {
         let newSearchTerm = searchTerm.replacingOccurrences(of: " ", with: "%20")
-        let urlString = "http://poem.djelaletdin.com/public/api/search?q=\(newSearchTerm)"
+        let urlString = "http://poem.realapps.xyz/api/search?q=\(newSearchTerm)"
         print(urlString)
         fetchGenericJSONData(urlString: urlString, completion: completion)
     }
@@ -32,32 +32,32 @@ class Service {
     func fetchPoems(id: Int, page:Int, type: String, completion: @escaping (PoemListRawData?, Error?) -> ()) {
         switch type {
         case "poet":
-            let urlString = "http://poem.djelaletdin.com/public/api/poet/\(id)?page=\(page)"
+            let urlString = "http://poem.realapps.xyz/api/poet/\(id)?page=\(page)"
             print(urlString)
             fetchGenericJSONData(urlString: urlString, completion: completion)
         case "tag":
-            let urlString = "http://poem.djelaletdin.com/public/api/tag/\(id)?page=\(page)"
+            let urlString = "http://poem.realapps.xyz/api/tag/\(id)?page=\(page)"
             print("i am here heereeee")
             print(urlString)
             fetchGenericJSONData(urlString: urlString, completion: completion)
         case "category":
-            let urlString = "http://poem.djelaletdin.com/public/api/category/\(id)?page=\(page)"
+            let urlString = "http://poem.realapps.xyz/api/category/\(id)?page=\(page)"
             print(urlString)
             fetchGenericJSONData(urlString: urlString, completion: completion)
         default:
-            let urlString = "http://poem.djelaletdin.com/public/api/poet/\(id)?page=\(page)"
+            let urlString = "http://poem.realapps.xyz/api/poet/\(id)?page=\(page)"
             fetchGenericJSONData(urlString: urlString, completion: completion)
         }
     }
     
     
     func fetchCategoryDetails(id: Int, page:Int, completion: @escaping (CategoryRawData?, Error?) -> ()) {
-            let urlString = "http://poem.djelaletdin.com/public/api/category/\(id)?page=\(page)"
+            let urlString = "http://poem.realapps.xyz/api/category/\(id)?page=\(page)"
             fetchGenericJSONData(urlString: urlString, completion: completion)
     }
     
     func fetchAllPoets(page:Int, completion: @escaping (CategoryRawData?, Error?) -> ()) {
-            let urlString = "http://poem.djelaletdin.com/public/api/poets/"
+            let urlString = "http://poem.realapps.xyz/api/poets/"
         
         print(urlString)
         
