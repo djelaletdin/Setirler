@@ -151,9 +151,10 @@ class HomeController: BaseController, UICollectionViewDelegateFlowLayout, UINavi
             
             cell.contentControlller.didSelectHandler = { [weak self] category in
 //                let tag = Tag(id: poem.id ?? 0, name: poem.name ?? "", tagDescription: poem.categoryContentDescription ?? "", poemCount: poem.poemCount ?? 0)
-                let destinationController  = CategoryViewController(cateogryId: category.id ?? 1)
-                destinationController.category = category
-                destinationController.navigationController?.title = category.name
+                let destinationController  = CategoryViewController()
+                destinationController.categoryId = category.id ?? 1
+//                destinationController.category = category
+                destinationController.titleString = category.name ?? ""
                 self?.navigationController?.pushViewController(destinationController, animated: true)
             }
             

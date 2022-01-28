@@ -9,25 +9,31 @@ import UIKit
 
 class CategoryViewController: BaseController, UICollectionViewDelegateFlowLayout {
 
-    fileprivate var cateogryId: Int
-
-    init(cateogryId: Int) {
-    self.cateogryId = cateogryId
-        super.init()
-    }
+//    init(categoryId: Int) {
+//    self.categoryId = categoryId
+//        super.init()
+//    }
     
-    var categoryCellListId = "categoryCellListId"
-
-    var category: CategoryContent?{
+    var titleString: String = ""
+    
+    
+    fileprivate let categoryDetailCell = "categoryDetailCell"
+    fileprivate let headerCellId = "headercellid"
+    fileprivate let footerCellId = "footerCellId"
+    fileprivate var page = 1
+    fileprivate var isPaginating = false
+    var categoryGroup: CategoryRawData?
+        
+    var categoryId: Int?{
         didSet{
-            collectionView.reloadData()
+            fetchData()
+            print("ive recieved the id")
         }
     }
     
-    
     let navTitleLabel: UILabel = {
         let label = UILabel()
-        label.text =  "shahyr ady"
+//        label.text =  titleString
         label.alpha = 0
         label.textColor = UIColor(named: "FontColor")
         label.font = UIFont(name: "SourceSansPro-Bold", size: 18) ?? .systemFont(ofSize: 18)
@@ -41,25 +47,27 @@ class CategoryViewController: BaseController, UICollectionViewDelegateFlowLayout
 //        iv.constrainWidth(constant: 23)
         return iv
     }()
-        
+    
     override func viewDidLoad() {
-        setupNavBar()
         super.viewDidLoad()
-//        fetchData()
+        setupNavBar()
+        collectionView.register(PoetDetailCell.self, forCellWithReuseIdentifier: categoryDetailCell)
+        collectionView?.register(TagHeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerCellId)
+        collectionView.register(LoadingFooterCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerCellId)
         collectionView.backgroundColor = UIColor(named: "MainBackground")
-        collectionView.register(CategoryGroupListCell.self, forCellWithReuseIdentifier: categoryCellListId)
-        
-
-        
+        collectionView.contentInset = .init(top: 0, left: 0, bottom: 0, right: 0)
+        navTitleLabel.text = titleString
         let number: CGFloat = UIApplication.shared.windows.filter{$0.isKeyWindow}.first?.safeAreaInsets.top ?? 0
-        self.navigationController?.interactivePopGestureRecognizer?.delegate = self;
+                self.navigationController?.interactivePopGestureRecognizer?.delegate = self;
 
-        print(number)
+                print(number)
 
-        if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
-              flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        }
+                if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
+                      flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+                }
+        
     }
+    
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let safeArea: CGFloat = UIApplication.shared.windows.filter{$0.isKeyWindow}.first?.safeAreaInsets.top ?? 0
@@ -79,7 +87,7 @@ class CategoryViewController: BaseController, UICollectionViewDelegateFlowLayout
         let stackView = UIStackView(arrangedSubviews: [backButtonImageView, navTitleLabel, UIView()], customSpacing: 10)
         stackView.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         stackView.isLayoutMarginsRelativeArrangement = true
-        navTitleLabel.text = category?.name
+//        navTitleLabel.text = categoryGroup?.data
         stackView.constrainWidth(constant: view.frame.width)
         navigationItem.hidesBackButton = true
         navigationItem.titleView = stackView
@@ -88,45 +96,150 @@ class CategoryViewController: BaseController, UICollectionViewDelegateFlowLayout
     @objc func backButtonImageTapped(tapGestureRecognizer: UITapGestureRecognizer){
         self.navigationController?.popViewController(animated: true)
     }
+    
 
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    
+    func fetchData(){
+        Service.shared.fetchCategoryDetails(id: self.categoryId ?? 0, page: self.page) { categoryRawData, error in
+            if let error = error{
+                // TODO: - Show error to the user
+                print("error while fetching category groups", error)
+                return
+            }
+            if let data = categoryRawData{
+                self.categoryGroup = data
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+                self.page+=1
+            }
+        }
     }
+    
+//    var didSelectHandler: ((CategoryData)->())?
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if let poet  = self.categoryGroup?.data[indexPath.row]{
+            
+            let dummyPoem = PoemData(id: 0, poetID: poet.id, name: "", content: "", view: 0, poetName: poet.name, poetImage: poet.photo, poemCount: poet.poemCount, tags: [])
+            
+            let destinationController  = PoetController(poemId: poet.id)
+            destinationController.navigationController?.title = poet.name
+            destinationController.poem = dummyPoem
+            self.navigationController?.pushViewController(destinationController, animated: true)
+        }
+    }
+
+    
 }
 
-    extension CategoryViewController{
-        override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            return 1
+extension CategoryViewController{
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return categoryGroup?.data.count ?? 0
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: view.frame.width, height: 100)
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        switch kind {
+        
+        case UICollectionView.elementKindSectionHeader:
+            print("header is here")
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerCellId, for: indexPath) as! TagHeaderCell
+            headerView.poetNameLabel.text = titleString
+            headerView.counterLabel.text = "\(self.categoryGroup?.total ?? 0) şahyr"
+            headerView.descriptionLabel.isHidden = true
+            return headerView
+            
+        case UICollectionView.elementKindSectionFooter:
+            print("footer is here")
+            let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerCellId, for: indexPath)
+            return footer
+            
+        default:
+            assert(false, "Unexpected element kind")
+        }
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        
+        if let category = categoryGroup{
+            if category.data.count >= category.total{
+                print("i am small")
+                return .init(width: view.frame.width, height: 0)
+            } else{
+                return .init(width: view.frame.width, height: 100)
+            }
+        } else{
+            return .init(width: view.frame.width, height: 100)
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: categoryCellListId, for: indexPath) as! CategoryGroupListCell
-                cell.poetNameLabel.text = self.category?.name
-                cell.counterLabel.text = "\(self.category?.poetCount ?? 0) şahyr"
-                cell.categoryDetailController.categoryId = self.category?.id
-                cell.categoryDetailController.didSelectHandler = { [weak self] poet in
+        
+        
+        if let poem = categoryGroup{
+            if indexPath.row == poem.data.count-1 && poem.data.count < poem.total && !isPaginating{
+                self.isPaginating = true
+                                
+                Service.shared.fetchCategoryDetails(id: self.categoryId ?? 0, page: self.page) { categoryRawData, error in
+                    if let error = error{
+                        // TODO: - Show error to the user
+                        print("eheheheheh")
+                        print("error while fetching app groups", error)
+                        return
+                    }
                     
-                    let dummyPoem = PoemData(id: 0, poetID: poet.id, name: "", content: "", view: 0, poetName: poet.name, poetImage: poet.photo, poemCount: poet.poemCount, tags: [])
-                    
-                    let destinationController  = PoetController(poemId: poet.id)
-                    destinationController.navigationController?.title = poet.name
-                    destinationController.poem = dummyPoem
-                    self?.navigationController?.pushViewController(destinationController, animated: true)
-                }
+                    sleep(1)
+                    if let data = categoryRawData{
+                        self.categoryGroup?.data += data.data
+                        DispatchQueue.main.async {
 
-            return cell
+                            self.collectionView.reloadData()
+        //                    self.indicator.stopAnimating()
+        //                    self.indicator.hidesWhenStopped = true
+        //                    self.collectionView.isHidden = false
+                        }
+                        self.page+=1
+                        self.isPaginating = false
+                    }
+                }
+                
+            }
+        }
+        
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: categoryDetailCell, for: indexPath) as! PoetDetailCell
+                if let content = categoryGroup?.data[indexPath.row]{
+                    
+                    let dummyPoem = PoemData(id: 0, poetID: content.id, name: "", content: "", view: 0, poetName: content.name, poetImage: content.photo, poemCount: content.poemCount, tags: [])
+                    
+                    cell.poet = dummyPoem
+                }
+                return cell
+           
+        }
+        
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        let height = (view.frame.height - 2*topBottomPadding - 2*lineSpacing)
+            return .init(width: view.frame.width-32, height:80)
+
         
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.width, height: CGFloat(self.category?.poetCount ?? 0)*140+150)
-    }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return .init(top: 5, left: 0, bottom: 0, right: 0)
+        return .init(top: 12, left: 0, bottom: 12, right: 0)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 20
+    }
+
 }
 
 extension CategoryViewController: UIGestureRecognizerDelegate {
@@ -134,4 +247,3 @@ extension CategoryViewController: UIGestureRecognizerDelegate {
         return true
     }
 }
-

@@ -16,7 +16,28 @@ class PoemCell: UICollectionViewCell {
             contentTextView.textColor = UIColor(named: "FontColor")
             contentTextView.backgroundColor = UIColor(named: "MainBackground")
             
-            let styledString = "<style>p{font-family: SourceSerifPro-Bold; text-align:center;} h3{font-family: 'Source Serif Pro', serif; font-weight:100; text-align:right; font-size: 16; font-style: italic;    padding: 0px;margin: 0px;}</style><div style='font-family: SourceSerifPro-Regular; font-size: 18; word-wrap: break-word; float: right; margin: 0 auto;'>\(poem?.content.replacingOccurrences(of: "\r\n", with: "<br/>").replacingOccurrences(of: " ", with: "&nbsp") ?? "")</div>"
+            
+            
+            if #available(iOS 12.0, *) {
+                switch traitCollection.userInterfaceStyle {
+                case .light:
+                    styledTextcolor = "#2a2a2a"
+                    print("light mode")
+                    
+                case .dark: //dark mode
+                    styledTextcolor = "#acacac"
+                    print("dark mode")
+                case .unspecified: //the user interface style is not specified
+                    styledTextcolor = "#2a2a2a"
+                    print("unspecified")
+                @unknown default:
+                    styledTextcolor = "#2a2a2a"
+                }
+            } else {
+                styledTextcolor = "#2a2a2a"
+            }
+            
+            let styledString = "<style>p{font-family: SourceSerifPro-Bold; text-align:center; color: \(styledTextcolor);}</style><div style='font-family: SourceSerifPro-Regular; font-size: 16; color: \(styledTextcolor); word-wrap: break-word; float: right; margin: 0 auto;'>\(poem?.content.replacingOccurrences(of: "\r\n", with: "<br/>").replacingOccurrences(of: " ", with: "&nbsp") ?? "")</div>"
             
             contentTextView.attributedText = styledString.htmlToAttributedString
 //            contentTextView.textContainer.lineBreakMode = .byWordWrapping
@@ -27,12 +48,12 @@ class PoemCell: UICollectionViewCell {
         }
     }
     
-
+    var styledTextcolor = ""
     
     let contentTextView: UITextView = {
         let text = UITextView()
 //        text.backgroundColor = .green
-        text.textColor = #colorLiteral(red: 0.3294117647, green: 0.3137254902, blue: 0.3137254902, alpha: 1)
+        text.textColor = UIColor(named: "FontColor")
         text.font = UIFont(name: "SourceSerifPro-Regular", size: 18) ?? .systemFont(ofSize: 18)
         text.isScrollEnabled = false
         text.isEditable = false
@@ -64,6 +85,31 @@ class PoemCell: UICollectionViewCell {
         stackView.fillSuperview(padding: .init(top: 0, left: 10, bottom: 10, right: 10))
         
         }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if #available(iOS 12.0, *) {
+            switch traitCollection.userInterfaceStyle {
+            case .light:
+                styledTextcolor = "#2a2a2a"
+                print("light mode")
+                
+            case .dark: //dark mode
+                styledTextcolor = "#acacac"
+                print("dark mode")
+            case .unspecified: //the user interface style is not specified
+                styledTextcolor = "#2a2a2a"
+                print("unspecified")
+            @unknown default:
+                styledTextcolor = "#2a2a2a"
+            }
+        } else {
+            styledTextcolor = "#2a2a2a"
+        }
+        
+        let styledString = "<style>p{font-family: SourceSerifPro-Bold; text-align:center; color: \(styledTextcolor);}</style><div style='font-family: SourceSerifPro-Regular; font-size: 18; color: \(styledTextcolor); word-wrap: break-word; float: right; margin: 0 auto;'>\(poem?.content.replacingOccurrences(of: "\r\n", with: "<br/>").replacingOccurrences(of: " ", with: "&nbsp") ?? "")</div>"
+        
+        contentTextView.attributedText = styledString.htmlToAttributedString
+    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError()
