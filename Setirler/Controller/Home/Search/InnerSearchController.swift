@@ -13,6 +13,7 @@ class InnerSearchController: BaseController, UICollectionViewDelegateFlowLayout 
     var searchResultSentences: [SearchDatum]?{
         didSet{
             collectionView.reloadData()
+            collectionView.isScrollEnabled = false
         }
     }
     

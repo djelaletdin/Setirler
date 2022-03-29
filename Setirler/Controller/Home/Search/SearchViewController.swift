@@ -34,6 +34,7 @@ class SearchViewController: BaseController, UICollectionViewDelegateFlowLayout, 
         collectionView.register(SearchResultCell.self, forCellWithReuseIdentifier: searchResultId)
         collectionView.register(EmptySearchCell.self, forCellWithReuseIdentifier: emptySearchCellId)
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "collectionCell")
+        collectionView.isScrollEnabled = false
         collectionView.reloadData()
     }
     
