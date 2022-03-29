@@ -43,8 +43,8 @@ class CategoryViewController: BaseController, UICollectionViewDelegateFlowLayout
     let backButtonImageView: UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named: "back")
-//        iv.constrainHeight(constant: 23)
-//        iv.constrainWidth(constant: 23)
+        iv.constrainHeight(constant: 25)
+        iv.constrainWidth(constant: 25)
         return iv
     }()
     

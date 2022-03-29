@@ -43,6 +43,8 @@ class TagViewController: BaseController, UICollectionViewDelegateFlowLayout {
     let backButtonImageView: UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named: "back")
+        iv.constrainHeight(constant: 25)
+        iv.constrainWidth(constant: 25)
         return iv
     }()
         

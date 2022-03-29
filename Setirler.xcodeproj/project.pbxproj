@@ -16,7 +16,6 @@
 		0E3E339426AD670B0097376A /* CategoryGroupListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3E339326AD670B0097376A /* CategoryGroupListCell.swift */; };
 		0E3E339626AD682A0097376A /* CategoryDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3E339526AD682A0097376A /* CategoryDetailController.swift */; };
 		0E3E339826AD6AEC0097376A /* CategoryRowListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3E339726AD6AEC0097376A /* CategoryRowListCell.swift */; };
-		0E4CA69B2699CA6B00E9382D /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0E4CA69A2699CA6B00E9382D /* Kingfisher */; };
 		0E4CA69F2699D72E00E9382D /* SourceSerifPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E4CA69C2699D72E00E9382D /* SourceSerifPro-Bold.ttf */; };
 		0E4CA6A02699D72E00E9382D /* SourceSerifPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E4CA69D2699D72E00E9382D /* SourceSerifPro-Regular.ttf */; };
 		0E4CA6A12699D72E00E9382D /* SourceSerifPro-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E4CA69E2699D72E00E9382D /* SourceSerifPro-SemiBold.ttf */; };
@@ -30,6 +29,9 @@
 		0E4CA6B1269C1BDF00E9382D /* SearchResultsRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4CA6B0269C1BDF00E9382D /* SearchResultsRowCell.swift */; };
 		0E50DBF2262828530055DA86 /* PoemsGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50DBF1262828530055DA86 /* PoemsGroupCell.swift */; };
 		0E50DBFA262828E20055DA86 /* PoemsRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50DBF9262828E20055DA86 /* PoemsRowCell.swift */; };
+		0E536CEA27A450390028A027 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0E536CE927A450390028A027 /* Kingfisher */; };
+		0E536CED27A450DF0028A027 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0E536CEC27A450DF0028A027 /* Realm */; };
+		0E536CEF27A450DF0028A027 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0E536CEE27A450DF0028A027 /* RealmSwift */; };
 		0E69ADC7261514A700A38562 /* HorizontalSnappingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E69ADC6261514A700A38562 /* HorizontalSnappingController.swift */; };
 		0E69ADCC261514C200A38562 /* BetterSnappingLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E69ADCB261514C200A38562 /* BetterSnappingLayout.swift */; };
 		0E69ADD22615163800A38562 /* RawData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E69ADD12615163800A38562 /* RawData.swift */; };
@@ -70,8 +72,6 @@
 		0EC8962C26A63B44008A48E2 /* PoetDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8962B26A63B44008A48E2 /* PoetDetailController.swift */; };
 		0EC8962E26A641BE008A48E2 /* PoemListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC8962D26A641BE008A48E2 /* PoemListCell.swift */; };
 		0ED4943A26B54232001E2BAF /* AllPoetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED4943926B54232001E2BAF /* AllPoetsViewController.swift */; };
-		0ED4943E26B57113001E2BAF /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0ED4943D26B57113001E2BAF /* Realm */; };
-		0ED4944026B57113001E2BAF /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0ED4943F26B57113001E2BAF /* RealmSwift */; };
 		0ED4944226B577CC001E2BAF /* PoemRealmData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED4944126B577CC001E2BAF /* PoemRealmData.swift */; };
 		0ED871BE2670F8FB0021D792 /* PoemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED871BD2670F8FB0021D792 /* PoemController.swift */; };
 		0ED871C02670FD220021D792 /* PoemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED871BF2670FD220021D792 /* PoemData.swift */; };
@@ -177,9 +177,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0ED4944026B57113001E2BAF /* RealmSwift in Frameworks */,
-				0ED4943E26B57113001E2BAF /* Realm in Frameworks */,
-				0E4CA69B2699CA6B00E9382D /* Kingfisher in Frameworks */,
+				0E536CEF27A450DF0028A027 /* RealmSwift in Frameworks */,
+				0E536CED27A450DF0028A027 /* Realm in Frameworks */,
+				0E536CEA27A450390028A027 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,9 +488,9 @@
 			);
 			name = Setirler;
 			packageProductDependencies = (
-				0E4CA69A2699CA6B00E9382D /* Kingfisher */,
-				0ED4943D26B57113001E2BAF /* Realm */,
-				0ED4943F26B57113001E2BAF /* RealmSwift */,
+				0E536CE927A450390028A027 /* Kingfisher */,
+				0E536CEC27A450DF0028A027 /* Realm */,
+				0E536CEE27A450DF0028A027 /* RealmSwift */,
 			);
 			productName = Setirler;
 			productReference = 0E7D2EC925FD0094004BE3A7 /* Setirler.app */;
@@ -539,7 +539,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1220;
-				LastUpgradeCheck = 1220;
+				LastUpgradeCheck = 1320;
 				TargetAttributes = {
 					0E7D2EC825FD0094004BE3A7 = {
 						CreatedOnToolsVersion = 12.2;
@@ -564,8 +564,8 @@
 			);
 			mainGroup = 0E7D2EC025FD0094004BE3A7;
 			packageReferences = (
-				0E4CA6992699CA6B00E9382D /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				0ED4943C26B57113001E2BAF /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				0E536CE827A450390028A027 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				0E536CEB27A450DF0028A027 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 0E7D2ECA25FD0094004BE3A7 /* Products */;
 			projectDirPath = "";
@@ -769,7 +769,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -824,7 +824,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -840,14 +840,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 4R63NR5AKC;
 				INFOPLIST_FILE = Setirler/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.1;
+				MARKETING_VERSION = 0.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.djelaletdin.Setirler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -861,14 +862,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 4R63NR5AKC;
 				INFOPLIST_FILE = Setirler/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.1;
+				MARKETING_VERSION = 0.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.djelaletdin.Setirler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1002,38 +1004,38 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		0E4CA6992699CA6B00E9382D /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		0E536CE827A450390028A027 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 6.3.0;
+				minimumVersion = 7.0.0;
 			};
 		};
-		0ED4943C26B57113001E2BAF /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+		0E536CEB27A450DF0028A027 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-cocoa.git";
+			repositoryURL = "https://github.com/realm/realm-swift.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.11.0;
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		0E4CA69A2699CA6B00E9382D /* Kingfisher */ = {
+		0E536CE927A450390028A027 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 0E4CA6992699CA6B00E9382D /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = 0E536CE827A450390028A027 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
-		0ED4943D26B57113001E2BAF /* Realm */ = {
+		0E536CEC27A450DF0028A027 /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 0ED4943C26B57113001E2BAF /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			package = 0E536CEB27A450DF0028A027 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = Realm;
 		};
-		0ED4943F26B57113001E2BAF /* RealmSwift */ = {
+		0E536CEE27A450DF0028A027 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 0ED4943C26B57113001E2BAF /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			package = 0E536CEB27A450DF0028A027 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */

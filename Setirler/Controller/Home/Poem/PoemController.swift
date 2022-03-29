@@ -37,14 +37,17 @@ class PoemController: BaseController, UICollectionViewDelegateFlowLayout {
     let backButtonImageView: UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named: "back")
-//        iv.constrainHeight(constant: 23)
-//        iv.constrainWidth(constant: 23)
+        iv.constrainHeight(constant: 25)
+        iv.constrainWidth(constant: 25)
         return iv
     }()
     
     let heartImageView: UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named: "heart-empty")
+        iv.constrainHeight(constant: 25)
+        iv.constrainWidth(constant: 25)
+//        let i = iv.image?.tinted(with: UIColor(named: "FontColor") ?? .green)
         return iv
     }()
     

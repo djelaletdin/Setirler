@@ -103,6 +103,7 @@ extension UITextField {
     rightViewMode = .always
   }
 }
+
 extension UIImageView {
 
     func makeRounded() {
@@ -110,5 +111,16 @@ extension UIImageView {
         self.layer.borderColor = UIColor.black.cgColor
         self.layer.cornerRadius = self.frame.height / 2
         self.clipsToBounds = true
+    }
+}
+
+extension UIImage {
+    func tinted(with color: UIColor, isOpaque: Bool = false) -> UIImage? {
+        let format = imageRendererFormat
+        format.opaque = isOpaque
+        return UIGraphicsImageRenderer(size: size, format: format).image { _ in
+            color.set()
+            withRenderingMode(.alwaysTemplate).draw(at: .zero)
+        }
     }
 }
