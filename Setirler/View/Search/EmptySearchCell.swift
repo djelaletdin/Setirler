@@ -41,11 +41,11 @@ class EmptySearchCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-            let stackView = VerticalStackView(arrangedSubviews: [imageView, poemSentenceLabel, UIView(), warningLabel], spacing: 20)
+        let stackView = VerticalStackView(arrangedSubviews: [UIView(), VerticalStackView(arrangedSubviews: [poemSentenceLabel, warningLabel], spacing: 15), UIView()])
         stackView.distribution = .equalCentering
-            stackView.alignment = .center
-            addSubview(stackView)
-            stackView.fillSuperview(padding: .init(top: 100, left: 10, bottom: 10, right: 10))
+        stackView.alignment = .center
+        addSubview(stackView)
+        stackView.fillSuperview()
     }
     
     required init?(coder: NSCoder) {
