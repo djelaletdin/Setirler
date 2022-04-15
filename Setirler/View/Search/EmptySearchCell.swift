@@ -24,7 +24,6 @@ class EmptySearchCell: UICollectionViewCell {
         label.numberOfLines = 0
         label.textAlignment = .center
         label.textColor = UIColor(named: "FontColor")
-        label.text = "“Men elmydama gözledim, \nGözlemegiň çägi ýok.”"
         return label
     }()
     
@@ -40,8 +39,8 @@ class EmptySearchCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
-        let stackView = VerticalStackView(arrangedSubviews: [UIView(), VerticalStackView(arrangedSubviews: [poemSentenceLabel, warningLabel], spacing: 15), UIView()])
+        
+        let stackView = VerticalStackView(arrangedSubviews: [UIView(), VerticalStackView(arrangedSubviews: [poemSentenceLabel, warningLabel], spacing: 30), UIView()])
         stackView.distribution = .equalCentering
         stackView.alignment = .center
         addSubview(stackView)
