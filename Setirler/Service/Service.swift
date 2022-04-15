@@ -57,9 +57,9 @@ class Service {
     }
     
     func fetchAllPoets(page:Int, completion: @escaping (CategoryRawData?, Error?) -> ()) {
-            let urlString = "http://poem.realapps.xyz/api/poets/"
+            let urlString = "http://poem.realapps.xyz/api/poets/?page=\(page)"
         
-        print(urlString)
+            print(urlString)
         
             fetchGenericJSONData(urlString: urlString, completion: completion)
     }

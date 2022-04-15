@@ -123,6 +123,7 @@ extension AllPoetsViewController{
                 self.isPaginating = true
                                 
                 Service.shared.fetchAllPoets(page: self.page) { categoryRawData, error in
+                    print(self.page)
                     if let error = error{
                         // TODO: - Show error to the user
                         print("error while fetching app groups", error)
