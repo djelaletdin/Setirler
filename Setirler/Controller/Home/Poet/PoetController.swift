@@ -153,7 +153,7 @@ extension PoetController{
             return footer
             
         default:
-            assert(false, "Unexpected element kind")
+            fatalError("Unexpected element kind")
         }
     }
     

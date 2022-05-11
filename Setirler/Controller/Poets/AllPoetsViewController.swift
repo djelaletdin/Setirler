@@ -96,7 +96,7 @@ extension AllPoetsViewController{
                 let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerCellId, for: indexPath)
                 return footer
             default:
-                assert(false, "Unexpected element kind")
+            fatalError("Unexpected element kind")
            }
     }
     
