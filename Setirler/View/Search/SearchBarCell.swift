@@ -27,6 +27,7 @@ class SearchBarCell: UICollectionViewCell {
         field.setRightPaddingPoints(30)
         field.layer.cornerRadius = 9
         field.layer.borderWidth = 0
+        field.returnKeyType = .search
         field.leftViewMode = UITextField.ViewMode.always;
         field.leftViewMode = .always
         field.leftView?.frame = CGRect(x: 10, y: 5, width: 20 , height:20)

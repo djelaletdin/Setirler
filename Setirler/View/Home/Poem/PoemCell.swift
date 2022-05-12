@@ -37,12 +37,10 @@ class PoemCell: UICollectionViewCell {
                 styledTextcolor = "#2a2a2a"
             }
             
-            let styledString = "<style>p{font-family: SourceSerifPro-Bold; text-align:center; color: \(styledTextcolor);}</style><div style='font-family: SourceSerifPro-Regular; font-size: 16; color: \(styledTextcolor); word-wrap: break-word; float: right; margin: 0 auto;'>\(poem?.content.replacingOccurrences(of: "\r\n", with: "<br/>").replacingOccurrences(of: " ", with: "&nbsp") ?? "")</div>"
+            let styledString = "<style>p{font-family: SourceSerifPro-Bold; text-align:center; color: \(styledTextcolor);}</style><div style='font-family: SourceSerifPro-Regular; font-size: 17; color: \(styledTextcolor); word-wrap: break-word; float: right; margin: 0 auto;'>\(poem?.content.replacingOccurrences(of: "\r\n", with: "<br/>").replacingOccurrences(of: " ", with: "&nbsp") ?? "")</div>"
             
             contentTextView.attributedText = styledString.htmlToAttributedString
-//            contentTextView.textContainer.lineBreakMode = .byWordWrapping
 
-//            contentTextView.text = poem?.content
             titleLabel.text = poem?.name
             tagsController.tags = poem?.tags
         }
@@ -56,8 +54,10 @@ class PoemCell: UICollectionViewCell {
         text.textColor = UIColor(named: "FontColor")
         text.font = UIFont(name: "SourceSerifPro-Regular", size: 18) ?? .systemFont(ofSize: 18)
         text.isScrollEnabled = false
+        text.sizeToFit()
         text.isEditable = false
         text.textAlignment = .natural
+        text.adjustsFontForContentSizeCategory = true
         return text
     }()
     
@@ -66,7 +66,7 @@ class PoemCell: UICollectionViewCell {
         label.textColor = UIColor(named: "FontColor")
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.text = "Title Name"
+//        label.text = "Goşgy ady"
         label.font = UIFont(name: "SourceSansPro-Bold", size: 24) ?? .systemFont(ofSize: 24)
         return label
     }()
@@ -80,10 +80,11 @@ class PoemCell: UICollectionViewCell {
         let stackView = VerticalStackView(arrangedSubviews: [titleLabel, contentTextView], spacing: 15)
         addSubview(stackView)
         stackView.alignment = .center
-        stackView.layoutMargins = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        stackView.layoutMargins = UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
         stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.fillSuperview(padding: .init(top: 0, left: 10, bottom: 10, right: 10))
+        stackView.fillSuperview()
         
+
         }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -106,7 +107,7 @@ class PoemCell: UICollectionViewCell {
             styledTextcolor = "#2a2a2a"
         }
         
-        let styledString = "<style>p{font-family: SourceSerifPro-Bold; text-align:center; color: \(styledTextcolor);}</style><div style='font-family: SourceSerifPro-Regular; font-size: 18; color: \(styledTextcolor); word-wrap: break-word; float: right; margin: 0 auto;'>\(poem?.content.replacingOccurrences(of: "\r\n", with: "<br/>").replacingOccurrences(of: " ", with: "&nbsp") ?? "")</div>"
+        let styledString = "<style>p{font-family: SourceSerifPro-Bold; text-align:center; color: \(styledTextcolor);}</style><div style='font-family: SourceSerifPro-Regular; font-size: 17; color: \(styledTextcolor); word-wrap: break-word; float: right; margin: 0 auto;'>\(poem?.content.replacingOccurrences(of: "\r\n", with: "<br/>").replacingOccurrences(of: " ", with: "&nbsp") ?? "")</div>"
         
         contentTextView.attributedText = styledString.htmlToAttributedString
     }
